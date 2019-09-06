@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/ll_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!--头像-->
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="@dimen/item_height50"
+            android:layout_height="@dimen/item_height50"
+            android:src="@mipmap/icon_avatar"/>
+
+        <!--名称-->
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="荷包蛋"
+            android:textSize="@dimen/text_size15"
+            android:textColor="@color/color_15"
+            android:layout_marginLeft="15dp"/>
+
+        <TextView
+            android:id="@+id/tv_item_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my_tab_92"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size15"
+            android:background="@drawable/shape_login_bg"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingTop="6dp"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingBottom="6dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

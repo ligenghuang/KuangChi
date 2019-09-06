@@ -71,6 +71,29 @@ public class MySp extends MySharedPreferencesUtil {
     }
 
     /**
+     * 保存用户列表
+     * @param context
+     * @param json
+     * @return
+     */
+    public static boolean setUserList(Context context,String json){
+        SharedPreferences sp = getProjectSP(context);
+        SharedPreferences.Editor editor = sp.edit();
+        return editor.putString("UserJson", json).commit();
+    }
+
+    /**
+     * 获取用户列表
+     * @param context
+     * @return
+     */
+    public static String getUserList(Context context){
+        SharedPreferences sp = getProjectSP(context);
+        return sp.getString("UserJson", null);
+    }
+
+
+    /**
      * 获取用户昵称
      * @param context
      * @return

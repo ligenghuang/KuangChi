@@ -17,4 +17,5 @@ public interface MyView extends BaseView {
      */
     void getMyInfo();
     void getMyInfoSuccess(MyInfoDto infoDto);
+    void getMyInfoError();
 }

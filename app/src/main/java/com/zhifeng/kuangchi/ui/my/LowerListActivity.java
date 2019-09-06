@@ -59,6 +59,8 @@ public class LowerListActivity extends UserBaseActivity<LowerListAction> impleme
     @BindView(R.id.tv_nodata)
     TextView tvNodata;
 
+    int lever;
+
     @Override
     public int intiLayout() {
         return R.layout.activity_lower_list;
@@ -90,7 +92,43 @@ public class LowerListActivity extends UserBaseActivity<LowerListAction> impleme
                 .navigationBarWithKitkatEnable(false)
                 .init();
         toolbar.setNavigationOnClickListener(view -> finish());
-        fTitleTv.setText(ResUtil.getString(R.string.my_tab_89));
+        lever = getIntent().getIntExtra("lever",0);
+//        setfTitle();
+        fTitleTv.setText(ResUtil.getFormatString(R.string.my_tab_89_1));
+    }
+
+    /**
+     * 设置标题
+     */
+    private void setfTitle() {
+        String text = "普通用户";
+        switch (lever){
+            case 0:
+                text = "普通用户";
+                break;
+            case 1:
+                text = "星月";
+                break;
+            case 2:
+                text = "星光";
+                break;
+            case 3:
+                text = "星宝";
+                break;
+            case 4:
+                text = "星河";
+                break;
+            case 5:
+                text = "级差等级一";
+                break;
+            case 6:
+                text = "级差等级二";
+                break;
+            case 7:
+                text = "级差等级三";
+                break;
+        }
+        fTitleTv.setText(ResUtil.getFormatString(R.string.my_tab_89,text));
     }
 
     @Override

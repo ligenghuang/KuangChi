@@ -1,11 +1,13 @@
 package com.zhifeng.kuangchi.actions;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.lgh.huanglib.actions.Action;
 import com.lgh.huanglib.net.CollectionsUtils;
 import com.lgh.huanglib.util.L;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+import com.zhifeng.kuangchi.module.GeneralDto;
 import com.zhifeng.kuangchi.module.MyInfoDto;
 import com.zhifeng.kuangchi.net.WebUrlUtil;
 import com.zhifeng.kuangchi.ui.impl.MyView;
@@ -71,15 +73,21 @@ public class MyAction extends BaseAction<MyView>{
                         //todo 获取我的信息
                         if (aBoolean) {
                             L.e("xx", "输出返回结果 " + action.getUserData().toString());
-                            MyInfoDto myInfoDto = new Gson().fromJson(action.getUserData().toString(), new TypeToken<MyInfoDto>() {
-                            }.getType());
-                            if (myInfoDto.getStatus() == 200){
-                                //todo 获取我的信息成功
-                                view.getMyInfoSuccess(myInfoDto);
-                                return;
-                            }
-                            view.onError(myInfoDto.getMsg(),action.getErrorType());
-                            return;
+                           try{
+                               MyInfoDto myInfoDto = new Gson().fromJson(action.getUserData().toString(), new TypeToken<MyInfoDto>() {
+                               }.getType());
+                               if (myInfoDto.getStatus() == 200){
+                                   //todo 获取我的信息成功
+                                   view.getMyInfoSuccess(myInfoDto);
+                                   return;
+                               }
+                               view.onError(myInfoDto.getMsg(),action.getErrorType());
+                               return;
+                           }catch (JsonSyntaxException e){
+                               GeneralDto generalDto = new Gson().fromJson(action.getUserData().toString(), new TypeToken<GeneralDto>() {
+                               }.getType());
+                              view.getMyInfoError();
+                           }
                         }
                         view.onError(msg,action.getErrorType());
                         break;

@@ -1,5 +1,6 @@
 package com.zhifeng.kuangchi.ui.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.lgh.huanglib.util.CheckNetwork;
 import com.lgh.huanglib.util.base.ActivityStack;
 import com.lgh.huanglib.util.data.FormatUtils;
@@ -21,12 +24,15 @@ import com.zhifeng.kuangchi.R;
 import com.zhifeng.kuangchi.actions.BaseAction;
 import com.zhifeng.kuangchi.actions.LoginAction;
 import com.zhifeng.kuangchi.module.LoginDto;
+import com.zhifeng.kuangchi.module.UserDto;
 import com.zhifeng.kuangchi.ui.MainActivity;
 import com.zhifeng.kuangchi.ui.impl.LoginView;
 import com.zhifeng.kuangchi.util.base.UserBaseActivity;
 import com.zhifeng.kuangchi.util.data.MySp;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -74,6 +80,7 @@ public class LoginActivity extends UserBaseActivity<LoginAction> implements Logi
      * 手机号码
      */
     String phone;
+    List<String> phones = new ArrayList<>();
 
     /**
      * 是否可以获取验证码
@@ -128,6 +135,16 @@ public class LoginActivity extends UserBaseActivity<LoginAction> implements Logi
         super.init();
         mActicity = this;
         mContext = this;
+
+        String json = MySp.getUserList(mContext);
+        if (!TextUtils.isEmpty(json)){
+            phones = new ArrayList<>();
+            List<UserDto> list = new Gson().fromJson(json, new TypeToken<List<UserDto>>() {
+            }.getType());
+            for (int i = 0; i <list.size() ; i++) {
+                phones.add(list.get(i).getPhone());
+            }
+        }
 
         getTextChangedListener();
         timer = new MyCountDownTimer(60000,1000);
@@ -317,7 +334,10 @@ public class LoginActivity extends UserBaseActivity<LoginAction> implements Logi
         MySp.clearAllSP(mContext);
         //todo 保存登录或注册返回的数据
         MySp.setAccessToken(mContext,loginDto.getData().getToken());
-        jumpActivity(mContext,MainActivity.class);
+        Intent intent = new Intent(mContext,MainActivity.class);
+        intent.putExtra("isLogin",true);
+        startActivity(intent);
+//        jumpActivity(mContext,MainActivity.class);
         ActivityStack.getInstance().exitIsNotHaveMain(MainActivity.class);
     }
 
@@ -370,6 +390,15 @@ public class LoginActivity extends UserBaseActivity<LoginAction> implements Logi
         if (!ValidateUtils.isPhone2(etLoginPhone.getText().toString())){
             showNormalToast(ResUtil.getString(R.string.login_tab_10));
             return true;
+        }
+        //todo 判断账号是否已登录
+        if (phones.size() != 0){
+            for (int i = 0; i <phones.size() ; i++) {
+                if (phones.get(i).equals(etLoginPhone.getText().toString())){
+                    showNormalToast(ResUtil.getString(R.string.login_tab_15));
+                    return true;
+                }
+            }
         }
         return false;
     }

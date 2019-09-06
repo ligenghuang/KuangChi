@@ -15,5 +15,5 @@
     <string name="login_tab_12">请阅读并同意《用户协议》</string>
     <string name="login_tab_13">用户协议</string>
     <string name="login_tab_14">请输入邀请码</string>
-
+    <string name="login_tab_15">该账号已登录！</string>
 </resources>

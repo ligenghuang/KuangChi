@@ -28,6 +28,7 @@ import com.zhifeng.kuangchi.adapter.AnnounceAdapter;
 import com.zhifeng.kuangchi.adapter.Banner;
 import com.zhifeng.kuangchi.adapter.InformationAdapter;
 import com.zhifeng.kuangchi.module.HomeDataDto;
+import com.zhifeng.kuangchi.ui.MainActivity;
 import com.zhifeng.kuangchi.ui.impl.HomeView;
 import com.zhifeng.kuangchi.ui.login.LoginOrRegisteredActivity;
 import com.zhifeng.kuangchi.util.base.UserBaseFragment;
@@ -79,6 +80,9 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
     RecyclerView recyclerview_1;
     @BindView(R.id.recyclerview_2)
     RecyclerView recyclerview_2;
+
+    @BindView(R.id.tv_message_num)
+    TextView tvMessageNum;
 
     AnnounceAdapter announceAdapter;
     InformationAdapter InfoAdapter;
@@ -149,7 +153,11 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
             if (isFirst) {
                 loadDialog();
                 isFirst = false;
+
+            }
+            if (MainActivity.isLogin2) {
                 getHomeData();
+                MainActivity.isLogin2 = false;
             }
         }
     }
@@ -217,7 +225,19 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
         goodsId = dataBean.getGoods_gift().getGoods_id();//商品id
         setSelectedLin(Position);
         setData(dataBean.getAnnounce());
+        if (dataBean.getNot_read() != 0){
+            String num = "";
+            if (dataBean.getNot_read() > 99){
+                num = "...";
+            }else {
+                num = dataBean.getNot_read()+"";
+            }
 
+            tvMessageNum.setText(num);
+            tvMessageNum.setVisibility(View.VISIBLE);
+        }else {
+            tvMessageNum.setVisibility(View.GONE);
+        }
     }
 
     /**
@@ -356,7 +376,7 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
         }
     }
 
-    @OnClick({R.id.iv_img,R.id.iv_customer_service,R.id.tv_home_buy})
+    @OnClick({R.id.iv_img,R.id.ll_customer_service,R.id.tv_home_buy})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_img:
@@ -372,13 +392,13 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
                 intent.putExtra("goods_id", goodsId);
                 startActivity(intent);
                 break;
-            case R.id.iv_customer_service:
+            case R.id.ll_customer_service:
                 //todo 判断是否已经登录
                 if (!MySp.iSLoginLive(mContext)){
                     jumpActivityNotFinish(mContext, LoginOrRegisteredActivity.class);
                     return;
                 }
-
+                tvMessageNum.setVisibility(View.GONE);
                 //todo 跳转至客服对话列表页
                 jumpActivityNotFinish(mContext,CustomerServiceActivity.class);
                 break;

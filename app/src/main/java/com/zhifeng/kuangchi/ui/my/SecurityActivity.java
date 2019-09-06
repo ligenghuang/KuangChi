@@ -17,6 +17,7 @@ import com.zhifeng.kuangchi.actions.SecurityAction;
 import com.zhifeng.kuangchi.module.SecurityInfoDto;
 import com.zhifeng.kuangchi.ui.MainActivity;
 import com.zhifeng.kuangchi.ui.impl.SecurityView;
+import com.zhifeng.kuangchi.ui.login.LoginActivity;
 import com.zhifeng.kuangchi.ui.login.LoginOrRegisteredActivity;
 import com.zhifeng.kuangchi.util.base.UserBaseActivity;
 import com.zhifeng.kuangchi.util.data.MySp;
@@ -168,9 +169,9 @@ public class SecurityActivity extends UserBaseActivity<SecurityAction> implement
             case R.id.tv_security_logout:
                 //todo 退出登录
                 MySp.clearAllSP(mContext);
-                jumpActivity(mContext, LoginOrRegisteredActivity.class);
+                jumpActivity(mContext, LoginActivity.class);
                 MainActivity.Position = 0;
-                ActivityStack.getInstance().exitIsNotHaveMain( LoginOrRegisteredActivity.class, MainActivity.class);
+                ActivityStack.getInstance().exitIsNotHaveMain( LoginActivity.class, MainActivity.class);
                 break;
         }
     }

@@ -18,7 +18,7 @@ public class CustomerServiceListDto {
     /**
      * status : 200
      * msg : success
-     * data : [{"id":1,"user_id":27875,"send_name":"默认昵称","send_id":27875,"recive_name":"客服小小熊","recive_id":0,"content":"nihao","create_time":1564714595,"send_type":1},{"id":2,"user_id":27875,"send_name":"客服小小熊","send_id":0,"recive_name":"默认昵称","recive_id":27875,"content":"nihaoya","create_time":1564717815,"send_type":0},{"id":3,"user_id":27875,"send_name":"客服小小熊","send_id":0,"recive_name":"默认昵称","recive_id":27875,"content":"5255","create_time":1564718285,"send_type":0},{"id":4,"user_id":27875,"send_name":"默认昵称","send_id":27875,"recive_name":"客服小小熊","recive_id":0,"content":"哈哈","create_time":1564719064,"send_type":1}]
+     * data : [{"id":13,"user_id":27880,"send_name":"默认昵称","send_avatar":"http://orepool.zhifengwangluo.com/static/images/headimg/20190711156280864771502.png","send_id":27880,"recive_name":"客服小小熊","recive_avatar":"https://dpic.tiankong.com/3w/h7/QJ6961899400.jpg?x-oss-process=style/670ws","recive_id":0,"content":"哈哈","create_time":1567395389,"send_type":1},{"id":14,"user_id":27880,"send_name":"默认昵称","send_avatar":"http://orepool.zhifengwangluo.com/static/images/headimg/20190711156280864771502.png","send_id":27880,"recive_name":"客服小小熊","recive_avatar":"https://dpic.tiankong.com/3w/h7/QJ6961899400.jpg?x-oss-process=style/670ws","recive_id":0,"content":"哈哈","create_time":1567395456,"send_type":1},{"id":15,"user_id":27880,"send_name":"默认昵称","send_avatar":"http://orepool.zhifengwangluo.com/static/images/headimg/20190711156280864771502.png","send_id":27880,"recive_name":"客服小小熊","recive_avatar":"https://dpic.tiankong.com/3w/h7/QJ6961899400.jpg?x-oss-process=style/670ws","recive_id":0,"content":"哈哈","create_time":1567395743,"send_type":1},{"id":18,"user_id":27880,"send_name":"默认昵称","send_avatar":"http://orepool.zhifengwangluo.com/static/images/headimg/20190711156280864771502.png","send_id":27880,"recive_name":"客服小小熊","recive_avatar":"https://dpic.tiankong.com/3w/h7/QJ6961899400.jpg?x-oss-process=style/670ws","recive_id":0,"content":"027880","create_time":1567499584,"send_type":1},{"id":49,"user_id":27880,"send_name":"默认","send_avatar":"http://orepool.zhifengwangluo.com/upload/images/tou/20190904156759802494896.png","send_id":27880,"recive_name":"客服小小熊","recive_avatar":"https://dpic.tiankong.com/3w/h7/QJ6961899400.jpg?x-oss-process=style/670ws","recive_id":0,"content":"很刚哈更会哈更很刚哈更很刚哈更很刚哈更很刚哈更","create_time":1567680293,"send_type":1},{"id":59,"user_id":27880,"send_name":"默认","send_avatar":"http://orepool.zhifengwangluo.com/upload/images/tou/20190904156759802494896.png","send_id":27880,"recive_name":"客服小小熊","recive_avatar":"https://dpic.tiankong.com/3w/h7/QJ6961899400.jpg?x-oss-process=style/670ws","recive_id":0,"content":"哈哈","create_time":1567733924,"send_type":1}]
      */
 
     private int status;
@@ -54,22 +54,26 @@ public class CustomerServiceListDto {
 
     public static class DataBean {
         /**
-         * id : 1
-         * user_id : 27875
+         * id : 13
+         * user_id : 27880
          * send_name : 默认昵称
-         * send_id : 27875
+         * send_avatar : http://orepool.zhifengwangluo.com/static/images/headimg/20190711156280864771502.png
+         * send_id : 27880
          * recive_name : 客服小小熊
+         * recive_avatar : https://dpic.tiankong.com/3w/h7/QJ6961899400.jpg?x-oss-process=style/670ws
          * recive_id : 0
-         * content : nihao
-         * create_time : 1564714595
+         * content : 哈哈
+         * create_time : 1567395389
          * send_type : 1
          */
 
         private int id;
         private int user_id;
         private String send_name;
+        private String send_avatar;
         private int send_id;
         private String recive_name;
+        private String recive_avatar;
         private int recive_id;
         private String content;
         private long create_time;
@@ -99,6 +103,14 @@ public class CustomerServiceListDto {
             this.send_name = send_name == null ? "" : send_name;
         }
 
+        public String getSend_avatar() {
+            return send_avatar == null ? "" : send_avatar;
+        }
+
+        public void setSend_avatar(String send_avatar) {
+            this.send_avatar = send_avatar == null ? "" : send_avatar;
+        }
+
         public int getSend_id() {
             return send_id;
         }
@@ -113,6 +125,14 @@ public class CustomerServiceListDto {
 
         public void setRecive_name(String recive_name) {
             this.recive_name = recive_name == null ? "" : recive_name;
+        }
+
+        public String getRecive_avatar() {
+            return recive_avatar == null ? "" : recive_avatar;
+        }
+
+        public void setRecive_avatar(String recive_avatar) {
+            this.recive_avatar = recive_avatar == null ? "" : recive_avatar;
         }
 
         public int getRecive_id() {

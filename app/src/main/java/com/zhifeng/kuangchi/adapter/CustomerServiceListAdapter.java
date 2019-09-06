@@ -5,12 +5,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.lgh.huanglib.util.L;
 import com.lgh.huanglib.util.config.GlideUtil;
 import com.zhifeng.kuangchi.R;
 import com.zhifeng.kuangchi.module.CustomerServiceListDto;
 import com.zhifeng.kuangchi.util.data.DynamicTimeFormat;
+import com.zhifeng.kuangchi.util.data.MySp;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -36,7 +39,7 @@ public class CustomerServiceListAdapter extends BaseRecyclerAdapter<CustomerServ
     @Override
     protected void onBindViewHolder(SmartViewHolder holder, CustomerServiceListDto.DataBean model, int position) {
         holder.setIsRecyclable(false);
-        LinearLayout llLeft = holder.itemView.findViewById(R.id.ll_left);
+        RelativeLayout llLeft = holder.itemView.findViewById(R.id.ll_left);
         LinearLayout llRight = holder.itemView.findViewById(R.id.ll_right);
 
         llLeft.setVisibility(View.GONE);
@@ -44,7 +47,13 @@ public class CustomerServiceListAdapter extends BaseRecyclerAdapter<CustomerServ
         //时间
         TextView timeTv = holder.itemView.findViewById(R.id.tv_item_time);
         long time = (long)model.getCreate_time()*(long)1000;
-        timeTv.setText(getTimeString(time));
+        String date = getTimeString(time);
+        timeTv.setText(date);
+        if (position != 0){
+            long lastTime = (long)getAllData().get(position -1).getCreate_time()*(long)1000;
+            String lastDate = getTimeString(lastTime);
+            timeTv.setVisibility(lastDate.equals(date)?View.GONE:View.VISIBLE);
+        }
 
         if (model.getSend_type() == 0){
             //todo 客服发送
@@ -52,13 +61,13 @@ public class CustomerServiceListAdapter extends BaseRecyclerAdapter<CustomerServ
             holder.text(R.id.tv_left_name,model.getSend_name());//客服名称
             holder.text(R.id.tv_left_message,model.getContent());//客服发送的消息
             ImageView ivLeft = holder.itemView.findViewById(R.id.iv_left_avatar);
-            GlideUtil.setImageCircle(context,"",ivLeft,R.mipmap.icon_avatar);//todo 2019/09/02 客服头像未设置
+            GlideUtil.setImageCircle(context,model.getSend_avatar(),ivLeft,R.mipmap.icon_avatar);//todo 2019/09/02 客服头像
         }else if (model.getSend_type() == 1){
             //todo 用户发送
             llRight.setVisibility(View.VISIBLE);
             holder.text(R.id.tv_right_message,model.getContent());
             ImageView ivRight = holder.itemView.findViewById(R.id.iv_right_avatar);
-            GlideUtil.setImageCircle(context,"",ivRight,R.mipmap.icon_avatar);//todo 2019/09/02 用户头像未设置
+            GlideUtil.setImageCircle(context, MySp.getUserImg(context),ivRight,R.mipmap.icon_avatar);//todo 2019/09/02 用户头像
         }
 
     }

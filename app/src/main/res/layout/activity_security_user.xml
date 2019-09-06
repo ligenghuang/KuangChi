@@ -10,100 +10,71 @@
 
     <include layout="@layout/layout_title_black_bar"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-
-        <ImageView
-            android:layout_width="107dp"
-            android:layout_height="41dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginBottom="75dp"
-            android:src="@mipmap/login_logo"
-            android:layout_gravity="center"/>
+   <androidx.core.widget.NestedScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
 
        <LinearLayout
            android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="vertical"
-           android:layout_marginLeft="12dp"
-           android:layout_marginTop="@dimen/item_height70">
+           android:layout_height="match_parent"
+           android:layout_weight="1"
+           android:orientation="vertical">
 
 
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="@string/my_tab_90"
-               android:textColor="@color/color_15"
-               android:textSize="@dimen/text_size24"
-               android:textStyle="bold"/>
-
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="@string/my_tab_91"
-               android:textSize="@dimen/text_size15"
-               android:textColor="@color/color_15"
-               android:layout_marginTop="15dp"/>
+           <ImageView
+               android:layout_width="107dp"
+               android:layout_height="41dp"
+               android:layout_marginTop="100dp"
+               android:layout_marginBottom="75dp"
+               android:src="@mipmap/login_logo"
+               android:layout_gravity="center"/>
 
            <LinearLayout
-               android:id="@+id/ll_user"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:layout_marginTop="20dp"
-               android:gravity="center_vertical"
-               android:orientation="horizontal">
+               android:orientation="vertical"
+               android:layout_marginLeft="12dp"
+               android:layout_marginRight="12dp"
+               android:layout_marginTop="@dimen/item_height70">
 
-               <!--头像-->
-               <ImageView
-                   android:id="@+id/iv_avatar"
-                   android:layout_width="@dimen/item_height50"
-                   android:layout_height="@dimen/item_height50"
-                   android:src="@mipmap/icon_avatar"/>
 
-               <!--名称-->
                <TextView
-                   android:id="@+id/tv_name"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="荷包蛋"
+                   android:text="@string/my_tab_90"
+                   android:textColor="@color/color_15"
+                   android:textSize="@dimen/text_size24"
+                   android:textStyle="bold"/>
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/my_tab_91"
                    android:textSize="@dimen/text_size15"
                    android:textColor="@color/color_15"
-                   android:layout_marginLeft="15dp"/>
+                   android:layout_marginTop="15dp"/>
 
+               <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/recyclerview"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"/>
+               <!--切换-->
                <TextView
-                   android:layout_width="wrap_content"
+                   android:id="@+id/tv_security"
+                   android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:text="@string/my_tab_92"
-                   android:layout_marginLeft="15dp"
-                   android:textColor="@color/white"
+                   android:gravity="center"
+                   android:padding="6dp"
                    android:textSize="@dimen/text_size15"
+                   android:textColor="@color/white"
                    android:background="@drawable/shape_login_bg"
-                   android:paddingLeft="@dimen/dp_10"
-                   android:paddingTop="6dp"
-                   android:paddingRight="@dimen/dp_10"
-                   android:paddingBottom="6dp"/>
+                   android:text="@string/my_tab_93"
+                   android:layout_marginTop="@dimen/item_height70"/>
 
            </LinearLayout>
 
-           <!--切换-->
-           <TextView
-               android:id="@+id/tv_security"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:gravity="center"
-               android:padding="6dp"
-               android:textSize="@dimen/text_size15"
-               android:textColor="@color/white"
-               android:background="@drawable/shape_login_bg"
-               android:text="@string/my_tab_93"
-               android:layout_marginTop="@dimen/item_height70"/>
-
        </LinearLayout>
 
-    </LinearLayout>
+   </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

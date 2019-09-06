@@ -39,6 +39,7 @@ public class AgencyListAdapter extends BaseRecyclerAdapter<AgencyListDto.DataBea
                 //todo 跳转至舰队长代理页面
                 Intent intent = new Intent(context, LowerListActivity.class);
                 intent.putExtra("id",model.getId()+"");
+                intent.putExtra("lever",model.getLevel());
                 context.startActivity(intent);
             }
         });

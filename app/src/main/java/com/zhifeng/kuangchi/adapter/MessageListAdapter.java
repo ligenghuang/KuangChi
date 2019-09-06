@@ -22,6 +22,6 @@ public class MessageListAdapter extends BaseRecyclerAdapter<MessageListDto.DataB
         holder.setIsRecyclable(false);
         holder.text(R.id.tv_item_message_title,model.getTitle());
         holder.text(R.id.tv_item_description,model.getDescription());
-
+        holder.text(R.id.tv_item_time,model.getTime());
     }
 }

@@ -38,8 +38,7 @@
                     android:id="@+id/iv_avatar"
                     android:layout_width="@dimen/item_height45"
                     android:layout_height="@dimen/item_height45"
-                    android:layout_marginRight="@dimen/dp_10"
-                    android:src="@mipmap/icon_avatar" />
+                    android:layout_marginRight="@dimen/dp_10"/>
 
                 <!--用户名称-->
                 <TextView
@@ -124,8 +123,17 @@
                     android:layout_below="@id/tv_user_level"
                     android:layout_marginRight="15dp"
                     android:layout_marginTop="6dp"
-                    android:textSize="@dimen/text_size15"
-                    android:text="@string/my_tab_135"/>
+                    android:textSize="@dimen/text_size15"/>
+                <TextView
+                    android:id="@+id/tv_user_is_nameapi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/tv_user_level"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="6dp"
+                    android:textSize="@dimen/text_size15"/>
+
 
             </LinearLayout>
 

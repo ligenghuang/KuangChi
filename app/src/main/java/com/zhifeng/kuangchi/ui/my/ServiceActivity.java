@@ -45,6 +45,7 @@ import org.json.JSONObject;
 import java.lang.ref.WeakReference;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -163,15 +164,16 @@ public class ServiceActivity extends UserBaseActivity<ServiceAction> implements 
         tvTNum.setText(ResUtil.getFormatString(R.string.my_tab_131, dataBean.getMiner_nums() + ""));
         List<Entry> entries = new ArrayList<>();
         List<String> mList = new ArrayList<>();
-
+//        L.e("lgh_map","map = "+mMap.get(0).toString());
             if (!mMap.isEmpty()) {
                 //设置数据
                 Iterator kv = mMap.entrySet().iterator();
                 int size = mMap.size();
-                for (int i = 0; i < size; i++) {
+                for (int i = 0; i <size; i++) {
                     Map.Entry entry = (Map.Entry) kv.next();
                     String key = entry.getKey().toString();
                     String value = entry.getValue().toString();
+                    L.e("lgh_value","value  = "+ Float.parseFloat(value));
                     entries.add(new Entry(i + 1, Float.parseFloat(value)));
                     long date = 0;
                     try {
@@ -193,7 +195,8 @@ public class ServiceActivity extends UserBaseActivity<ServiceAction> implements 
                 }
 
             }
-
+//        Collections.reverse(entries);
+//        Collections.reverse(mList);
         //显示边界
         mLineChart.setDrawBorders(false);
         //去除网格
@@ -237,7 +240,7 @@ public class ServiceActivity extends UserBaseActivity<ServiceAction> implements 
         //触摸事件
         mLineChart.setTouchEnabled(true);
         Matrix matrix = new Matrix();
-        float sx = (mList.size() * 1.0f) / 5.0f;
+        float sx = (mList.size() * 1.0f) / 6.0f;
         //x轴缩放sx倍
         matrix.postScale(sx, 1f);
         //在图表动画显示之前进行缩放

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lgh.huanglib.util.CheckNetwork;
+import com.lgh.huanglib.util.L;
 import com.lgh.huanglib.util.base.ActivityStack;
 import com.lgh.huanglib.util.data.ResUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -24,6 +25,7 @@ import com.zhifeng.kuangchi.adapter.CustomerServiceListAdapter;
 import com.zhifeng.kuangchi.module.CustomerServiceListDto;
 import com.zhifeng.kuangchi.ui.impl.CustomerServiceView;
 import com.zhifeng.kuangchi.util.base.UserBaseActivity;
+import com.zhifeng.kuangchi.util.view.SoftKeyBoardListener;
 
 import java.lang.ref.WeakReference;
 
@@ -115,7 +117,36 @@ public class CustomerServiceActivity extends UserBaseActivity<CustomerServiceAct
 
         loadDialog();
         getCustomerServiceList();
+        SoftKeyBoardListener.setListener(this, onSoftKeyBoardChangeListener);
     }
+
+    /**
+     * 软键盘弹出收起监听
+     */
+    private SoftKeyBoardListener.OnSoftKeyBoardChangeListener onSoftKeyBoardChangeListener = new SoftKeyBoardListener.OnSoftKeyBoardChangeListener() {
+        @Override
+        public void keyBoardShow(int height) {
+            L.e("lgh_key","键盘显示 高度 : " + height);
+            recyclerView.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //todo 滑动至列表最后一项
+                    recyclerView.scrollToPosition(customerServiceListAdapter.getAllData().size() - 1);
+                }
+            }, 100);
+        }
+        @Override
+        public void keyBoardHide(int height) {
+            L.e("lgh_key","键盘隐藏 高度 : " + height);
+            recyclerView.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //todo 滑动至列表最后一项
+                    recyclerView.scrollToPosition(customerServiceListAdapter.getAllData().size() - 1);
+                }
+            }, 100);
+        }
+    };
 
     @Override
     protected void loadView() {

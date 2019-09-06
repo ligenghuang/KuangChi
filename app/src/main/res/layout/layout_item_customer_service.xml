@@ -10,12 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginBottom="@dimen/dp_10"
         android:layout_marginTop="@dimen/dp_10"
         android:textSize="@dimen/text_size15"
         android:textColor="@color/color_15"/>
     <!--客服-->
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/ll_left"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,11 +24,10 @@
         android:layout_marginRight="75dp">
 
 
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:gravity="center_vertical"
-           android:orientation="horizontal">
+<!--       <LinearLayout-->
+<!--           android:layout_width="match_parent"-->
+<!--           android:layout_height="wrap_content"-->
+<!--           android:orientation="horizontal">-->
 
            <!--客服头像-->
            <ImageView
@@ -47,27 +45,30 @@
                android:textSize="@dimen/sp_14"
                android:textColor="@color/color_15"
                android:textStyle="bold"
+               android:layout_toRightOf="@id/iv_left_avatar"
                android:text="客服名称"/>
 
-       </LinearLayout>
+<!--       </LinearLayout>-->
 
         <!--消息-->
         <TextView
             android:id="@+id/tv_left_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/icon_et_2"
+            android:background="@drawable/bubble_white"
             android:textColor="@color/color_15"
             android:textSize="@dimen/sp_14"
-            android:gravity="left"
+            android:layout_toRightOf="@id/iv_left_avatar"
+            android:layout_below="@id/tv_left_name"
+            android:layout_marginTop="@dimen/dp_10"
+            android:gravity="center"
             android:paddingLeft="@dimen/dp_10"
             android:paddingRight="@dimen/dp_10"
             android:paddingTop="6dp"
             android:paddingBottom="6dp"
-            android:text="你好欢迎来到xx，你可添加客服微信xl123456.或者发送邮箱123456789@qq.com"
-            android:layout_marginLeft="@dimen/item_height60"/>
+            android:text="你"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <!--自己-->
     <LinearLayout

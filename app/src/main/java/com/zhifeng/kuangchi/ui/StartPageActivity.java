@@ -12,6 +12,7 @@ import com.lgh.huanglib.util.base.ActivityStack;
 import com.lgh.huanglib.util.base.BaseActivity;
 import com.zhifeng.kuangchi.R;
 import com.zhifeng.kuangchi.actions.BaseAction;
+import com.zhifeng.kuangchi.ui.login.LoginActivity;
 import com.zhifeng.kuangchi.ui.login.LoginOrRegisteredActivity;
 import com.zhifeng.kuangchi.util.base.UserBaseActivity;
 import com.zhifeng.kuangchi.util.data.MySp;
@@ -73,7 +74,7 @@ public class StartPageActivity extends BaseActivity {
                 @Override
                 public void run() {
                     //todo 判断是否登录跳转不同页面
-                    Intent intent = new Intent(mContext, MySp.iSLoginLive(mContext)?MainActivity.class: LoginOrRegisteredActivity.class);
+                    Intent intent = new Intent(mContext, MySp.iSLoginLive(mContext)?MainActivity.class: LoginActivity.class);
                     startActivity(intent);
                     isNeedAnim = false;
                     finish();

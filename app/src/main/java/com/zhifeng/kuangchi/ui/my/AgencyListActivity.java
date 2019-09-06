@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +14,8 @@ import com.lgh.huanglib.util.L;
 import com.lgh.huanglib.util.base.ActivityStack;
 import com.lgh.huanglib.util.data.ResUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.zhifeng.kuangchi.R;
 import com.zhifeng.kuangchi.actions.AgencyListAction;
 import com.zhifeng.kuangchi.adapter.AgencyListAdapter;
@@ -113,6 +116,23 @@ public class AgencyListActivity extends UserBaseActivity<AgencyListAction> imple
 //
         loadDialog();
         refreshAgencyList();
+        loadView();
+    }
+
+    @Override
+    protected void loadView() {
+        super.loadView();
+        refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                loadMoreAgencyList();
+            }
+
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                refreshAgencyList();
+            }
+        });
     }
 
     /**

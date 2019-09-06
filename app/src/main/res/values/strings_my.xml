@@ -83,6 +83,7 @@
     <string name="my_tab_67">提现到</string>
     <string name="my_tab_68">单日交易限额</string>
     <string name="my_tab_69">提币额度</string>
+    <string name="my_tab_69_2">充币额度</string>
     <string name="my_tab_70">提交</string>
     <string name="my_tab_71">地址：</string>
 
@@ -105,7 +106,8 @@
     <string name="my_tab_86">姓名</string>
     <string name="my_tab_87">ID</string>
     <string name="my_tab_88">等级</string>
-    <string name="my_tab_89">星河代理列表</string>
+    <string name="my_tab_89">%0$s代理列表</string>
+    <string name="my_tab_89_1">星河代理列表</string>
 
     <string name="my_tab_90">切换账户登录</string>
     <string name="my_tab_91">轻触账户以登录</string>
@@ -172,5 +174,8 @@
     <string name="my_tab_142">修改昵称成功</string>
     <string name="my_tab_143">个人设置</string>
     <string name="my_tab_144">昵称不能为空</string>
+    <string name="my_tab_145">已认证</string>
+    <string name="my_tab_146">未认证</string>
+    <string name="my_tab_147">登录过期，请重新登录</string>
 
 </resources>

@@ -57,6 +57,15 @@ public class HomeDataDto {
         private List<AnnounceBean> announce;
         private List<?> hot_goods;
         private List<RecommendGoodsBean> recommend_goods;
+        private int not_read;
+
+        public int getNot_read() {
+            return not_read;
+        }
+
+        public void setNot_read(int not_read) {
+            this.not_read = not_read;
+        }
 
         public double getBouns() {
             return bouns;

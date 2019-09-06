@@ -96,6 +96,8 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
     TextView tvBalanceMoney;
     @BindView(R.id.ll_balance_money)
     LinearLayout llBalanceMoney;
+    @BindView(R.id.tv_type)
+    TextView typeTv;
 
 
     public static int Type = 0;
@@ -182,6 +184,9 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
         dialog.show();
     }
 
+    /**
+     * 相机
+     */
     private void takePhoto() {
         /**
          * 0.4.7 目前直接调起相机不支持裁剪，如果开启裁剪后不会返回图片，请注意，后续版本会解决
@@ -529,6 +534,7 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
         tvBalanceGet.setSelected(false);
         llBalanceLines.setVisibility(View.GONE);
         String text = ResUtil.getString(R.string.my_tab_66);
+        String text1 = ResUtil.getString(R.string.my_tab_69_2);
         switch (position) {
             case 0:
                 //todo 充币
@@ -539,12 +545,14 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
                 //todo 提币
                 tvBalanceGet.setSelected(true);
                 text = ResUtil.getString(R.string.my_tab_67);
+                text1 = ResUtil.getString(R.string.my_tab_69);
                 break;
 
             default:
                 break;
         }
         tvBalanceType.setText(text);
+        typeTv.setText(text1);
     }
 
     @Override
