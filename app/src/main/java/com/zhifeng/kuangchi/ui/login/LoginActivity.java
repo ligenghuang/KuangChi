@@ -376,7 +376,7 @@ public class LoginActivity extends UserBaseActivity<LoginAction> implements Logi
     private void setType(int type){
         this.type = type;
 //        fRightTv.setText(ResUtil.getString(type==0?R.string.login_tab_1:R.string.login_tab_2));
-        btnLogin.setText(ResUtil.getString(type==0?R.string.login_tab_2:R.string.login_tab_1));
+            btnLogin.setText(ResUtil.getString(type==1?R.string.login_tab_2:R.string.login_tab_1));
     }
 
     //todo 判断手机号码是否为空或格式不正确
@@ -391,15 +391,15 @@ public class LoginActivity extends UserBaseActivity<LoginAction> implements Logi
             showNormalToast(ResUtil.getString(R.string.login_tab_10));
             return true;
         }
-        //todo 判断账号是否已登录
-        if (phones.size() != 0){
-            for (int i = 0; i <phones.size() ; i++) {
-                if (phones.get(i).equals(etLoginPhone.getText().toString())){
-                    showNormalToast(ResUtil.getString(R.string.login_tab_15));
-                    return true;
-                }
-            }
-        }
+//        //todo 判断账号是否已登录
+//        if (phones.size() != 0){
+//            for (int i = 0; i <phones.size() ; i++) {
+//                if (phones.get(i).equals(etLoginPhone.getText().toString())){
+//                    showNormalToast(ResUtil.getString(R.string.login_tab_15));
+//                    return true;
+//                }
+//            }
+//        }
         return false;
     }
 

@@ -190,7 +190,9 @@ public class ServiceActivity extends UserBaseActivity<ServiceAction> implements 
 
             } else {
                 for (int i = 0; i < 5; i++) {
-                    entries.add(new Entry(i + 1, i*10));
+                    entries.add(new Entry(i + 1,
+
+                            0));
                     mList.add("");
                 }
 
