@@ -1,0 +1,68 @@
+{
+  "status": 200,
+  "msg": "success",
+  "data": {
+    "miner_info": [
+      {
+        "id": 1,
+        "user_id": 27760,
+        "Miner_id": "Miner---1",
+        "T_num": 200,
+        "Minimum_suanli": "0.01",
+        "Maximum_suanli": "0.015",
+        "Minimum_shouyi": "1",
+        "Maximum_shouyi": "15",
+        "expected_earnings": "16425",
+        "day_nums": 1,
+        "Miner_Address": "asdadasddasdsdgdfasda",
+        "expire_time": null,
+        "createtime": 1564416000
+      },
+      {
+        "id": 2,
+        "user_id": 27760,
+        "Miner_id": "Miner---2",
+        "T_num": 300,
+        "Minimum_suanli": "0.01",
+        "Maximum_suanli": "0.015",
+        "Minimum_shouyi": "1",
+        "Maximum_shouyi": "15",
+        "expected_earnings": "16425",
+        "day_nums": 1,
+        "Miner_Address": "asdadasddasdsdgdfasda",
+        "expire_time": null,
+        "createtime": 1564416000
+      }
+    ],
+    "miner_nums": 500,
+    "user_money": "36.00000000",
+    "currency": {
+      "currency_name": "lamb",
+      "currency_address": "湿布拉矿池",
+      "currency_address_url": "3m3m3knnadfayg89sdhshanagl"
+    },
+    "line_data": [
+      {
+        "2019-09-05 03:58:25": "0.16000000"
+      },
+      {
+        "2019-09-05 04:11:26": "0.16000000"
+      },
+      {
+        "2019-09-05 09:49:56": "0.80000000"
+      },
+      {
+        "2019-09-05 10:41:22": "0.16000000"
+      },
+      {
+        "2019-09-05 11:07:13": "0.96000000"
+      },
+      {
+        "2019-09-05 11:22:12": "0.16000000"
+      },
+      {
+        "2019-09-05 11:23:18": "0.80000000"
+      }
+    ]
+  }
+}

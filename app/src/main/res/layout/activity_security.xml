@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".ui.my.SecurityActivity">
+
+    <include layout="@layout/layout_title_black_bar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:paddingTop="15dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_height45"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/my_tab_20"
+                android:textSize="@dimen/text_size15"
+                android:textColor="@color/color_15"
+                />
+
+            <!--会员名-->
+            <TextView
+                android:id="@+id/tv_security_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginRight="30dp"
+                android:textSize="@dimen/text_size15"
+                android:textColor="@color/color_15"
+                android:text="荷包蛋"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_height45"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/my_tab_21"
+                android:textSize="@dimen/text_size15"
+                android:textColor="@color/color_15"
+                />
+
+            <!--手机号-->
+            <TextView
+                android:id="@+id/tv_security_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:textSize="@dimen/text_size15"
+                android:textColor="@color/color_15"
+                android:drawablePadding="20dp"
+                android:drawableRight="@mipmap/icon_back_security_right"
+                android:text="138****8000"/>
+
+
+
+
+        </LinearLayout>
+
+        <!--支付密码-->
+        <TextView
+            android:id="@+id/tv_security_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_height45"
+            android:text="@string/my_tab_22"
+            android:textSize="@dimen/text_size15"
+            android:textColor="@color/color_15"
+            android:gravity="center_vertical"
+            android:drawableRight="@mipmap/icon_back_security_right"
+            />
+
+        <!--切换用户-->
+        <TextView
+            android:id="@+id/tv_security_user"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_height45"
+            android:text="@string/my_tab_23"
+            android:textSize="@dimen/text_size15"
+            android:textColor="@color/color_15"
+            android:gravity="center_vertical"
+            android:drawableRight="@mipmap/icon_back_security_right"
+            />
+
+
+
+    </LinearLayout>
+
+    <!--退出-->
+    <TextView
+        android:id="@+id/tv_security_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:text="@string/my_tab_19"
+        android:gravity="center"
+        android:layout_marginBottom="17dp"
+        android:background="@drawable/shape_login_bg"
+        android:layout_marginLeft="43dp"
+        android:layout_marginRight="43dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size15"
+        android:textStyle="bold"
+        />
+
+
+</LinearLayout>

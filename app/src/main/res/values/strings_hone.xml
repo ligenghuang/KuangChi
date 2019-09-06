@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="home_tab_1">首页</string>
+    <string name="home_tab_2">发现</string>
+    <string name="home_tab_3">我的</string>
+
+
+    <string name="home_tab_4">今日收益</string>
+    <string name="home_tab_5">累计收益</string>
+    <string name="home_tab_6">LAMB</string>
+    <string name="home_tab_7">存储空间算力</string>
+    <string name="home_tab_8">委托购买</string>
+    <string name="home_tab_9">资讯</string>
+    <string name="home_tab_10">公告</string>
+
+    <string name="home_tab_11">立即委托</string>
+    <string name="home_tab_12">产品详情</string>
+    <string name="home_tab_13">基数</string>
+    <string name="home_tab_14">单价：</string>
+
+    <string name="home_tab_15">客服</string>
+    <string name="home_tab_16">发送</string>
+    <string name="home_tab_17">发送的消息不能为空</string>
+
+    <string name="home_tab_18">其他</string>
+    <string name="home_tab_19">输入其他方式</string>
+    <string name="home_tab_20">地址</string>
+    <string name="home_tab_21">输入地址</string>
+    <string name="home_tab_22">立即委托</string>
+    <string name="home_tab_23">上传凭证</string>
+    <string name="home_tab_24">委托支付</string>
+    <string name="home_tab_25">请先上传凭证</string>
+
+    <string name="home_tab_26">商品数量不能小于1!</string>
+    <string name="home_tab_27">商品数量已到最大值!</string>
+    <string name="home_tab_28">请先实名认证</string>
+
+</resources>

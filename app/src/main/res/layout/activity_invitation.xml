@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@mipmap/icon_invitation_bg"
+    tools:context=".ui.my.InvitationActivity">
+
+    <include layout="@layout/layout_title_white_bar"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="12dp"
+            android:paddingBottom="150dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:background="@color/color_0f1535">
+
+            <!--头像-->
+            <ImageView
+                android:id="@+id/iv_invitation_avatar"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="58dp"/>
+
+            <!--昵称-->
+            <TextView
+                android:id="@+id/tv_invitation_realname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size15"
+                android:textStyle="bold"
+                android:layout_marginTop="18dp"/>
+
+            <!--二维码-->
+            <ImageView
+                android:id="@+id/iv_invitation_qrcode"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="@dimen/dp_40"/>
+
+            <!--地址-->
+            <TextView
+                android:id="@+id/tv_invitation_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_size15"
+                android:textColor="@color/white"
+                android:layout_marginTop="20dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/dp_40"
+                >
+
+                <!--邀请码-->
+                <TextView
+                    android:id="@+id/tv_invitation_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/my_tab_16"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size15"
+                    android:textStyle="bold"/>
+
+                <!--复制-->
+                <TextView
+                    android:id="@+id/tv_invitation_copy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/my_tab_17"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size13"
+                    android:paddingLeft="18dp"
+                    android:paddingTop="4dp"
+                    android:paddingRight="18dp"
+                    android:paddingBottom="4dp"
+                    android:layout_marginLeft="@dimen/dp_40"
+                    android:background="@drawable/shape_login_bg"/>
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</LinearLayout>

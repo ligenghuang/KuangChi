@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_item_message_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="订单消息"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:textColor="@color/color_15"
+            android:textSize="@dimen/text_size15"
+            android:drawableLeft="@mipmap/icon_message_small"
+            android:drawablePadding="@dimen/dp_10"
+            android:layout_marginRight="15dp"
+            />
+
+        <ImageView
+            android:id="@+id/iv_dot"
+            android:layout_width="@dimen/dp_10"
+            android:layout_height="@dimen/dp_10"
+            android:src="@drawable/shape_dot"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="30dp"
+        android:paddingTop="20dp"
+        android:paddingRight="30dp"
+        android:paddingBottom="20dp"
+        android:background="@drawable/shape_item_message_bg">
+
+
+        <TextView
+            android:id="@+id/tv_item_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size15"
+            android:textColor="@color/color_15"/>
+
+        <TextView
+            android:id="@+id/tv_item_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size15"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="订单附件"
+            android:textColor="@color/color_15"/>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

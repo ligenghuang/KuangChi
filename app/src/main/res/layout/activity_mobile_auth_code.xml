@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".ui.my.MobileAuthCodeActivity">
+
+    <include layout="@layout/layout_title_black_bar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="25dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_height45"
+            android:text="请输入13524372274收到的短信效验码"
+            android:gravity="center_vertical"
+            android:textColor="@color/color_15"
+            android:textSize="@dimen/text_size15"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_height45"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_15"
+                android:textSize="@dimen/text_size15"
+                android:layout_marginRight="@dimen/dp_40"
+                android:text="@string/my_tab_31"/>
+
+            <!--验证码输入框-->
+            <EditText
+                android:id="@+id/et_auth_code"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:inputType="number"
+                android:maxLength="6"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:textSize="@dimen/text_size15"
+                android:textColor="@color/color_15"
+                android:textColorHint="@color/color_7"
+                android:hint="@string/my_tab_32"/>
+
+            <!--todo  获取验证码-->
+            <TextView
+                android:id="@+id/tv_get_auth_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login_tab_5"
+                android:textColor="@color/color_0095ff"
+                android:textSize="@dimen/text_size15"
+                />
+
+        </LinearLayout>
+
+        <View
+            style="@style/line_4"/>
+
+        <!--确定-->
+        <TextView
+            android:id="@+id/tv_modify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="95dp"
+            android:layout_marginRight="20dp"
+            android:textSize="@dimen/text_size15"
+            android:background="@drawable/shape_login_bg"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:gravity="center"
+            android:text="@string/my_tab_33"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+</LinearLayout>

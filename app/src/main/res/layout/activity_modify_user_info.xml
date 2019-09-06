@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.my.ModifyUserInfoActivity">
+
+    <include layout="@layout/layout_title_black_bar"/>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_user_img"
+                android:layout_width="@dimen/item_height70"
+                android:layout_height="@dimen/item_height70"
+                android:src="@mipmap/icon_avatar"/>
+
+            <TextView
+                android:id="@+id/tv_user_avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size15"
+                android:text="@string/my_tab_137"
+                android:textColor="@color/color_15"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="18dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="15dp"
+                android:gravity="center_vertical"
+                android:layout_marginRight="15dp">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/my_tab_138"
+                    android:textColor="@color/color_15"
+                    android:textSize="@dimen/text_size15"
+                    android:layout_marginRight="15dp"/>
+
+                <EditText
+                    android:id="@+id/et_modify_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:textSize="@dimen/text_size15"
+                    android:textColor="@color/color_15"
+                    android:hint="@string/my_tab_139"/>
+
+            </LinearLayout>
+
+            <View
+                style="@style/line_3"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"/>
+
+
+            <TextView
+                android:id="@+id/tv_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size15"
+                android:padding="5dp"
+                android:text="@string/my_tab_140"
+                android:background="@drawable/shape_buy_bg"/>
+
+
+        </LinearLayout>
+
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

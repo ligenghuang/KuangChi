@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/tv_item_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_10"
+        android:textSize="@dimen/text_size15"
+        android:textColor="@color/color_15"/>
+    <!--客服-->
+    <LinearLayout
+        android:id="@+id/ll_left"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="75dp">
+
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:gravity="center_vertical"
+           android:orientation="horizontal">
+
+           <!--客服头像-->
+           <ImageView
+               android:id="@+id/iv_left_avatar"
+               android:layout_width="@dimen/item_height45"
+               android:layout_height="@dimen/item_height45"
+               android:src="@mipmap/icon_avatar"
+               android:layout_marginRight="15dp"/>
+
+           <!--客服名称-->
+           <TextView
+               android:id="@+id/tv_left_name"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textSize="@dimen/sp_14"
+               android:textColor="@color/color_15"
+               android:textStyle="bold"
+               android:text="客服名称"/>
+
+       </LinearLayout>
+
+        <!--消息-->
+        <TextView
+            android:id="@+id/tv_left_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/icon_et_2"
+            android:textColor="@color/color_15"
+            android:textSize="@dimen/sp_14"
+            android:gravity="left"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:text="你好欢迎来到xx，你可添加客服微信xl123456.或者发送邮箱123456789@qq.com"
+            android:layout_marginLeft="@dimen/item_height60"/>
+
+    </LinearLayout>
+
+    <!--自己-->
+    <LinearLayout
+        android:id="@+id/ll_right"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="12dp"
+        android:gravity="right">
+
+        <!--自己发的消息-->
+        <TextView
+            android:id="@+id/tv_right_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/color_15"
+            android:textStyle="bold"
+            android:layout_marginLeft="75dp"
+            android:gravity="left"
+            android:paddingLeft="15dp"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingRight="20dp"
+            android:paddingBottom="@dimen/dp_10"
+            android:lineSpacingExtra="5dp"
+            android:background="@drawable/icon_et_1"
+            android:layout_marginRight="@dimen/dp_10"/>
+
+
+        <!--自己的头像-->
+        <ImageView
+            android:id="@+id/iv_right_avatar"
+            android:layout_width="@dimen/item_height45"
+            android:layout_height="@dimen/item_height45"
+            android:src="@mipmap/icon_avatar"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

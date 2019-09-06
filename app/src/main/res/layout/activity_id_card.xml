@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".ui.my.IdCardActivity">
+
+    <include layout="@layout/layout_title_black_bar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/dp_40"
+        android:layout_marginRight="@dimen/dp_40"
+        android:gravity="center_horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_height50"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/my_tab_72"
+                android:textColor="@color/color_15"
+                android:textSize="@dimen/text_size15"
+                android:layout_marginRight="15dp"
+                />
+
+            <!--姓名-->
+            <EditText
+                android:id="@+id/et_id_card_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:textColor="@color/color_15"
+                android:textSize="@dimen/text_size15"
+                android:textColorHint="@color/color_7"
+                android:maxLength="10"
+                android:hint="@string/my_tab_75"/>
+
+
+        </LinearLayout>
+
+        <View
+          style="@style/line_3"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_height50"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/my_tab_73"
+                android:textColor="@color/color_15"
+                android:textSize="@dimen/text_size15"
+                android:layout_marginRight="15dp"
+                />
+
+            <!--证件号-->
+            <EditText
+                android:id="@+id/et_id_card_num"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:textColor="@color/color_15"
+                android:textSize="@dimen/text_size15"
+                android:textColorHint="@color/color_7"
+                android:maxLength="18"
+                android:inputType="textEmailAddress"
+                android:hint="@string/my_tab_76"/>
+
+
+        </LinearLayout>
+
+        <View
+            style="@style/line_3"/>
+
+        <!--激活-->
+        <TextView
+            android:id="@+id/tv_id_card_activation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/my_tab_74"
+            android:gravity="center"
+            android:background="@drawable/shape_buy_bg"
+            android:textSize="@dimen/text_size15"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/dp_40"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+</LinearLayout>

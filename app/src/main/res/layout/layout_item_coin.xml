@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:layout_marginTop="25dp">
+
+    <ImageView
+        android:id="@+id/iv_coin"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@mipmap/icon_coin_n"
+        android:padding="5dp"
+        android:src="@mipmap/icon_coin_y"/>
+
+    <!--币图标-->
+    <ImageView
+        android:id="@+id/iv_coin_img"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:src="@mipmap/filecoin"/>
+
+    <TextView
+        android:id="@+id/tv_coin_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size16"
+        android:textColor="@color/color_15"
+        android:text="Filecoin"/>
+
+
+</LinearLayout>

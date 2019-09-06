@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_f2"
+    tools:context=".ui.my.ArningsActivity">
+
+    <include layout="@layout/layout_title_black_bar"/>
+
+      <HorizontalScrollView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:scrollbars="none">
+
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
+
+              <TextView
+                  android:id="@+id/tv_state_1"
+                  android:layout_width="match_parent"
+                  android:layout_weight="1"
+                  android:gravity="center"
+                  android:layout_height="wrap_content"
+                  android:textSize="@dimen/text_size13"
+                  android:text="@string/my_tab_48"
+                  android:layout_marginRight="5dp"
+                  android:paddingLeft="12dp"
+                  android:paddingTop="6dp"
+                  android:paddingRight="12dp"
+                  android:paddingBottom="6dp"
+                  android:textColor="@color/arnings_text_selector"
+                  android:background="@drawable/selector_arnings_text_bg"/>
+
+              <TextView
+                  android:id="@+id/tv_state_2"
+                  android:layout_width="match_parent"
+                  android:layout_weight="1"
+                  android:gravity="center"
+                  android:paddingLeft="12dp"
+                  android:paddingTop="6dp"
+                  android:paddingRight="12dp"
+                  android:paddingBottom="6dp"
+                  android:layout_height="wrap_content"
+                  android:textSize="@dimen/text_size13"
+                  android:text="@string/my_tab_49"
+                  android:layout_marginRight="5dp"
+                  android:textColor="@color/arnings_text_selector"
+                  android:background="@drawable/selector_arnings_text_bg"/>
+
+              <TextView
+                  android:id="@+id/tv_state_3"
+                  android:layout_width="match_parent"
+                  android:layout_weight="1"
+                  android:gravity="center"
+                  android:paddingLeft="12dp"
+                  android:paddingTop="6dp"
+                  android:paddingRight="12dp"
+                  android:paddingBottom="6dp"
+                  android:layout_height="wrap_content"
+                  android:textSize="@dimen/text_size13"
+                  android:text="@string/my_tab_50"
+                  android:layout_marginRight="5dp"
+                  android:textColor="@color/arnings_text_selector"
+                  android:background="@drawable/selector_arnings_text_bg"/>
+
+              <TextView
+                  android:id="@+id/tv_state_4"
+                  android:layout_width="match_parent"
+                  android:layout_weight="1"
+                  android:gravity="center"
+                  android:paddingLeft="12dp"
+                  android:paddingTop="6dp"
+                  android:paddingRight="12dp"
+                  android:paddingBottom="6dp"
+                  android:layout_height="wrap_content"
+                  android:textSize="@dimen/text_size13"
+                  android:text="@string/my_tab_51"
+                  android:layout_marginRight="5dp"
+                  android:textColor="@color/arnings_text_selector"
+                  android:background="@drawable/selector_arnings_text_bg"/>
+
+              <TextView
+                  android:id="@+id/tv_state_5"
+                  android:layout_width="match_parent"
+                  android:layout_weight="1"
+                  android:gravity="center"
+                  android:paddingLeft="12dp"
+                  android:paddingTop="6dp"
+                  android:paddingRight="12dp"
+                  android:paddingBottom="6dp"
+                  android:layout_height="wrap_content"
+                  android:textSize="@dimen/text_size13"
+                  android:text="@string/my_tab_52"
+                  android:layout_marginRight="5dp"
+                  android:textColor="@color/arnings_text_selector"
+                  android:background="@drawable/selector_arnings_text_bg"/>
+
+              <TextView
+                  android:id="@+id/tv_state_6"
+                  android:layout_width="match_parent"
+                  android:layout_weight="1"
+                  android:gravity="center"
+                  android:paddingLeft="12dp"
+                  android:paddingTop="6dp"
+                  android:paddingRight="12dp"
+                  android:paddingBottom="6dp"
+                  android:layout_height="wrap_content"
+                  android:textSize="@dimen/text_size13"
+                  android:text="@string/my_tab_53"
+                  android:layout_marginRight="5dp"
+                  android:textColor="@color/arnings_text_selector"
+                  android:background="@drawable/selector_arnings_text_bg"/>
+
+              <TextView
+                  android:id="@+id/tv_state_7"
+                  android:layout_width="match_parent"
+                  android:layout_weight="1"
+                  android:gravity="center"
+                  android:paddingLeft="12dp"
+                  android:paddingTop="6dp"
+                  android:paddingRight="12dp"
+                  android:paddingBottom="6dp"
+                  android:layout_height="wrap_content"
+                  android:textSize="@dimen/text_size13"
+                  android:text="@string/my_tab_54"
+                  android:layout_marginRight="5dp"
+                  android:textColor="@color/arnings_text_selector"
+                  android:background="@drawable/selector_arnings_text_bg"/>
+
+
+          </LinearLayout>
+
+
+      </HorizontalScrollView>
+
+    <com.lgh.huanglib.util.cusview.CustomViewPager
+        android:id="@+id/my_pager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+
+</LinearLayout>

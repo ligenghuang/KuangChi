@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".ui.my.BalanceActivity">
+
+    <include layout="@layout/layout_title_black_bar"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:orientation="vertical"
+                android:background="@mipmap/icon_balance_bg"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/my_tab_56"
+                    android:textSize="@dimen/text_size15"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    />
+
+                <!--余额-->
+                <TextView
+                    android:id="@+id/tv_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size20"
+                    android:drawableLeft="@mipmap/icon_carry"
+                    android:drawablePadding="15dp"
+                    android:text="1222222"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="15dp"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <!--充币-->
+                <TextView
+                    android:id="@+id/tv_balance_put"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="25dp"
+                    android:paddingLeft="26dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="26dp"
+                    android:paddingBottom="8dp"
+                    android:text="@string/my_tab_64"
+                    android:textColor="@color/balance_text_selector"
+                    android:background="@drawable/selector_balance_text_bg"/>
+
+                <!--提币-->
+                <TextView
+                    android:id="@+id/tv_balance_get"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:paddingLeft="26dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="26dp"
+                    android:paddingBottom="8dp"
+                    android:text="@string/my_tab_65"
+                    android:textColor="@color/balance_text_selector"
+                    android:background="@drawable/selector_balance_text_bg"/>
+
+
+            </LinearLayout>
+
+            <!--提币或充币提示-->
+            <TextView
+                android:id="@+id/tv_balance_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/my_tab_66"
+                android:textColor="@color/color_15"
+                android:textSize="@dimen/text_size15"
+                android:textStyle="bold"
+                android:layout_marginTop="25dp"/>
+
+            <!--币列表-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:itemCount="3"
+                tools:listitem="@layout/layout_item_coin"/>
+
+
+            <!--单日交易额-->
+            <LinearLayout
+                android:id="@+id/ll_balance_lines"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_fb0606"
+                    android:textSize="@dimen/text_size12"
+                    android:text="@string/my_tab_68"/>
+
+                <TextView
+                    android:id="@+id/tv_balance_lines"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_fb0606"
+                    android:layout_marginLeft="5dp"
+                    android:drawablePadding="5dp"
+                    android:drawableLeft="@mipmap/icon_carry"
+                    android:text="1000"
+                    android:textSize="@dimen/text_size12"/>
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="64dp"
+                android:gravity="center">
+
+                <!--提币数-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_15"
+                        android:textSize="@dimen/text_size15"
+                        android:textStyle="bold"
+                        android:text="@string/my_tab_69"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:src="@mipmap/icon_carry"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:orientation="vertical">
+
+
+                        <!--提币额度-->
+                        <EditText
+                            android:id="@+id/et_balance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/color_15"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingBottom="5dp"
+                            android:hint="@string/my_tab_110"
+                            android:background="@color/transparent"
+                            android:inputType="numberDecimal"
+                            android:maxLength="10"
+                            android:textSize="@dimen/text_size18"/>
+
+                        <View
+                            style="@style/line_3"/>
+
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_balance_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="15dp"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_15"
+                        android:textSize="@dimen/text_size15"
+                        android:textStyle="bold"
+                        android:text="@string/my_tab_111"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:src="@mipmap/icon_carry"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:orientation="vertical">
+
+
+                        <!--金额-->
+                        <TextView
+                            android:id="@+id/tv_balance_money"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/color_15"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:paddingLeft="@dimen/dp_10"
+                            android:paddingRight="@dimen/dp_10"
+                            android:paddingBottom="5dp"
+                            android:background="@color/transparent"
+                            android:inputType="numberDecimal"
+                            android:textSize="@dimen/text_size18"/>
+
+                        <View
+                            style="@style/line_3"/>
+
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_15"
+                        android:textSize="@dimen/text_size15"
+                        android:textStyle="bold"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/my_tab_71"/>
+
+                    <!--地址-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/tv_balance_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/color_15"
+                            android:textStyle="bold"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:text="31fdfabfabj3rqu3hqrjqr356"
+                            android:textSize="@dimen/text_size15"/>
+
+                        <View
+                          style="@style/line_3"/>
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_balance_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/item_height70"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:textSize="@dimen/text_size15"
+                android:textColor="@color/white"
+                android:background="@drawable/shape_buy_bg"
+                android:text="@string/my_tab_70"/>
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</LinearLayout>

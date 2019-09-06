@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10"
+        android:orientation="horizontal">
+
+        <!--金额-->
+        <TextView
+            android:id="@+id/tv_item_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="金额：100"
+            android:drawablePadding="@dimen/dp_10"
+            android:textSize="@dimen/text_size13"
+            android:drawableRight="@mipmap/icon_carry"
+            android:textColor="@color/color_15"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="vertical">
+
+            <!--描述-->
+            <TextView
+                android:id="@+id/tv_item_note"
+                android:layout_width="100dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_height="wrap_content"
+                android:text="矿工每日瓜分奖励"
+                android:textColor="@color/color_15"
+                android:textSize="@dimen/text_size13"
+                />
+
+            <!--时间-->
+            <TextView
+                android:id="@+id/tv_item_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2019/07/24 13:12"
+                android:textSize="@dimen/text_size13"
+                android:textColor="@color/color_15"
+                android:layout_marginTop="7dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        style="@style/line_3"/>
+
+</LinearLayout>

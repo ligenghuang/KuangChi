@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="my_tab_1">委托明细</string>
+    <string name="my_tab_2">代理明细</string>
+    <string name="my_tab_3">收益明细</string>
+    <string name="my_tab_4">提币明细</string>
+
+    <string name="my_tab_5">我的订单</string>
+
+    <string name="my_tab_6">存储服务器群组</string>
+    <string name="my_tab_7">我的余额</string>
+    <string name="my_tab_8">身份认证</string>
+    <string name="my_tab_9">邀请链接</string>
+    <string name="my_tab_10">安全中心</string>
+    <string name="my_tab_11">消息中心</string>
+
+    <string name="my_tab_12">ID: %0$s</string>
+    <string name="my_tab_13">注册时间: %0$s</string>
+    <string name="my_tab_14">手机号: %0$s</string>
+    <string name="my_tab_15">地址: %0$s</string>
+
+    <string name="my_tab_16">邀请码：%0$s</string>
+    <string name="my_tab_17">复制</string>
+    <string name="my_tab_18">已复制</string>
+
+    <string name="my_tab_19">退出</string>
+    <string name="my_tab_20">会员名</string>
+    <string name="my_tab_21">修改手机号码</string>
+    <string name="my_tab_22">支付密码</string>
+    <string name="my_tab_23">切换用户</string>
+
+    <string name="my_tab_24">换绑手机</string>
+    <string name="my_tab_25">请输入你需要绑定的新手机号</string>
+    <string name="my_tab_26">国家和地区</string>
+    <string name="my_tab_27">中国大陆+86</string>
+    <string name="my_tab_28">新手机号</string>
+    <string name="my_tab_29">请输入手机号</string>
+    <string name="my_tab_30">下一步</string>
+    <string name="my_tab_31">效验码</string>
+    <string name="my_tab_32">短信效验码</string>
+    <string name="my_tab_33">确定</string>
+    <string name="my_tab_34">请输入%0$s收到的短信效验码</string>
+
+    <string name="my_tab_35">委托人</string>
+    <string name="my_tab_36">日期</string>
+    <string name="my_tab_37">购买数量</string>
+    <string name="my_tab_38">状态</string>
+
+    <string name="my_tab_39">%1$s/ID%2$s：分享服务客户人数%3$s</string>
+    <string name="my_tab_40">星月</string>
+    <string name="my_tab_41">星光</string>
+    <string name="my_tab_42">星宝</string>
+    <string name="my_tab_43">星河</string>
+    <string name="my_tab_44">%0$s人</string>
+    <string name="my_tab_45">姓名/ID</string>
+    <string name="my_tab_46">等级</string>
+    <string name="my_tab_47">操作</string>
+
+
+    <string name="my_tab_48">全部</string>
+    <string name="my_tab_49">分享奖励</string>
+    <string name="my_tab_50">节点奖励</string>
+    <string name="my_tab_51">无限奖励</string>
+    <string name="my_tab_52">每日释放</string>
+    <string name="my_tab_53">提币</string>
+    <string name="my_tab_54">释放</string>
+    <string name="my_tab_55">金额： %0$s</string>
+
+    <string name="my_tab_56">金币</string>
+    <string name="my_tab_57">备注</string>
+    <string name="my_tab_58">查看</string>
+
+    <string name="my_tab_59">提币详情</string>
+    <string name="my_tab_60">金额 ：</string>
+    <string name="my_tab_61">提币日期</string>
+    <string name="my_tab_62">提现方式</string>
+    <string name="my_tab_63">地址</string>
+
+    <string name="my_tab_64">充币</string>
+    <string name="my_tab_65">提币</string>
+    <string name="my_tab_66">请选择充值方式</string>
+    <string name="my_tab_67">提现到</string>
+    <string name="my_tab_68">单日交易限额</string>
+    <string name="my_tab_69">提币额度</string>
+    <string name="my_tab_70">提交</string>
+    <string name="my_tab_71">地址：</string>
+
+    <string name="my_tab_72">姓名</string>
+    <string name="my_tab_73">身份证</string>
+    <string name="my_tab_74">激活</string>
+    <string name="my_tab_75">请输入真实姓名</string>
+    <string name="my_tab_76">请输入证件号码</string>
+
+    <string name="my_tab_77">全部</string>
+    <string name="my_tab_78">待审核</string>
+    <string name="my_tab_79">审核通过</string>
+    <string name="my_tab_80">审核不通过</string>
+    <string name="my_tab_81">取消订单</string>
+    <string name="my_tab_82">去付款</string>
+    <string name="my_tab_83">联系客服</string>
+    <string name="my_tab_84">支付方式：%0$s</string>
+    <string name="my_tab_85">存储空间：%0$s</string>
+
+    <string name="my_tab_86">姓名</string>
+    <string name="my_tab_87">ID</string>
+    <string name="my_tab_88">等级</string>
+    <string name="my_tab_89">星河代理列表</string>
+
+    <string name="my_tab_90">切换账户登录</string>
+    <string name="my_tab_91">轻触账户以登录</string>
+    <string name="my_tab_92">当前登录</string>
+    <string name="my_tab_93">换个账户登录</string>
+
+    <string name="my_tab_94">支付密码</string>
+    <string name="my_tab_95">忘记支付密码</string>
+    <string name="my_tab_96">输入原密码</string>
+    <string name="my_tab_97">输入新密码</string>
+    <string name="my_tab_98">绑定手机号   %0$s</string>
+    <string name="my_tab_99">输入密码</string>
+    <string name="my_tab_100">确认密码</string>
+    <string name="my_tab_101">保存</string>
+    <string name="my_tab_102">确定</string>
+    <string name="my_tab_103">输入验证码</string>
+    <string name="my_tab_104">请先设置支付密码</string>
+    <string name="my_tab_105">请输入支付密码</string>
+    <string name="my_tab_106">两次支付密码不一致</string>
+    <string name="my_tab_107">请再次输入支付密码</string>
+    <string name="my_tab_108">请输入原密码</string>
+    <string name="my_tab_109">请输入新密码</string>
+
+    <string name="my_tab_110">请输入金额</string>
+    <string name="my_tab_111">金额:</string>
+
+    <string name="my_tab_112">提币金额不能为0!</string>
+    <string name="my_tab_112_1">充币金额不能为0!</string>
+    <string name="my_tab_113">请输入密码</string>
+    <string name="my_tab_114">确定</string>
+    <string name="my_tab_115">取消</string>
+
+
+    <string name="my_tab_116">真实姓名不能为空!</string>
+    <string name="my_tab_117">证件号码不能为空!</string>
+    <string name="my_tab_118">身份认证成功</string>
+
+    <string name="my_tab_119">上传支付凭证</string>
+    <string name="my_tab_120">图片解析出错</string>
+
+    <string name="my_tab_121">设备与时间变化</string>
+    <string name="my_tab_122">收益明细</string>
+    <string name="my_tab_123">存储空间ID</string>
+    <string name="my_tab_124">空间算力(TB)</string>
+    <string name="my_tab_125">加入矿池时间</string>
+    <string name="my_tab_126">收益区间</string>
+    <string name="my_tab_127">日收益(Lamb)</string>
+    <string name="my_tab_128">当前所属矿池：%0$s</string>
+    <string name="my_tab_129">当前余额：%0$s &#160;&#160;&#160;&#160;&#160;&#160;Lamb</string>
+    <string name="my_tab_130">设备地址：%0$s</string>
+    <string name="my_tab_131">存储空间总数：%0$s TB</string>
+
+    <string name="my_tab_132">暂无数据</string>
+    <string name="my_tab_133">绑定手机号  %0$s</string>
+    <string name="my_tab_134">已实名认证</string>
+    <string name="my_tab_135">已激活</string>
+    <string name="my_tab_136">未激活</string>
+
+    <string name="my_tab_137">更换头像</string>
+    <string name="my_tab_138">我的昵称</string>
+    <string name="my_tab_139">请输入用户名</string>
+    <string name="my_tab_140">确定</string>
+    <string name="my_tab_141">修改头像成功</string>
+    <string name="my_tab_142">修改昵称成功</string>
+    <string name="my_tab_143">个人设置</string>
+    <string name="my_tab_144">昵称不能为空</string>
+
+</resources>
