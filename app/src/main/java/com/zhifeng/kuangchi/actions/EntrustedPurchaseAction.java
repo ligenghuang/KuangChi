@@ -58,7 +58,7 @@ public class EntrustedPurchaseAction extends BaseAction<EntrustedPurchaseView> {
         L.e("lgh_post","post  = "+purchasePost.toString());
         post(WebUrlUtil.POST_ORDER_ENTRUST,false,service -> manager.runHttp(
                 service.PostData(CollectionsUtils.generateMap("token",MySp.getAccessToken(MyApp.getContext()),
-                        "proof_pic",purchasePost.getProof_pic(),
+                        "password",purchasePost.getPwsseord(),
                         "sku_id",purchasePost.getSku_id(),"cart_number",purchasePost.getCart_number(),
                         "pay_type",purchasePost.getPay_type()),WebUrlUtil.POST_ORDER_ENTRUST)
         ));

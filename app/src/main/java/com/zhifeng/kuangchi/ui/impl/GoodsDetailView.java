@@ -1,6 +1,7 @@
 package com.zhifeng.kuangchi.ui.impl;
 
 import com.lgh.huanglib.util.base.BaseView;
+import com.zhifeng.kuangchi.module.BalanceDto;
 import com.zhifeng.kuangchi.module.GoodsDetailDto;
 
 /**
@@ -13,6 +14,7 @@ import com.zhifeng.kuangchi.module.GoodsDetailDto;
  */
 
 public interface GoodsDetailView extends BaseView {
+
     /**
      * 获取商品详情
      */

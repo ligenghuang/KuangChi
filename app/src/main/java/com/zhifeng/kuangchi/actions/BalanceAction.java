@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import com.lgh.huanglib.actions.Action;
 import com.lgh.huanglib.net.CollectionsUtils;
 import com.lgh.huanglib.util.L;
+import com.lgh.huanglib.util.data.MD5Utils;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.zhifeng.kuangchi.module.BalanceDto;
 import com.zhifeng.kuangchi.module.CoinRateDto;
@@ -48,14 +49,27 @@ public class BalanceAction extends BaseAction<BalanceView>{
     }
 
     /**
+     * 获取验证码
+     * @param phone 手机号码
+     */
+    public void getAuthCode(String phone){
+        String temp = "sms_forget";
+        String auth = MD5Utils.getMd5Value(phone+temp);
+        post(WebUrlUtil.POST_GET_CODE, false, service -> manager.runHttp(
+                service.PostData(CollectionsUtils.generateMap("phone",phone,"temp",temp,
+                        "auth",auth,"type","1"),WebUrlUtil.POST_GET_CODE)));
+    }
+
+    /**
      * 提币
      * @param getCoinPost
      */
     public void getCoin(GetCoinPost getCoinPost){
         post(WebUrlUtil.POST_GET_COIN,false, service -> manager.runHttp(
                 service.PostData(CollectionsUtils.generateMap("token", MySp.getAccessToken(MyApp.getContext())
-                        ,"coin_type",getCoinPost.getCoin_type(),"money",getCoinPost.getMoney(),"address",getCoinPost.getAddress()
-                        ,"input_money",getCoinPost.getInput_money(),"password",getCoinPost.getPassword())
+                        ,"coin_type",getCoinPost.getCoin_type(),"money",getCoinPost.getMoney(),"address",getCoinPost.getAddress(),
+//                        ,"input_money",getCoinPost.getInput_money(),
+                        "password",getCoinPost.getPassword())
                         ,WebUrlUtil.POST_GET_COIN)));
     }
 
@@ -66,8 +80,9 @@ public class BalanceAction extends BaseAction<BalanceView>{
     public void putCoin(PutCoinPost putCoinPost){
         post(WebUrlUtil.POST_PUT_COIN,false, service -> manager.runHttp(
                 service.PostData(CollectionsUtils.generateMap("token", MySp.getAccessToken(MyApp.getContext())
-                        ,"coin_type",putCoinPost.getCoin_type(),"money",putCoinPost.getMoney(),"address",putCoinPost.getAddress()
-                        ,"input_money",putCoinPost.getInput_money(),"proof_pic",putCoinPost.getProof_pic())
+                        ,"coin_type",putCoinPost.getCoin_type(),"money",putCoinPost.getMoney(),"address",putCoinPost.getAddress(),
+//                        ,"input_money",putCoinPost.getInput_money(),
+                        "proof_pic",putCoinPost.getProof_pic())
                         ,WebUrlUtil.POST_PUT_COIN)));
     }
 
@@ -134,6 +149,22 @@ public class BalanceAction extends BaseAction<BalanceView>{
                                 return;
                             }
                             view.onError(coinRateDto.getMsg(),action.getErrorType());
+                            return;
+                        }
+                        view.onError(msg,action.getErrorType());
+                        break;
+                    case WebUrlUtil.POST_GET_CODE:
+                        //todo 获取验证码
+                        if (aBoolean) {
+                            L.e("xx", "输出返回结果 " + action.getUserData().toString());
+                            GeneralDto generalDto = new Gson().fromJson(action.getUserData().toString(), new TypeToken<GeneralDto>() {
+                            }.getType());
+                            if (generalDto.getStatus() == 200){
+                                //todo 获取验证码成功
+                                view.getAuthCodeSuccess(generalDto.getData());
+                                return;
+                            }
+                            view.onError(generalDto.getMsg(),action.getErrorType());
                             return;
                         }
                         view.onError(msg,action.getErrorType());

@@ -64,6 +64,8 @@ public class UserDto {
                 ", img='" + img + '\'' +
                 ", token='" + token + '\'' +
                 ", isLogin=" + isLogin +
+                ", is_vip=" + is_vip +
+                ", phone='" + phone + '\'' +
                 '}';
     }
 }

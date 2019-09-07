@@ -35,5 +35,13 @@
     <string name="home_tab_26">商品数量不能小于1!</string>
     <string name="home_tab_27">商品数量已到最大值!</string>
     <string name="home_tab_28">请先实名认证</string>
+    <string name="home_tab_29">商品数量不能小于0！</string>
+    <string name="home_tab_30">商品数量不能超过库存！</string>
+
+    <string name="home_tab_31">数量：%0$s </string>
+    <string name="home_tab_32">储存空间：%0$s </string>
+    <string name="home_tab_34">同意</string>
+    <string name="home_tab_33">《涅布拉云存储购买托管协议》</string>
+    <string name="home_tab_35">购买协议</string>
 
 </resources>

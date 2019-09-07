@@ -60,6 +60,15 @@ public class MyInfoDto {
         private String level_name;
         private String reg_time;
         private int is_vip;
+        private int is_nameapi;
+
+        public int getIs_nameapi() {
+            return is_nameapi;
+        }
+
+        public void setIs_nameapi(int is_nameapi) {
+            this.is_nameapi = is_nameapi;
+        }
 
         public int getIs_vip() {
             return is_vip;

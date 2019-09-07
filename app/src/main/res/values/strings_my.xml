@@ -28,6 +28,8 @@
     <string name="my_tab_20">会员名</string>
     <string name="my_tab_21">修改手机号码</string>
     <string name="my_tab_22">支付密码</string>
+    <string name="my_tab_22_1">修改密码</string>
+    <string name="my_tab_22_2">修改登录密码</string>
     <string name="my_tab_23">切换用户</string>
 
     <string name="my_tab_24">换绑手机</string>
@@ -116,6 +118,7 @@
 
     <string name="my_tab_94">支付密码</string>
     <string name="my_tab_95">忘记支付密码</string>
+    <string name="my_tab_95_1">设置支付密码</string>
     <string name="my_tab_96">输入原密码</string>
     <string name="my_tab_97">输入新密码</string>
     <string name="my_tab_98">绑定手机号   %0$s</string>
@@ -131,8 +134,9 @@
     <string name="my_tab_108">请输入原密码</string>
     <string name="my_tab_109">请输入新密码</string>
 
-    <string name="my_tab_110">请输入金额</string>
-    <string name="my_tab_111">金额:</string>
+    <string name="my_tab_110">请选择币类型</string>
+    <string name="my_tab_110_1">请输入金额</string>
+    <string name="my_tab_111">转换币比率:</string>
 
     <string name="my_tab_112">提币金额不能为0!</string>
     <string name="my_tab_112_1">充币金额不能为0!</string>
@@ -177,5 +181,11 @@
     <string name="my_tab_145">已认证</string>
     <string name="my_tab_146">未认证</string>
     <string name="my_tab_147">登录过期，请重新登录</string>
+
+    <string name="my_tab_148">支付密码：</string>
+    <string name="my_tab_149">请输入支付密码</string>
+    <string name="my_tab_150">短信验证码：</string>
+    <string name="my_tab_151">请输入验证码</string>
+    <string name="my_tab_152">USDT提币数量≥50个,LAMB提币数量≥100个</string>
 
 </resources>

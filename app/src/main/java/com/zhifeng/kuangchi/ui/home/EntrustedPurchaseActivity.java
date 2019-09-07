@@ -1,12 +1,10 @@
 package com.zhifeng.kuangchi.ui.home;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
-import android.util.Base64;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -38,21 +36,14 @@ import com.zhifeng.kuangchi.ui.impl.EntrustedPurchaseView;
 import com.zhifeng.kuangchi.util.base.UserBaseActivity;
 import com.zhifeng.kuangchi.util.dialog.PicturesDialog;
 import com.zhifeng.kuangchi.util.imageloader.GlideImageLoader;
-import com.zhifeng.kuangchi.util.photo.PicUtils;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 
 /**
  * @ClassName: 委托购买
@@ -70,6 +61,11 @@ public class EntrustedPurchaseActivity extends UserBaseActivity<EntrustedPurchas
     public static final int REQUEST_CODE_TAKE = 102;
     public static final int REQUEST_CODE_ALBUM = 103;
     public static int REQUEST_SELECT_TYPE = -1;//选择的类型
+    @BindView(R.id.tv_item_order_usdt)
+    TextView tvItemOrderUsdt;
+    @BindView(R.id.ll_login_consult)
+    LinearLayout llLoginConsult;
+
     private ArrayList<ImageItem> selImageList = new ArrayList<>(); //当前选择的所有图片
     ArrayList<ImageItem> images = null;
 
@@ -91,15 +87,43 @@ public class EntrustedPurchaseActivity extends UserBaseActivity<EntrustedPurchas
     EditText etCoinAddress;
     @BindView(R.id.iv_order_img)
     ImageView ivOrderImg;
+    @BindView(R.id.iv_item_order_img)
+    ImageView ivItemOrderImg;
+    @BindView(R.id.tv_item_order_name)
+    TextView tvItemOrderName;
+    @BindView(R.id.tv_item_order_num)
+    TextView tvItemOrderNum;
+    @BindView(R.id.tv_item_order_t_num)
+    TextView tvItemOrderTNum;
+    @BindView(R.id.tv_item_order_money)
+    TextView tvItemOrderMoney;
+    @BindView(R.id.tv_confirm)
+    TextView tvConfirm;
+    @BindView(R.id.et_balance_pay_pwd)
+    EditText etBalancePayPwd;
+    @BindView(R.id.iv_round_consult)
+    ImageView ivRoundConsult;
+    @BindView(R.id.tv_login_consult)
+    TextView tvLoginConsult;
+
     CoinListAdapter coinListAdapter;
 
     int sku_id;
     int cart_number;
-    String coinType;
+    String goodsName;
+    String tNum;
+    String money;
     int pay_type;
+    String img;
+    String usdt;
     boolean isImg = false;
 
     boolean isOther = false;
+    boolean isType = false;
+    /**
+     * 是否阅读协议
+     */
+    boolean isReadAgreement = true;
 
     @Override
     public int intiLayout() {
@@ -141,13 +165,26 @@ public class EntrustedPurchaseActivity extends UserBaseActivity<EntrustedPurchas
         mActicity = this;
         mContext = this;
 
-        sku_id = getIntent().getIntExtra("sku_id",0);
-        cart_number = getIntent().getIntExtra("cart_number",0);
+        sku_id = getIntent().getIntExtra("sku_id", 0);
+        cart_number = getIntent().getIntExtra("cart_number", 0);
+        tNum = getIntent().getStringExtra("tNum");
+        goodsName = getIntent().getStringExtra("goodsName");
+        money = getIntent().getStringExtra("money");
+        img = getIntent().getStringExtra("img");
+        usdt = getIntent().getStringExtra("usdt");
+        L.e("lgh_img", "img  = " + img);
+        GlideUtil.setImage(mContext, img, ivItemOrderImg, R.mipmap.goods_img);
+
+        tvItemOrderMoney.setText("￥" + money);
+        tvItemOrderName.setText(goodsName);
+        tvItemOrderNum.setText(ResUtil.getFormatString(R.string.home_tab_31, cart_number + ""));
+        tvItemOrderTNum.setText(ResUtil.getFormatString(R.string.home_tab_32, tNum));
+        tvItemOrderUsdt.setText("usdt = "+usdt);
 
         coinListAdapter = new CoinListAdapter();
         recyclerview.setLayoutManager(new LinearLayoutManager(mContext));
         recyclerview.setAdapter(coinListAdapter);
-
+        tvConfirm.setSelected(isReadAgreement);
         getBalance();
         initImagePicker();
         loadView();
@@ -159,7 +196,7 @@ public class EntrustedPurchaseActivity extends UserBaseActivity<EntrustedPurchas
         //todo 列表item点击事件监听
         coinListAdapter.setOnClickListener(new CoinListAdapter.OnClickListener() {
             @Override
-            public void onClick(String address, int id,int coinType) {
+            public void onClick(String address, int id, int coinType,int res,double user_money,double Rate) {
                 isOther = false;
                 setOther();
                 List<BalanceDto.DataBean.CoinAddressBean> list = coinListAdapter.getAllData();
@@ -168,22 +205,24 @@ public class EntrustedPurchaseActivity extends UserBaseActivity<EntrustedPurchas
                 }
                 coinListAdapter.notifyDataSetChanged();
                 etCoinAddress.setText(address);//todo 地址
+                isType = true;
+                tvConfirm.setSelected(isReadAgreement&&isType);
             }
         });
     }
 
     /**
-     *是否选择其他
+     * 是否选择其他
      */
     private void setOther() {
-        if(isOther){
+        if (isOther) {
             ivCoin.setImageResource(R.mipmap.icon_coin_y);
             List<BalanceDto.DataBean.CoinAddressBean> list = coinListAdapter.getAllData();
             for (int i = 0; i < list.size(); i++) {
                 list.get(i).setClick(false);
             }
             coinListAdapter.notifyDataSetChanged();
-        }else {
+        } else {
             ivCoin.setImageResource(0);
         }
     }
@@ -204,20 +243,26 @@ public class EntrustedPurchaseActivity extends UserBaseActivity<EntrustedPurchas
         loadDiss();
         BalanceDto.DataBean dataBean = balanceDto.getData();
 
-        List<BalanceDto.DataBean.CoinAddressBean> list = balanceDto.getData().getCoin_address();
-        list.get(0).setClick(true);
+        List<BalanceDto.DataBean.CoinAddressBean> list = new ArrayList<>();
+        for (int i = 0; i < dataBean.getCoin_address().size(); i++) {
+            if (balanceDto.getData().getCoin_address().get(i).getCoin_name().equals("USDT")) {
+                list.add(balanceDto.getData().getCoin_address().get(i));
+            }
+        }
+//        list.get(0).setClick(true);
         coinListAdapter.refresh(list);
-        pay_type = list.get(0).getPay_type();
-        etCoinAddress.setText(list.get(0).getAddress());//todo 地址
+//        pay_type = list.get(0).getPay_type();
+//        etCoinAddress.setText(list.get(0).getAddress());//todo 地址
     }
 
     /**
      * 委托支付
+     *
      * @param entrustedPurchasePost
      */
     @Override
     public void EntrustedPurchase(EntrustedPurchasePost entrustedPurchasePost) {
-        if (CheckNetwork.checkNetwork2(mContext)){
+        if (CheckNetwork.checkNetwork2(mContext)) {
             loadDialog();
             baseAction.EntrustedPurchase(entrustedPurchasePost);
         }
@@ -225,6 +270,7 @@ public class EntrustedPurchaseActivity extends UserBaseActivity<EntrustedPurchas
 
     /**
      * 委托支付成功
+     *
      * @param generalDto
      */
     @Override
@@ -250,6 +296,7 @@ public class EntrustedPurchaseActivity extends UserBaseActivity<EntrustedPurchas
 
     /**
      * 失败
+     *
      * @param message
      * @param code
      */
@@ -259,7 +306,7 @@ public class EntrustedPurchaseActivity extends UserBaseActivity<EntrustedPurchas
         showNormalToast(message);
     }
 
-    @OnClick({R.id.iv_order_img, R.id.tv_confirm,R.id.ll_other})
+    @OnClick({R.id.iv_order_img, R.id.tv_confirm, R.id.ll_other, R.id.ll_login_consult, R.id.tv_login_consult})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_order_img:
@@ -276,30 +323,50 @@ public class EntrustedPurchaseActivity extends UserBaseActivity<EntrustedPurchas
                 isOther = true;
                 setOther();
                 break;
+            case R.id.ll_login_consult:
+                //todo 勾选或取消勾选协议
+                isReadAgreement = !isReadAgreement;
+                ivRoundConsult.setImageResource(isReadAgreement ? R.mipmap.round_on : 0);
+                tvConfirm.setSelected(isReadAgreement&&isType);
+                break;
+            case R.id.tv_login_consult:
+                //todo 跳转至用户协议页面
+                jumpActivityNotFinish(mContext, PayActivity.class);
+                break;
         }
     }
 
     /**
      * 提交前的校验
      */
-    private void confirm()  {
+    private void confirm() {
         EntrustedPurchasePost entrustedPurchasePost = new EntrustedPurchasePost();
         entrustedPurchasePost.setSku_id(sku_id);//sku_id
         entrustedPurchasePost.setCart_number(cart_number);//商品数量
         entrustedPurchasePost.setPay_type(pay_type);
 
-        try {
-            if (!isImg){
-                showNormalToast(ResUtil.getString(R.string.home_tab_25));
-                return;
-            }
-
-            entrustedPurchasePost.setProof_pic("data:image/gif;base64,"+PicUtils.bitmapToString(images.get(0).path));
-            EntrustedPurchase(entrustedPurchasePost);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (TextUtils.isEmpty(etBalancePayPwd.getText().toString())) {
+            showNormalToast(ResUtil.getString(R.string.my_tab_149));
+            return;
         }
-
+        entrustedPurchasePost.setPwsseord(etBalancePayPwd.getText().toString());
+        //TODO 判断是否勾选用户协议
+        if (!isReadAgreement) {
+            showNormalToast(ResUtil.getString(R.string.login_tab_12));
+            return;
+        }
+//        try {
+//            if (!isImg) {
+//                showNormalToast(ResUtil.getString(R.string.home_tab_25));
+//                return;
+//            }
+//
+//            entrustedPurchasePost.setProof_pic("data:image/gif;base64," + PicUtils.bitmapToString(images.get(0).path));
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        EntrustedPurchase(entrustedPurchasePost);
 
     }
 
@@ -411,8 +478,8 @@ public class EntrustedPurchaseActivity extends UserBaseActivity<EntrustedPurchas
 //                                    //todo  显示图片
                                     L.e("lgh", "images.get(0).path  = " + images.get(0).path);
                                     isImg = true;
-                                    GlideUtil.setImage(mContext,images.get(0).path,ivOrderImg,0);
-                                    L.e("lgh_img","img  = "+images.get(0).path);
+                                    GlideUtil.setImage(mContext, images.get(0).path, ivOrderImg, 0);
+                                    L.e("lgh_img", "img  = " + images.get(0).path);
                                 } catch (Exception e) {
                                     loadError(ResUtil.getString(R.string.my_tab_120), mContext);
                                 }

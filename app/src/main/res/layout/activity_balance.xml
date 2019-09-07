@@ -37,20 +37,32 @@
                     android:textStyle="bold"
                     />
 
-                <!--余额-->
-                <TextView
-                    android:id="@+id/tv_balance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size20"
-                    android:drawableLeft="@mipmap/icon_carry"
-                    android:drawablePadding="15dp"
-                    android:text="1222222"
-                    android:gravity="center_vertical"
-                    android:layout_marginTop="15dp"
-                    />
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:gravity="center_vertical"
+                   android:layout_marginTop="15dp"
+                   android:orientation="horizontal">
+
+                   <ImageView
+                       android:id="@+id/iv_coin"
+                       android:layout_width="25dp"
+                       android:layout_height="25dp"
+                       android:layout_marginRight="@dimen/dp_10"
+                       android:src="@mipmap/icon_coin"/>
+
+                   <!--余额-->
+                   <TextView
+                       android:id="@+id/tv_balance"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:textStyle="bold"
+                       android:textColor="@color/white"
+                       android:textSize="@dimen/text_size22"
+                       android:text="1222222"
+                       android:gravity="center_vertical"
+                       />
+               </LinearLayout>
 
             </LinearLayout>
 
@@ -123,28 +135,18 @@
                 android:orientation="horizontal">
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/color_fb0606"
-                    android:textSize="@dimen/text_size12"
-                    android:text="@string/my_tab_68"/>
-
-                <TextView
-                    android:id="@+id/tv_balance_lines"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/color_fb0606"
-                    android:layout_marginLeft="5dp"
-                    android:drawablePadding="5dp"
-                    android:drawableLeft="@mipmap/icon_carry"
-                    android:text="1000"
-                    android:textSize="@dimen/text_size12"/>
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/my_tab_152"
+                   android:textSize="@dimen/text_size12"
+                   android:textColor="@color/color_fb0606"/>
 
 
 
 
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -152,6 +154,130 @@
                 android:orientation="vertical"
                 android:layout_marginTop="64dp"
                 android:gravity="center">
+
+
+                <LinearLayout
+                    android:id="@+id/ll_get_coin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <!--支付密码-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="@dimen/dp_10">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/color_15"
+                            android:textSize="@dimen/text_size15"
+                            android:textStyle="bold"
+                            android:text="@string/my_tab_148"/>
+
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:orientation="vertical">
+
+
+                            <!--支付密码-->
+                            <EditText
+                                android:id="@+id/et_balance_pay_pwd"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/color_15"
+                                android:textStyle="bold"
+                                android:gravity="center"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
+                                android:paddingBottom="5dp"
+                                android:hint="@string/my_tab_149"
+                                android:background="@color/transparent"
+                                android:inputType="textPassword"
+                                android:maxLength="6"
+                                android:textSize="@dimen/text_size15"/>
+
+                            <View
+                                style="@style/line_3"/>
+
+
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+                    <!--验证码-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="@dimen/dp_10">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/color_15"
+                            android:textSize="@dimen/text_size15"
+                            android:textStyle="bold"
+                            android:text="@string/my_tab_150"/>
+
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:layout_marginRight="5dp"
+                            android:orientation="vertical">
+
+
+                            <!--验证码-->
+                            <EditText
+                                android:id="@+id/et_balance_pay_code"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/color_15"
+                                android:textStyle="bold"
+                                android:gravity="center"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
+                                android:paddingBottom="5dp"
+                                android:hint="@string/my_tab_151"
+                                android:background="@color/transparent"
+                                android:inputType="textPassword"
+                                android:maxLength="6"
+                                android:textSize="@dimen/text_size15"/>
+
+                            <View
+                                style="@style/line_3"/>
+
+
+                        </LinearLayout>
+                        <!--todo  获取验证码-->
+                        <TextView
+                            android:id="@+id/tv_login_get_code"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/login_tab_5"
+                            android:textColor="@color/color_0095ff"
+                            android:textSize="@dimen/text_size15"
+                            />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <!--提币数-->
                 <LinearLayout
@@ -171,6 +297,7 @@
                         android:text="@string/my_tab_69"/>
 
                     <ImageView
+                        android:id="@+id/iv_coin_2"
                         android:layout_width="15dp"
                         android:layout_height="15dp"
                         android:layout_marginLeft="@dimen/dp_10"
@@ -194,11 +321,11 @@
                             android:paddingLeft="5dp"
                             android:paddingRight="5dp"
                             android:paddingBottom="5dp"
-                            android:hint="@string/my_tab_110"
+                            android:hint="@string/my_tab_110_1"
                             android:background="@color/transparent"
                             android:inputType="numberDecimal"
                             android:maxLength="10"
-                            android:textSize="@dimen/text_size18"/>
+                            android:textSize="@dimen/text_size15"/>
 
                         <View
                             style="@style/line_3"/>
@@ -215,8 +342,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:layout_marginTop="15dp"
                     android:visibility="gone"
+                    android:layout_marginTop="15dp"
                     android:orientation="horizontal">
 
 
@@ -227,12 +354,6 @@
                         android:textSize="@dimen/text_size15"
                         android:textStyle="bold"
                         android:text="@string/my_tab_111"/>
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dp_10"
-                        android:src="@mipmap/icon_carry"/>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -248,13 +369,14 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/color_15"
                             android:textStyle="bold"
+                            android:hint="@string/my_tab_110"
                             android:gravity="center"
                             android:paddingLeft="@dimen/dp_10"
                             android:paddingRight="@dimen/dp_10"
                             android:paddingBottom="5dp"
                             android:background="@color/transparent"
                             android:inputType="numberDecimal"
-                            android:textSize="@dimen/text_size18"/>
+                            android:textSize="@dimen/text_size15"/>
 
                         <View
                             style="@style/line_3"/>
@@ -269,7 +391,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="10dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -310,6 +432,14 @@
 
 
                 </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/iv_put_coin"
+                    android:layout_width="match_parent"
+                    android:src="@mipmap/icon_add"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:scaleType="fitXY"
+                    android:layout_height="200dp"/>
 
             </LinearLayout>
 

@@ -125,6 +125,7 @@ public class SecurityPwdActivity extends UserBaseActivity<SecurityPwdAction> imp
 
         timer = new MyCountDownTimer(60000, 1000);
         tvPwdMobile.setText(ResUtil.getFormatString(R.string.my_tab_133,phone));
+        tvTab2.setText(ResUtil.getString(isFirst?R.string.my_tab_95_1:R.string.my_tab_95));
     }
 
     /**

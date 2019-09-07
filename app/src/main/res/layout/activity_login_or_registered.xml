@@ -50,7 +50,6 @@
             android:gravity="center"
             android:padding="13dp"
             android:textSize="@dimen/text_size18"
-            android:visibility="gone"
             android:textColor="@color/color_0095ff"
             android:background="@drawable/shape_registered_bg"/>
 

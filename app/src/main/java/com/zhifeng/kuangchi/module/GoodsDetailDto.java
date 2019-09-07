@@ -157,6 +157,18 @@ public class GoodsDetailDto {
         private List<?> coupon;
         private List<ProductAttrBean> productAttr;
         private List<ProductSkuBean> productSku;
+        private List<CoinAddressBean> coin_address;
+
+        public List<CoinAddressBean> getCoin_address() {
+            if (coin_address == null) {
+                return new ArrayList<>();
+            }
+            return coin_address;
+        }
+
+        public void setCoin_address(List<CoinAddressBean> coin_address) {
+            this.coin_address = coin_address;
+        }
 
         public int getGoods_id() {
             return goods_id;
@@ -718,7 +730,7 @@ public class GoodsDetailDto {
                 }
 
                 public String getName() {
-                    return name == null ? "" : name;
+                    return name == null ? "8T" : name;
                 }
 
                 public void setName(String name) {
@@ -903,6 +915,117 @@ public class GoodsDetailDto {
                 public void setAttr_name(String attr_name) {
                     this.attr_name = attr_name == null ? "" : attr_name;
                 }
+            }
+        }
+
+        public static class CoinAddressBean {
+            /**
+             * id : 1
+             * coin_name : FILECOIN
+             * pay_type : 8
+             * address : 1341416sdfasd1f321sdf
+             * rate : 00000.100
+             * tax_rate : 0.020
+             */
+
+            private int id;
+            private String coin_name;
+            private int pay_type;
+            private String address;
+            private String rate;
+            private String tax_rate;
+            private double to_usdt;
+            private double to_lamb;
+            private double to_rmb;
+            boolean isClick;
+            private double user_money;
+
+            public double getUser_money() {
+                return user_money;
+            }
+
+            public void setUser_money(double user_money) {
+                this.user_money = user_money;
+            }
+
+            public double getTo_usdt() {
+                return to_usdt;
+            }
+
+            public void setTo_usdt(double to_usdt) {
+                this.to_usdt = to_usdt;
+            }
+
+            public double getTo_lamb() {
+                return to_lamb;
+            }
+
+            public void setTo_lamb(double to_lamb) {
+                this.to_lamb = to_lamb;
+            }
+
+            public double getTo_rmb() {
+                return to_rmb;
+            }
+
+            public void setTo_rmb(double to_rmb) {
+                this.to_rmb = to_rmb;
+            }
+
+            public boolean isClick() {
+                return isClick;
+            }
+
+            public void setClick(boolean click) {
+                isClick = click;
+            }
+
+            public int getId() {
+                return id;
+            }
+
+            public void setId(int id) {
+                this.id = id;
+            }
+
+            public String getCoin_name() {
+                return coin_name == null ? "" : coin_name;
+            }
+
+            public void setCoin_name(String coin_name) {
+                this.coin_name = coin_name == null ? "" : coin_name;
+            }
+
+            public int getPay_type() {
+                return pay_type;
+            }
+
+            public void setPay_type(int pay_type) {
+                this.pay_type = pay_type;
+            }
+
+            public String getAddress() {
+                return address == null ? "" : address;
+            }
+
+            public void setAddress(String address) {
+                this.address = address == null ? "" : address;
+            }
+
+            public String getRate() {
+                return rate == null ? "" : rate;
+            }
+
+            public void setRate(String rate) {
+                this.rate = rate == null ? "" : rate;
+            }
+
+            public String getTax_rate() {
+                return tax_rate == null ? "" : tax_rate;
+            }
+
+            public void setTax_rate(String tax_rate) {
+                this.tax_rate = tax_rate == null ? "" : tax_rate;
             }
         }
 

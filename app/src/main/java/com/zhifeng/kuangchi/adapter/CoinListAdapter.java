@@ -36,15 +36,18 @@ public class CoinListAdapter extends BaseRecyclerAdapter<BalanceDto.DataBean.Coi
         ImageView imageView = holder.itemView.findViewById(R.id.iv_coin);
         imageView.setImageResource(model.isClick()?R.mipmap.icon_coin_y:0);
         ImageView img = holder.itemView.findViewById(R.id.iv_coin_img);
+        int res = R.mipmap.filecoin;
         switch (model.getCoin_name()){
             case "FILECOIN":
                 img.setImageResource(R.mipmap.filecoin);
                 break;
             case "LAMB":
-                img.setImageResource(R.mipmap.lambda);
+                img.setImageResource(R.mipmap.icon_coin);
+                res = R.mipmap.icon_coin;
                 break;
             case "USDT":
                 img.setImageResource(R.mipmap.usdt);
+                res = R.mipmap.usdt;
                 break;
             case "BTC":
                 img.setImageResource(R.mipmap.btc);
@@ -54,15 +57,16 @@ public class CoinListAdapter extends BaseRecyclerAdapter<BalanceDto.DataBean.Coi
                 break;
         }
 
+        int finalRes = res;
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onClickListener.onClick(model.getAddress(),model.getId(),model.getPay_type());
+                onClickListener.onClick(model.getAddress(),model.getId(),model.getPay_type(), finalRes,model.getUser_money(),1);
             }
         });
     }
 
     public interface OnClickListener{
-        void onClick(String address,int id,int coinType);
+        void onClick(String address,int id,int coinType,int res,double user_money,double Rate);
     }
 }

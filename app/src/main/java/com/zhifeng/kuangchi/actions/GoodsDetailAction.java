@@ -6,6 +6,7 @@ import com.lgh.huanglib.actions.Action;
 import com.lgh.huanglib.net.CollectionsUtils;
 import com.lgh.huanglib.util.L;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+import com.zhifeng.kuangchi.module.BalanceDto;
 import com.zhifeng.kuangchi.module.GoodsDetailDto;
 import com.zhifeng.kuangchi.net.WebUrlUtil;
 import com.zhifeng.kuangchi.ui.impl.GoodsDetailView;
@@ -33,6 +34,8 @@ public class GoodsDetailAction extends BaseAction<GoodsDetailView> {
         super(_rxAppCompatActivity);
         attachView(view);
     }
+
+
 
     /**
      * 获取商品详情数据
@@ -67,6 +70,7 @@ public class GoodsDetailAction extends BaseAction<GoodsDetailView> {
                 L.e("xx", "输出返回结果 " + aBoolean);
 
                 switch (action.getIdentifying()) {
+
                     case WebUrlUtil.POST_GOODS_DETAIL:
                         //todo 获取商品详情数据
                         if (aBoolean) {

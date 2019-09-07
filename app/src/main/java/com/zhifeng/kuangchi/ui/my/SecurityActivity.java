@@ -148,7 +148,7 @@ public class SecurityActivity extends UserBaseActivity<SecurityAction> implement
     }
 
 
-    @OnClick({R.id.tv_security_phone, R.id.tv_security_pwd, R.id.tv_security_user, R.id.tv_security_logout})
+    @OnClick({R.id.tv_security_phone, R.id.tv_security_pwd, R.id.tv_security_user, R.id.tv_security_logout,R.id.tv_security_login_pwd})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_security_phone:
@@ -162,6 +162,12 @@ public class SecurityActivity extends UserBaseActivity<SecurityAction> implement
                 intent.putExtra("phone",phone);
                 startActivity(intent);
                 break;
+            case R.id.tv_security_login_pwd:
+                //todo 登录密码
+                Intent intent2 = new Intent(mContext,MoblieLoginPwdActivity.class);
+                intent2.putExtra("phone",phone);
+                startActivity(intent2);
+                break;
             case R.id.tv_security_user:
                 //todo 切换账号
                 jumpActivityNotFinish(mContext,SecurityUserActivity.class);
@@ -169,7 +175,9 @@ public class SecurityActivity extends UserBaseActivity<SecurityAction> implement
             case R.id.tv_security_logout:
                 //todo 退出登录
                 MySp.clearAllSP(mContext);
-                jumpActivity(mContext, LoginActivity.class);
+                Intent intent3 = new Intent(mContext,LoginActivity.class);
+                intent3.putExtra("type",1);
+                startActivity(intent3);
                 MainActivity.Position = 0;
                 ActivityStack.getInstance().exitIsNotHaveMain( LoginActivity.class, MainActivity.class);
                 break;

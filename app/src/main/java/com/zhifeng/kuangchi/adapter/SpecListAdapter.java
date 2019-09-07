@@ -36,12 +36,12 @@ public class SpecListAdapter extends BaseRecyclerAdapter<GoodsDetailDto.DataBean
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onClickListener.OnClick(model.getInventory(),model.getSku_id(),model.getPrice());
+                onClickListener.OnClick(model.getInventory(),model.getSku_id(),model.getPrice(),model.getName());
             }
         });
     }
 
     public interface OnClickListener{
-        void OnClick(int Inventory,int Sku_id,String price);
+        void OnClick(int Inventory,int Sku_id,String price,String tNum);
     }
 }

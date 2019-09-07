@@ -1,34 +1,39 @@
 package com.zhifeng.kuangchi.actions;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.lgh.huanglib.actions.Action;
 import com.lgh.huanglib.net.CollectionsUtils;
 import com.lgh.huanglib.util.L;
 import com.lgh.huanglib.util.data.MD5Utils;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
-import com.zhifeng.kuangchi.module.BaseDto;
+import com.zhifeng.kuangchi.module.AgencyListDto;
 import com.zhifeng.kuangchi.module.GeneralDto;
-import com.zhifeng.kuangchi.module.LoginDto;
+import com.zhifeng.kuangchi.module.post.MoblieLoginPwdPost;
+import com.zhifeng.kuangchi.module.post.SetPayPwdPost;
 import com.zhifeng.kuangchi.net.WebUrlUtil;
-import com.zhifeng.kuangchi.ui.impl.LoginView;
+import com.zhifeng.kuangchi.ui.impl.MoblieLoginPwdView;
+import com.zhifeng.kuangchi.util.config.MyApp;
+import com.zhifeng.kuangchi.util.data.MySp;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
 
 /**
- * 登录页面
+  *
+  * @ClassName:     修改登录密码
+  * @Description:
+  * @Author:         lgh
+  * @CreateDate:     2019/9/7 14:22
+  * @Version:        1.0
  */
-public class LoginAction extends BaseAction<LoginView> {
-    public LoginAction(RxAppCompatActivity _rxAppCompatActivity,LoginView view) {
+
+public class MoblieLoginPwdAction extends BaseAction<MoblieLoginPwdView> {
+    public MoblieLoginPwdAction(RxAppCompatActivity _rxAppCompatActivity,MoblieLoginPwdView view) {
         super(_rxAppCompatActivity);
         attachView(view);
     }
@@ -36,10 +41,9 @@ public class LoginAction extends BaseAction<LoginView> {
     /**
      * 获取验证码
      * @param phone 手机号码
-     * @param type 0：注册 sms_reg;1：登录:sms_login
      */
-    public void getCode(String phone,int type){
-        String temp = type == 0 ? "sms_reg" : "sms_login";
+    public void getAuthCode(String phone){
+        String temp = "sms_forget";
         String auth = MD5Utils.getMd5Value(phone+temp);
         post(WebUrlUtil.POST_GET_CODE, false, service -> manager.runHttp(
                 service.PostData(CollectionsUtils.generateMap("phone",phone,"temp",temp,
@@ -47,41 +51,14 @@ public class LoginAction extends BaseAction<LoginView> {
     }
 
     /**
-     * 登录
-     * @param phone 手机号码
-     * @param verify_code 验证码
+     * 修改登录密码
+     * @param pwdPost
      */
-    public void Login(String phone,String verify_code,int inviteCode){
-        Map<Object,Object> map = new HashMap<>();
-        if (inviteCode == 0){
-            map = CollectionsUtils.generateMap("phone",phone,"password",verify_code);
-        }else {
-            map = CollectionsUtils.generateMap("phone",phone,"password",verify_code,"inviteCode",inviteCode);
-        }
-        Map<Object, Object> finalMap = map;
-        post(WebUrlUtil.POST_LOGIN, false, service -> manager.runHttp(
-                service.PostData(finalMap,WebUrlUtil.POST_LOGIN)));
+    public void moblieLoginPwd(MoblieLoginPwdPost pwdPost){
+        post(WebUrlUtil.POST_MOBLIE_LOGIN_PWD,false, service -> manager.runHttp(
+                service.PostData(CollectionsUtils.generateMap("password",pwdPost.getPassword(),"repassword",
+                       pwdPost.getRepassword(),"phone",pwdPost.getPhone(),"verify_code",pwdPost.getVerify_code()),WebUrlUtil.POST_MOBLIE_LOGIN_PWD)));
     }
-
-    /**
-     * 注册
-     * @param phone
-     * @param verify_code
-     * @param inviteCode
-     */
-    public void Registered(String phone,String verify_code,int inviteCode,String password){
-        Map<Object,Object> map = new HashMap<>();
-        if (inviteCode == 0){
-            map = CollectionsUtils.generateMap("phone",phone,"verify_code",verify_code,"password",password);
-        }else {
-            map = CollectionsUtils.generateMap("phone",phone,"verify_code",verify_code,"inviteCode",inviteCode,"password",password);
-        }
-        Map<Object, Object> finalMap = map;
-        post(WebUrlUtil.POST_LOGIN, false, service -> manager.runHttp(
-                service.PostData(finalMap,WebUrlUtil.POST_LOGIN)));
-    }
-
-
 
     /**
      * sticky:表明优先接收最高级  threadMode = ThreadMode.MAIN：表明在主线程
@@ -112,33 +89,28 @@ public class LoginAction extends BaseAction<LoginView> {
                             L.e("xx", "输出返回结果 " + action.getUserData().toString());
                             GeneralDto generalDto = new Gson().fromJson(action.getUserData().toString(), new TypeToken<GeneralDto>() {
                             }.getType());
-                           if (generalDto.getStatus() == 200){
-                               //todo 获取验证码成功
-                               view.getCodeSuccess(generalDto.getData());
-                               return;
-                           }
+                            if (generalDto.getStatus() == 200){
+                                //todo 获取验证码成功
+                                view.getAuthCodeSuccess(generalDto.getData());
+                                return;
+                            }
                             view.onError(generalDto.getMsg(),action.getErrorType());
                             return;
                         }
                         view.onError(msg,action.getErrorType());
                         break;
-                    case WebUrlUtil.POST_LOGIN:
-                        //todo 登录或注册
+                    case WebUrlUtil.POST_MOBLIE_LOGIN_PWD:
+//                        //todo 修改登录密码
                         if (aBoolean) {
                             L.e("xx", "输出返回结果 " + action.getUserData().toString());
-                           try{
-                               LoginDto loginDto = new Gson().fromJson(action.getUserData().toString(), new TypeToken<LoginDto>() {
-                               }.getType());
-                               if (loginDto.getStatus() == 200){
-                                   //todo 获取验证码成功
-                                   view.loginOrRegisteredSuccess(loginDto);
-                                   return;
-                               }
-                               view.onError(loginDto.getMsg(),action.getErrorType());
-                           }catch (JsonSyntaxException e){
-                               BaseDto baseDto = new Gson().fromJson(action.getUserData().toString(),new TypeToken<BaseDto>(){}.getType());
-                               view.onError(baseDto.getMsg(),action.getErrorType());
-                           }
+                            GeneralDto generalDto = new Gson().fromJson(action.getUserData().toString(), new TypeToken<GeneralDto>() {
+                            }.getType());
+                            if (generalDto.getStatus() == 200){
+                                //todo 修改登录密码成功
+                                view.moblieLoginPwdSuccess(generalDto);
+                                return;
+                            }
+                            view.onError(generalDto.getMsg(),action.getErrorType());
                             return;
                         }
                         view.onError(msg,action.getErrorType());
@@ -160,4 +132,5 @@ public class LoginAction extends BaseAction<LoginView> {
 
         unregister(this);
     }
+
 }

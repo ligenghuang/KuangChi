@@ -97,6 +97,8 @@ public class BalanceDto {
             this.coin_address = coin_address;
         }
 
+
+
         public static class CoinAddressBean {
             /**
              * id : 1
@@ -113,7 +115,43 @@ public class BalanceDto {
             private String address;
             private String rate;
             private String tax_rate;
+            private double to_usdt;
+            private double to_lamb;
+            private double to_rmb;
             boolean isClick;
+            private double user_money;
+
+            public double getUser_money() {
+                return user_money;
+            }
+
+            public void setUser_money(double user_money) {
+                this.user_money = user_money;
+            }
+
+            public double getTo_usdt() {
+                return to_usdt;
+            }
+
+            public void setTo_usdt(double to_usdt) {
+                this.to_usdt = to_usdt;
+            }
+
+            public double getTo_lamb() {
+                return to_lamb;
+            }
+
+            public void setTo_lamb(double to_lamb) {
+                this.to_lamb = to_lamb;
+            }
+
+            public double getTo_rmb() {
+                return to_rmb;
+            }
+
+            public void setTo_rmb(double to_rmb) {
+                this.to_rmb = to_rmb;
+            }
 
             public boolean isClick() {
                 return isClick;

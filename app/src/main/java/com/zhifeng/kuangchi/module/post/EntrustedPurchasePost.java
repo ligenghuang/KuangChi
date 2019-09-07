@@ -14,6 +14,15 @@ public class EntrustedPurchasePost {
     private int cart_number;
     private int pay_type;
     private String proof_pic;
+    private String pwsseord;
+
+    public String getPwsseord() {
+        return pwsseord == null ? "" : pwsseord;
+    }
+
+    public void setPwsseord(String pwsseord) {
+        this.pwsseord = pwsseord == null ? "" : pwsseord;
+    }
 
     public int getSku_id() {
         return sku_id;

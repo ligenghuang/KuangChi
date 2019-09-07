@@ -15,6 +15,15 @@ public class GetCoinPost {
     private String address;
     private double input_money;
     private String password;
+    private String verify_code;
+
+    public String getVerify_code() {
+        return verify_code == null ? "" : verify_code;
+    }
+
+    public void setVerify_code(String verify_code) {
+        this.verify_code = verify_code == null ? "" : verify_code;
+    }
 
     public String getCoin_type() {
         return coin_type == null ? "" : coin_type;

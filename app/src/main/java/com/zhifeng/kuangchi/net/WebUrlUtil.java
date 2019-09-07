@@ -191,4 +191,9 @@ public class WebUrlUtil {
      */
     public static final String POST_CHANGE_NAME = "safe/change_realname";
 
+    /**
+     *
+     * 修改登录密码
+     */
+    public static final String POST_MOBLIE_LOGIN_PWD = "safe/reset_password";
 }

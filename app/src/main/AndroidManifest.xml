@@ -18,8 +18,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/activity_theme">
-        <activity android:name=".ui.home.BannerActivity"></activity>
-        <activity android:name=".ui.my.ModifyUserInfoActivity"></activity>
+        <activity android:name=".ui.my.MoblieLoginPwdActivity"></activity>
+        <activity android:name=".ui.home.PayActivity" />
+        <activity android:name=".ui.home.BannerActivity" />
+        <activity android:name=".ui.my.ModifyUserInfoActivity" />
         <activity android:name=".ui.home.EntrustedPurchaseActivity" />
         <activity android:name=".ui.home.CustomerServiceActivity" />
         <activity android:name=".ui.my.SecurityPwdActivity" />
@@ -72,7 +74,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/activity_theme"></activity>
+            android:theme="@style/activity_theme" />
     </application>
 
 </manifest>

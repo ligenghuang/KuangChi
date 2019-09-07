@@ -3,11 +3,13 @@ package com.zhifeng.kuangchi.ui.my;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,6 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.lgh.huanglib.util.CheckNetwork;
 import com.lgh.huanglib.util.L;
 import com.lgh.huanglib.util.base.ActivityStack;
+import com.lgh.huanglib.util.config.GlideUtil;
+import com.lgh.huanglib.util.data.FormatUtils;
 import com.lgh.huanglib.util.data.ResUtil;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
@@ -35,10 +39,10 @@ import com.zhifeng.kuangchi.module.post.GetCoinPost;
 import com.zhifeng.kuangchi.module.post.PutCoinPost;
 import com.zhifeng.kuangchi.ui.impl.BalanceView;
 import com.zhifeng.kuangchi.util.base.UserBaseActivity;
+import com.zhifeng.kuangchi.util.data.MySp;
 import com.zhifeng.kuangchi.util.dialog.PicturesDialog;
-import com.zhifeng.kuangchi.util.dialog.PutDialog;
-import com.zhifeng.kuangchi.util.dialog.PwdDialog;
 import com.zhifeng.kuangchi.util.imageloader.GlideImageLoader;
+import com.zhifeng.kuangchi.util.photo.PicUtils;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
@@ -65,6 +69,22 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
     public static final int REQUEST_CODE_TAKE = 102;
     public static final int REQUEST_CODE_ALBUM = 103;
     public static int REQUEST_SELECT_TYPE = -1;//选择的类型
+    @BindView(R.id.et_balance_pay_pwd)
+    EditText etBalancePayPwd;
+    @BindView(R.id.et_balance_pay_code)
+    EditText etBalancePayCode;
+    @BindView(R.id.tv_login_get_code)
+    TextView tvLoginGetCode;
+    @BindView(R.id.ll_get_coin)
+    LinearLayout llGetCoin;
+    @BindView(R.id.tv_balance_submit)
+    TextView tvBalanceSubmit;
+    @BindView(R.id.iv_put_coin)
+    ImageView ivPutCoin;
+    @BindView(R.id.iv_coin)
+    ImageView ivCoin;
+    @BindView(R.id.iv_coin_2)
+    ImageView ivCoin2;
     private ArrayList<ImageItem> selImageList = new ArrayList<>(); //当前选择的所有图片
     ArrayList<ImageItem> images = null;
 
@@ -84,8 +104,8 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
     TextView tvBalanceType;
     @BindView(R.id.recyclerview)
     RecyclerView recyclerview;
-    @BindView(R.id.tv_balance_lines)
-    TextView tvBalanceLines;
+    //    @BindView(R.id.tv_balance_lines)
+//    TextView tvBalanceLines;
     @BindView(R.id.ll_balance_lines)
     LinearLayout llBalanceLines;
     @BindView(R.id.et_balance)
@@ -108,12 +128,16 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
 
     double rate;
     double money = 0;
+    double num = 0;
     double inputMoney = 0;
     String coin_type;
     String Address;
+    String name;
 
-    PwdDialog pwdDialog;
-    PutDialog putDialog;
+    boolean isPic = false;
+
+    //获取验证码倒计时
+    private MyCountDownTimer timer;
 
 
     @Override
@@ -159,7 +183,7 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
         coinListAdapter = new CoinListAdapter();
         recyclerview.setLayoutManager(new LinearLayoutManager(mContext));
         recyclerview.setAdapter(coinListAdapter);
-
+        timer = new MyCountDownTimer(60000, 1000);
         initImagePicker();
         getBalance();
         loadView();
@@ -247,16 +271,17 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (!TextUtils.isEmpty(etBalance.getText().toString())){
+                if (!TextUtils.isEmpty(etBalance.getText().toString())) {
                     //todo 根据转换率计算金额
                     money = Double.parseDouble(etBalance.getText().toString());
-                    inputMoney = money * rate;
-                    L.e("lgh_rate","money  = "+inputMoney);
-                    L.e("lgh_rate","rate  = "+rate);
-                    llBalanceMoney.setVisibility(View.VISIBLE);
-                    tvBalanceMoney.setText(inputMoney+"");
-                }else{
-                    llBalanceMoney.setVisibility(View.GONE);
+
+//                    inputMoney = money * rate;
+                    L.e("lgh_rate", "money  = " + inputMoney);
+                    L.e("lgh_rate", "rate  = " + rate);
+//                    llBalanceMoney.setVisibility(View.VISIBLE);
+//                    tvBalanceMoney.setText(inputMoney + "");
+                } else {
+//                    tvBalanceMoney.setText("");
                 }
             }
 
@@ -269,7 +294,7 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
         //todo 列表item点击事件监听
         coinListAdapter.setOnClickListener(new CoinListAdapter.OnClickListener() {
             @Override
-            public void onClick(String address, int id,int coinType) {
+            public void onClick(String address, int id, int coinType, int res,double user_money,double Rate) {
                 List<BalanceDto.DataBean.CoinAddressBean> list = coinListAdapter.getAllData();
                 for (int i = 0; i < list.size(); i++) {
                     list.get(i).setClick(list.get(i).getId() == id);
@@ -277,83 +302,111 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
                 coinListAdapter.notifyDataSetChanged();
                 tvBalanceAddress.setText(address);//todo 地址
                 //todo 获取转换率
-                getRate(coinType+"");
-                coin_type = coinType+"";
+//                getRate(coinType + "");
+                rate = Rate;
+                coin_type = coinType + "";
                 Address = address;
+                ivCoin.setImageResource(res);
+                ivCoin2.setImageResource(res);
+                tvBalance.setText(user_money+"");
             }
         });
     }
 
-    @OnClick(R.id.tv_balance_submit)
-    void OnClick(View view){
-        switch (view.getId()){
+    @OnClick({R.id.tv_balance_submit, R.id.tv_login_get_code, R.id.iv_put_coin})
+    void OnClick(View view) {
+        switch (view.getId()) {
             case R.id.tv_balance_submit:
                 //todo 提交
-                if (Type == POIONTONE){
+                if (Type == POIONTONE) {
                     //todo 充币
-                    PutCoin();
-                }else if (Type == POIONTTWO){
-                   //todo 提币
-                    GetCoin();
+                    putBalanceCoin();
+                } else if (Type == POIONTTWO) {
+                    //todo 提币
+                    GetBalanceCoin();
                 }
+                break;
+            case R.id.tv_login_get_code:
+                //todo 获取验证码
+                getAuthCode();
+                break;
+            case R.id.iv_put_coin:
+                //todo 上传凭证
+                showSelectDiaLog();
                 break;
         }
     }
 
     /**
-     * 充币校验
+     * 提币
      */
-    private void PutCoin() {
-        if (money == 0){
+    private void GetBalanceCoin() {
+        if (TextUtils.isEmpty(etBalancePayPwd.getText().toString())) {
+            showNormalToast(ResUtil.getString(R.string.my_tab_149));
+            return;
+        }
+        String pwd = etBalancePayPwd.getText().toString();
+
+        if (TextUtils.isEmpty(etBalancePayCode.getText().toString())) {
+            showNormalToast(ResUtil.getString(R.string.my_tab_151));
+            return;
+        }
+
+        String code = etBalancePayCode.getText().toString();
+
+        if (money == 0) {
             showNormalToast(ResUtil.getString(R.string.my_tab_112_1));
             return;
         }
-        putDialog = new PutDialog(mContext, R.style.MY_AlertDialog,mActicity);
-        putDialog.setOnClickListener(new PutDialog.OnClickListener() {
-            @Override
-            public void onClick(String base64) {
-                PutCoinPost putCoinPost = new PutCoinPost();
-                putCoinPost.setAddress(Address);
-                putCoinPost.setCoin_type(coin_type);
-                putCoinPost.setInput_money(inputMoney);
-                putCoinPost.setMoney(money+"");
-                putCoinPost.setProof_pic("data:image/gif;base64,"+base64);
-                putCoin(putCoinPost);
+
+            switch (name) {
+                case "USDT":
+                    if (money < 50) {
+                        showNormalToast("USDT提币数量≥50个");
+                    }
+                    break;
+                case "LAMB":
+                    if (money<100){
+                        showNormalToast("lambda提币数量≥100个");
+                    }
+                    break;
             }
 
-            @Override
-            public void TakeUserGally() {
-                showSelectDiaLog();
-            }
-        });
-        putDialog.show();
+
+        GetCoinPost getCoinPost = new GetCoinPost();
+        getCoinPost.setAddress(Address);//地址
+        getCoinPost.setCoin_type(coin_type);//币类型
+        getCoinPost.setMoney(money + "");//币数量
+        getCoinPost.setInput_money(inputMoney);//输入金额
+        getCoinPost.setPassword(pwd);//密码
+        getCoinPost.setVerify_code(code);//验证码
+        //todo 请求接口
+        getCoin(getCoinPost);
     }
 
     /**
-     * 提币校验
+     * 充币
      */
-    private void GetCoin() {
-        if (money == 0){
-            showNormalToast(ResUtil.getString(R.string.my_tab_112));
+    private void putBalanceCoin() {
+        if (money == 0) {
+            showNormalToast(ResUtil.getString(R.string.my_tab_112_1));
             return;
         }
-        pwdDialog = new PwdDialog(mContext, R.style.MY_AlertDialog);
-        pwdDialog.setOnFinishInput(new PwdDialog.OnFinishInput() {
-            @Override
-            public void inputFinish(String password) {
-                GetCoinPost getCoinPost = new GetCoinPost();
-                getCoinPost.setAddress(Address);//地址
-                getCoinPost.setCoin_type(coin_type);//币类型
-                getCoinPost.setMoney(money+"");//币数量
-                getCoinPost.setInput_money(inputMoney);//输入金额
-                getCoinPost.setPassword(password);//密码
-                //todo 请求接口
-                getCoin(getCoinPost);
-            }
-        });
+        //todo 请上传凭证
+        if (!isPic) {
+            showNormalToast(ResUtil.getString(R.string.home_tab_25));
+            return;
+        }
+        //todo 图片路径
+        String base64 = PicUtils.bitmapToString(images.get(0).path);
 
-        pwdDialog.show();
-
+        PutCoinPost putCoinPost = new PutCoinPost();
+        putCoinPost.setAddress(Address);
+        putCoinPost.setCoin_type(coin_type);
+        putCoinPost.setInput_money(inputMoney);
+        putCoinPost.setMoney(money + "");
+        putCoinPost.setProof_pic("data:image/gif;base64," + base64);
+        putCoin(putCoinPost);
     }
 
 
@@ -376,7 +429,7 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
         loadDiss();
         BalanceDto.DataBean dataBean = balanceDto.getData();
         tvBalance.setText(dataBean.getRemainder_money());//余额
-        tvBalanceLines.setText(dataBean.getWithdrawal_lines());//单日交易额
+//        tvBalanceLines.setText(dataBean.getWithdrawal_lines());//单日交易额
 
         Type = POIONTONE;
         setSelectedLin(Type);
@@ -384,20 +437,61 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
         List<BalanceDto.DataBean.CoinAddressBean> list = balanceDto.getData().getCoin_address();
         list.get(0).setClick(true);
         coinListAdapter.refresh(list);
-        coin_type = list.get(0).getPay_type()+"";
+        coin_type = list.get(0).getPay_type() + "";
         Address = list.get(0).getAddress();
-        getRate(coin_type);
-        tvBalanceAddress.setText(Address);
+//        getRate(coin_type);
 
+        tvBalanceAddress.setText(Address);
+        tvBalance.setText(list.get(0).getUser_money()+"");
+        switch (list.get(0).getCoin_name()){
+            case "LAMB":
+                ivCoin.setImageResource(R.mipmap.icon_coin);
+                ivCoin2.setImageResource(R.mipmap.icon_coin);
+                rate = list.get(0).getTo_usdt();
+                break;
+            case "USDT":
+                ivCoin.setImageResource(R.mipmap.usdt);
+                ivCoin2.setImageResource(R.mipmap.usdt);
+                rate = 1;
+                break;
+        }
+    }
+
+    /**
+     * 获取验证码
+     */
+    @Override
+    public void getAuthCode() {
+        if (CheckNetwork.checkNetwork2(mContext)) {
+            loadDialog();
+            baseAction.getAuthCode(MySp.getUserPhone(mContext));
+        }
+    }
+
+    /**
+     * 获取验证码成功
+     *
+     * @param generalDto
+     */
+    @Override
+    public void getAuthCodeSuccess(String generalDto) {
+        loadDiss();
+        showNormalToast(generalDto);
+        //todo 启动计时器
+        if (timer != null) {
+            timer.cancel();
+        }
+        timer.start();
     }
 
     /**
      * 提币
+     *
      * @param getCoinPost
      */
     @Override
     public void getCoin(GetCoinPost getCoinPost) {
-        if (CheckNetwork.checkNetwork2(mContext)){
+        if (CheckNetwork.checkNetwork2(mContext)) {
             loadDialog();
             baseAction.getCoin(getCoinPost);
         }
@@ -409,20 +503,24 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
     @Override
     public void getCoinSuccess(GeneralDto generalDto) {
         loadDiss();
+        showNormalToast("提币成功");
         etBalance.setText("");
-        llBalanceMoney.setVisibility(View.GONE);
-        if (pwdDialog != null){
-            pwdDialog.dismiss();
+        tvBalanceMoney.setText("");
+        etBalancePayCode.setText("");
+        etBalancePayPwd.setText("");
+        if (timer != null) {
+            timer.onFinish();
         }
     }
 
     /**
      * 充币
+     *
      * @param putCoinPost
      */
     @Override
     public void putCoin(PutCoinPost putCoinPost) {
-        if (CheckNetwork.checkNetwork2(mContext)){
+        if (CheckNetwork.checkNetwork2(mContext)) {
             loadDialog();
             baseAction.putCoin(putCoinPost);
         }
@@ -434,31 +532,47 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
     @Override
     public void putCoinSuccess(GeneralDto generalDto) {
         loadDiss();
+        showNormalToast("充币成功");
         etBalance.setText("");
-        llBalanceMoney.setVisibility(View.GONE);
-        if (putDialog != null){
-            putDialog.dismiss();
-        }
+        tvBalanceMoney.setText("");
+        ivPutCoin.setImageResource(R.mipmap.icon_add);
+        isPic = false;
+        images = new ArrayList<>();
     }
 
     /**
      * 获取币转换率
+     *
      * @param coinType
      */
     @Override
     public void getRate(String coinType) {
-        if (CheckNetwork.checkNetwork2(mContext)){
+        if (CheckNetwork.checkNetwork2(mContext)) {
             baseAction.getRate(coinType);
         }
     }
 
     /**
      * 获取币转换率成功
+     *
      * @param coinRateDto
      */
     @Override
     public void getRateSuccess(CoinRateDto coinRateDto) {
         rate = Double.valueOf(coinRateDto.getData().getRate());
+        name = coinRateDto.getData().getCoin_name();
+        if (Type == POIONTTWO) {
+            switch (coinRateDto.getData().getCoin_name()) {
+                case "USDT":
+                    num = 50;
+                    showNormalToast("USDT提币数量≥50个");
+                    break;
+                case "LAMB":
+                    num = 100;
+                    showNormalToast("lambda提币数量≥100个");
+                    break;
+            }
+        }
     }
 
     /**
@@ -486,27 +600,6 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
         baseAction.toUnregister();
     }
 
-    /**
-     * 点击事件监听
-     *
-     * @param view
-     */
-    @OnClick(R.id.tv_balance_submit)
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.tv_balance_submit:
-                switch (Type) {
-                    case POIONTONE:
-                        //todo 充币
-                        break;
-                    case POIONTTWO:
-                        //todo 提币
-                        break;
-                }
-                break;
-        }
-    }
-
 
     @OnTouch({R.id.tv_balance_put, R.id.tv_balance_get})
     public boolean onTouch(View v) {
@@ -532,18 +625,22 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
     private void setSelectedLin(int position) {
         tvBalancePut.setSelected(false);
         tvBalanceGet.setSelected(false);
-        llBalanceLines.setVisibility(View.GONE);
+        llBalanceLines.setVisibility(View.VISIBLE);
+        llGetCoin.setVisibility(View.GONE);
+        ivPutCoin.setVisibility(View.VISIBLE);
         String text = ResUtil.getString(R.string.my_tab_66);
         String text1 = ResUtil.getString(R.string.my_tab_69_2);
         switch (position) {
             case 0:
                 //todo 充币
                 tvBalancePut.setSelected(true);
-                llBalanceLines.setVisibility(View.VISIBLE);
+                llBalanceLines.setVisibility(View.GONE);
                 break;
             case 1:
                 //todo 提币
                 tvBalanceGet.setSelected(true);
+                llGetCoin.setVisibility(View.VISIBLE);
+                ivPutCoin.setVisibility(View.GONE);
                 text = ResUtil.getString(R.string.my_tab_67);
                 text1 = ResUtil.getString(R.string.my_tab_69);
                 break;
@@ -583,10 +680,8 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
 //
 //                                    //todo  显示图片
                                     L.e("lgh", "images.get(0).path  = " + images.get(0).path);
-//                                    GlideUtil.setImageCircle(mContext,images.get(0).path,isPortrait?userPortaitIv:userCertificateIv,0);
-                                   if (putDialog != null){
-                                       putDialog.setImg(images.get(0).path);
-                                   }
+                                    GlideUtil.setImageCircle(mContext, images.get(0).path, ivPutCoin, R.mipmap.icon_add);
+                                    isPic = true;
                                 } catch (Exception e) {
                                     loadError(ResUtil.getString(R.string.my_tab_120), mContext);
                                 }
@@ -607,4 +702,30 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
     }
 
     /**********************************上传凭证 end*********************************************/
+
+    /**************************************计时器 start*******************************************/
+    class MyCountDownTimer extends CountDownTimer {
+        public MyCountDownTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+            // TODO Auto-generated constructor stub
+
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            // TODO Auto-generated method stub
+            tvLoginGetCode.setEnabled(false);
+            tvLoginGetCode.setSelected(true);
+            tvLoginGetCode.setText(FormatUtils.format(getString(R.string.login_tab_6), millisUntilFinished / 1000));
+        }
+
+        @Override
+        public void onFinish() {
+            // TODO Auto-generated method stub
+            tvLoginGetCode.setEnabled(true);
+            tvLoginGetCode.setSelected(false);
+            tvLoginGetCode.setText(R.string.login_tab_5);
+        }
+    }
+/*****************************************计时器 end**************************************************/
 }

@@ -24,6 +24,12 @@ public interface BalanceView extends BaseView {
     void getBalanceSuccess(BalanceDto balanceDto);
 
     /**
+     * 获取验证码成功
+     */
+    void getAuthCode();
+    void getAuthCodeSuccess(String generalDto);
+
+    /**
      * 提币
      */
     void getCoin(GetCoinPost getCoinPost);

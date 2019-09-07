@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.lgh.huanglib.util.L;
 import com.lgh.huanglib.util.base.ActivityStack;
 import com.lgh.huanglib.util.config.GlideUtil;
 import com.lgh.huanglib.util.data.ResUtil;
@@ -99,7 +100,7 @@ public class MyFragment extends UserBaseFragment<MyAction> implements MyView {
 //                loadDialog();
 //                isFirst = false;
 //            }
-            getMyInfo();
+//            getMyInfo();
         }
     }
 
@@ -131,7 +132,7 @@ public class MyFragment extends UserBaseFragment<MyAction> implements MyView {
         MySp.setUserPhone(mContext, dataBean.getMobile());//保存手机号
         tvUserAddress.setText(ResUtil.getFormatString(R.string.my_tab_15, dataBean.getAddress()));//地址
         tvUserLevel.setText(dataBean.getLevel_name());//身份等级
-//        MySp.setUserNameapi(mContext, dataBean.getIs_vip());
+        MySp.setUserNameapi(mContext, dataBean.getIs_nameapi());
         MySp.setUserVip(mContext, dataBean.getIs_vip());
         tvUserIsVip.setText(ResUtil.getString(dataBean.getIs_vip() == 1?R.string.my_tab_135:R.string.my_tab_136));
         tvUserIsNameApi.setText(ResUtil.getString(MySp.getUserNameapi(mContext) == 1 ?R.string.my_tab_145:R.string.my_tab_146));
@@ -149,13 +150,25 @@ public class MyFragment extends UserBaseFragment<MyAction> implements MyView {
             userDto.setImg(dataBean.getAvatar());
             userDto.setName(dataBean.getRealname());
             userDto.setToken(MySp.getAccessToken(mContext));
+            L.e("lgh_user","token  = "+MySp.getAccessToken(mContext));
             userDto.setIs_vip(dataBean.getIs_vip());
             userDto.setPhone(dataBean.getMobile());
+
+            for (int i = 0; i <list.size() ; i++) {
+                if(list.get(i).getPhone().equals(userDto.getPhone())){
+                    list.set(i,userDto);
+                    L.e("lgh_user","user  = "+userDto.getToken());
+                    MySp.setUserList(mContext,new Gson().toJson(list));
+                    MainActivity.isLogin = false;
+                    return;
+                }
+            }
             if (list.size() >= 3){
                 list.set(0,userDto);
             }else {
                 list.add(userDto);
             }
+
 
 
             MySp.setUserList(mContext,new Gson().toJson(list));

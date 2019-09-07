@@ -5,6 +5,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,8 +18,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.lgh.huanglib.util.CheckNetwork;
 import com.lgh.huanglib.util.L;
 import com.lgh.huanglib.util.base.ActivityStack;
@@ -30,17 +31,17 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.zhifeng.kuangchi.R;
-import com.zhifeng.kuangchi.actions.BaseAction;
 import com.zhifeng.kuangchi.actions.GoodsDetailAction;
 import com.zhifeng.kuangchi.adapter.Banner;
 import com.zhifeng.kuangchi.adapter.SpecListAdapter;
+import com.zhifeng.kuangchi.module.BalanceDto;
 import com.zhifeng.kuangchi.module.GoodsDetailDto;
-import com.zhifeng.kuangchi.module.HomeDataDto;
 import com.zhifeng.kuangchi.ui.impl.GoodsDetailView;
 import com.zhifeng.kuangchi.util.base.UserBaseActivity;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -74,7 +75,7 @@ public class GoodsDetailActivity extends UserBaseActivity<GoodsDetailAction> imp
     @BindView(R.id.tv_goods_detail_subtract)
     TextView tvGoodsDetailSubtract;
     @BindView(R.id.et_goods_detail_num)
-    TextView tvGoodsDetailNum;
+    EditText etGoodsDetailNum;
     @BindView(R.id.tv_goods_detail_add)
     TextView tvGoodsDetailAdd;
 
@@ -113,6 +114,8 @@ public class GoodsDetailActivity extends UserBaseActivity<GoodsDetailAction> imp
     public static int Position = 0;
     private static final int POIONTONE = 0;
     private static final int POIONTTWO = 1;
+    @BindView(R.id.tv_goods_detail_price_usdt)
+    TextView tvGoodsDetailPriceUsdt;
     private ArrayList<Fragment> fragments;
     private MyFragmentPagerAdapter fragmentPagerAdapter;
     private int fragmentSize = 2;
@@ -120,6 +123,13 @@ public class GoodsDetailActivity extends UserBaseActivity<GoodsDetailAction> imp
     SpecListAdapter specListAdapter;
     String content;
     String content_param;
+    String TNum;
+    String goodsName;
+    String money;
+    String img;
+    double rate= 0;
+
+    String usdt;
 
     @Override
     public int intiLayout() {
@@ -135,7 +145,7 @@ public class GoodsDetailActivity extends UserBaseActivity<GoodsDetailAction> imp
 
     @Override
     protected GoodsDetailAction initAction() {
-        return new GoodsDetailAction(this,this);
+        return new GoodsDetailAction(this, this);
     }
 
     /**
@@ -159,7 +169,7 @@ public class GoodsDetailActivity extends UserBaseActivity<GoodsDetailAction> imp
         mActicity = this;
         mContext = this;
 
-        id = getIntent().getIntExtra("goods_id",0);
+        id = getIntent().getIntExtra("goods_id", 0);
 
         //轮播图
         banner = new Banner();
@@ -168,7 +178,7 @@ public class GoodsDetailActivity extends UserBaseActivity<GoodsDetailAction> imp
         refreshLayout.setEnableLoadMore(false);//禁止上拉加载更多
 
         specListAdapter = new SpecListAdapter();
-        recyclerview.setLayoutManager(new GridLayoutManager(mContext,3));
+        recyclerview.setLayoutManager(new GridLayoutManager(mContext, 3));
         recyclerview.setAdapter(specListAdapter);
 
         refreshLayout.autoRefresh();
@@ -189,7 +199,7 @@ public class GoodsDetailActivity extends UserBaseActivity<GoodsDetailAction> imp
 
         specListAdapter.setOnClickListener(new SpecListAdapter.OnClickListener() {
             @Override
-            public void OnClick(int Inventory, int Sku_id,String Price) {
+            public void OnClick(int Inventory, int Sku_id, String Price, String tNum) {
                 List<GoodsDetailDto.DataBean.SpecBean.GoodsSkuBean> list = specListAdapter.getAllData();
                 for (int i = 0; i < list.size(); i++) {
                     list.get(i).setClick(list.get(i).getSku_id() == Sku_id);
@@ -197,16 +207,68 @@ public class GoodsDetailActivity extends UserBaseActivity<GoodsDetailAction> imp
                 specListAdapter.notifyDataSetChanged();
                 sku_id = Sku_id;
                 inventory = Inventory;
+                TNum = tNum;
                 price = Double.parseDouble(Price);
-                tvGoodsDetailMoney.setText("￥"+price);//单价
+                tvGoodsDetailMoney.setText("￥" + price);//单价
                 double total = num * price;
-                tvGoodsDetailPrice.setText("￥"+total);
+                tvGoodsDetailPrice.setText("￥" + total);
+                money = total + "";
+
             }
         });
+
+        etGoodsDetailNum.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (!TextUtils.isEmpty(etGoodsDetailNum.getText().toString())) {
+                    String str = etGoodsDetailNum.getText().toString();
+                    int Num = Integer.parseInt(str.replaceAll("^(0+)", ""));
+                    L.e("lgh_num", "str  = " + str);
+                    L.e("lgh_num", "num  = " + Num);
+                    if (Num <= 0) {
+                        //数量小于0
+                        showNormalToast(ResUtil.getString(R.string.home_tab_29));
+                        etGoodsDetailNum.setText("1");
+                        num = 1;
+                    } else if (Num <= inventory) {
+                        num = Num;
+                    } else if (Num > inventory) {
+                        //数量大于库存
+                        showNormalToast(ResUtil.getString(R.string.home_tab_30));
+                        etGoodsDetailNum.setText(inventory + "");
+                        num = inventory;
+                    }
+                    double total = price * num;
+                    tvGoodsDetailPrice.setText("￥" + total);
+                    money = total + "";
+                    double Price = total / rate;
+                    DecimalFormat df = new DecimalFormat("#.00000000");
+                    usdt = df.format(Price);
+                    tvGoodsDetailPriceUsdt.setText("USDT = "+usdt);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+//                if (TextUtils.isEmpty(etGoodsDetailNum.getText().toString())){
+//                    if(etGoodsDetailNum.getText().toString().length()>= 2 && etGoodsDetailNum.getText().toString().indexOf("0")==1){
+//                        L.e("lgh_num","num  = "+etGoodsDetailNum.getText().toString());
+//                        etGoodsDetailNum.setText(etGoodsDetailNum.getText().toString().replaceAll("^(0+)", ""));
+//                    }
+//                }
+            }
+        });
+
+
     }
 
-    @OnClick({R.id.iv_back,R.id.tv_goods_detail_entrust,
-    R.id.tv_goods_detail_subtract,R.id.tv_goods_detail_add})
+    @OnClick({R.id.iv_back, R.id.tv_goods_detail_entrust,
+            R.id.tv_goods_detail_subtract, R.id.tv_goods_detail_add})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -215,15 +277,20 @@ public class GoodsDetailActivity extends UserBaseActivity<GoodsDetailAction> imp
                 break;
             case R.id.tv_goods_detail_entrust:
                 //todo 跳转至支付页
-                Intent intent = new Intent(mContext,EntrustedPurchaseActivity.class);
-                intent.putExtra("sku_id",sku_id);
-                intent.putExtra("cart_number",num);
+                Intent intent = new Intent(mContext, EntrustedPurchaseActivity.class);
+                intent.putExtra("sku_id", sku_id);
+                intent.putExtra("cart_number", num);
+                intent.putExtra("tNum", TNum);
+                intent.putExtra("goodsName", goodsName);
+                intent.putExtra("money", money);
+                intent.putExtra("img", img);
+                intent.putExtra("usdt",usdt);
                 startActivity(intent);
                 break;
             case R.id.tv_goods_detail_subtract:
                 //todo 减
                 //todo 判断数量是否小于等于最小库存
-                if (num <= 1){
+                if (num <= 1) {
                     showNormalToast(ResUtil.getString(R.string.home_tab_26));
                     return;
                 }
@@ -233,7 +300,7 @@ public class GoodsDetailActivity extends UserBaseActivity<GoodsDetailAction> imp
             case R.id.tv_goods_detail_add:
                 //todo 加
                 //todo 判断数量是否达到最大库存
-                if (num >= inventory){
+                if (num >= inventory) {
                     showNormalToast(ResUtil.getString(R.string.home_tab_27));
                     return;
                 }
@@ -245,25 +312,33 @@ public class GoodsDetailActivity extends UserBaseActivity<GoodsDetailAction> imp
     }
 
     private void setNum() {
-        double  total = price * num;
-        tvGoodsDetailNum.setText(num+"");
-        tvGoodsDetailPrice.setText("￥"+total);
+        double total = price * num;
+        etGoodsDetailNum.setText(num + "");
+        tvGoodsDetailPrice.setText("￥" + total);
+        money = total + "";
+        double Price = total / rate;
+        DecimalFormat df = new DecimalFormat("#.00000000");
+        usdt = df.format(Price);
+        tvGoodsDetailPriceUsdt.setText("USDT = "+usdt);
     }
+
+
 
     /**
      * 获取商品详情
      */
     @Override
     public void getGoodsDetail() {
-        if (CheckNetwork.checkNetwork2(mContext)){
-            baseAction.getGoodsDetail(id+"");
-        }else {
+        if (CheckNetwork.checkNetwork2(mContext)) {
+            baseAction.getGoodsDetail(id + "");
+        } else {
             refreshLayout.finishRefresh();
         }
     }
 
     /**
      * 获取商品详情成功
+     *
      * @param goodsDetailDto
      */
     @Override
@@ -272,60 +347,78 @@ public class GoodsDetailActivity extends UserBaseActivity<GoodsDetailAction> imp
         refreshLayout.finishRefresh();
         GoodsDetailDto.DataBean dataBean = goodsDetailDto.getData();
         setBanner(dataBean.getImg());//设置图片轮播
+        if (dataBean.getImg().size() != 0) {
+            img = dataBean.getImg().get(0).getPicture();
+        }
+        goodsName = dataBean.getGoods_name();
         tvGoodsDetailName.setText(dataBean.getGoods_name());//商品名称
-        tvGoodsDetailMoney.setText("￥"+dataBean.getPrice());//单价
-        tvGoodsDetailPrice.setText("￥"+dataBean.getPrice());
+        tvGoodsDetailMoney.setText("￥" + dataBean.getPrice());//单价
+        tvGoodsDetailPrice.setText("￥" + dataBean.getPrice());
         price = Double.parseDouble(dataBean.getPrice());
         num = 1;
-        initViewPager(dataBean.getContent(),dataBean.getContent_param());//设置产品描述和基数
+        initViewPager(dataBean.getContent(), dataBean.getContent_param());//设置产品描述和基数
 
+        for (int i = 0; i <dataBean.getCoin_address().size() ; i++) {
+            if (dataBean.getCoin_address().get(i).getCoin_name().equals("USDT")){
+                rate = dataBean.getCoin_address().get(i).getTo_rmb();
+            }
+        }
         GoodsDetailDto.DataBean.SpecBean specBean = dataBean.getSpec();
         setSpec(specBean);
         tvGoodsDetailEntrust.setVisibility(View.VISIBLE);
+
     }
 
     /**
      * 获取规格
+     *
      * @param specBean
      */
     private void setSpec(GoodsDetailDto.DataBean.SpecBean specBean) {
-      try{
-          List<GoodsDetailDto.DataBean.SpecBean.GoodsSkuBean> goodsSkuBeans = specBean.getGoods_sku();
-          for (int i = 0; i <goodsSkuBeans.size() ; i++) {
-              GoodsDetailDto.DataBean.SpecBean.GoodsSkuBean goodsSkuBean = goodsSkuBeans.get(i);
-              String str = goodsSkuBean.getSku_attr();
-              str = str.substring(str.indexOf("\"")+1 , str.indexOf("\"")+2);
-              L.e("lgh_str","str  = "+str);
-              List<GoodsDetailDto.DataBean.SpecBean.SpecAttrBean> list = specBean.getSpec_attr();
-              for (int j = 0; j <list.size() ; j++) {
-                  if (list.get(j).getSpec_id() == Integer.parseInt(str)){
-                      List<GoodsDetailDto.DataBean.SpecBean.SpecAttrBean.ResBean> resBeans = list.get(j).getRes();
-                      for (int k = 0; k < resBeans.size() ; k++) {
-                          if (resBeans.get(k).getAttr_id()==Integer.parseInt(goodsSkuBean.getSku_attr1().substring(0 , goodsSkuBean.getSku_attr1().indexOf(",")))){
-                              goodsSkuBean.setName(resBeans.get(k).getAttr_name());
-                              break;
-                          }
-                      }
-                      break;
-                  }
-              }
-          }
+        try {
+            List<GoodsDetailDto.DataBean.SpecBean.GoodsSkuBean> goodsSkuBeans = specBean.getGoods_sku();
+            for (int i = 0; i < goodsSkuBeans.size(); i++) {
+                GoodsDetailDto.DataBean.SpecBean.GoodsSkuBean goodsSkuBean = goodsSkuBeans.get(i);
+                String str = goodsSkuBean.getSku_attr();
+                str = str.substring(str.indexOf("\"") + 1, str.indexOf("\"") + 2);
+                L.e("lgh_str", "str  = " + str);
+                List<GoodsDetailDto.DataBean.SpecBean.SpecAttrBean> list = specBean.getSpec_attr();
+                for (int j = 0; j < list.size(); j++) {
+                    if (list.get(j).getSpec_id() == Integer.parseInt(str)) {
+                        List<GoodsDetailDto.DataBean.SpecBean.SpecAttrBean.ResBean> resBeans = list.get(j).getRes();
+                        for (int k = 0; k < resBeans.size(); k++) {
+                            if (resBeans.get(k).getAttr_id() == Integer.parseInt(goodsSkuBean.getSku_attr1().substring(0, goodsSkuBean.getSku_attr1().indexOf(",")))) {
+                                goodsSkuBean.setName(resBeans.get(k).getAttr_name());
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
 
-          goodsSkuBeans.get(0).setClick(true);
-          sku_id = goodsSkuBeans.get(0).getSku_id();
-          inventory = goodsSkuBeans.get(0).getInventory();
-          price = Double.parseDouble(goodsSkuBeans.get(0).getPrice());
-          specListAdapter.refresh(goodsSkuBeans);
+            goodsSkuBeans.get(0).setClick(true);
+            sku_id = goodsSkuBeans.get(0).getSku_id();
+            inventory = goodsSkuBeans.get(0).getInventory();
+            price = Double.parseDouble(goodsSkuBeans.get(0).getPrice());
+            specListAdapter.refresh(goodsSkuBeans);
+            money = price + "";
+            TNum = goodsSkuBeans.get(0).getName();
+            double Price = price / rate;
+            L.e("lgh_price","price  = "+Price);
+            DecimalFormat df = new DecimalFormat("#.00000000");
+            usdt = df.format(Price);
+            tvGoodsDetailMoney.setText("￥" + price);//单价
+            tvGoodsDetailPrice.setText("￥" + price);
+            tvGoodsDetailPriceUsdt.setText("USDT = "+usdt);
+        } catch (Exception e) {
 
-          tvGoodsDetailMoney.setText("￥"+price);//单价
-          tvGoodsDetailPrice.setText("￥"+price);
-      }catch (Exception e){
-
-      }
+        }
     }
 
     /**
      * 失败
+     *
      * @param message
      * @param code
      */
@@ -375,10 +468,11 @@ public class GoodsDetailActivity extends UserBaseActivity<GoodsDetailAction> imp
 
     /**
      * 初始化ViewPager
-     * @param content 产品描述
+     *
+     * @param content       产品描述
      * @param content_param 基数
      */
-    private void initViewPager(String content,String content_param) {
+    private void initViewPager(String content, String content_param) {
         setXRichText(content);
         this.content = content;
         this.content_param = content_param;
@@ -464,7 +558,7 @@ public class GoodsDetailActivity extends UserBaseActivity<GoodsDetailAction> imp
     }
 
 
-    private void setXRichText(String text){
+    private void setXRichText(String text) {
         try {
             xRichText
 

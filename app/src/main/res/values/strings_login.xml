@@ -16,4 +16,7 @@
     <string name="login_tab_13">用户协议</string>
     <string name="login_tab_14">请输入邀请码</string>
     <string name="login_tab_15">该账号已登录！</string>
+    <string name="login_tab_16">请输入6~9位密码(数字、字母)</string>
+    <string name="login_tab_17">请再次输入您的密码</string>
+    <string name="login_tab_18">两次密码不一致</string>
 </resources>

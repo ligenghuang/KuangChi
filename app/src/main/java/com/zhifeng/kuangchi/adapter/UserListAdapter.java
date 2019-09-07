@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.lgh.huanglib.util.L;
 import com.lgh.huanglib.util.config.GlideUtil;
 import com.zhifeng.kuangchi.R;
 import com.zhifeng.kuangchi.module.UserDto;
@@ -40,7 +41,8 @@ public class UserListAdapter extends BaseRecyclerAdapter<UserDto>{
         TextView tvIsLogin = holder.itemView.findViewById(R.id.tv_item_login);
         boolean b = model.getToken().equals(MySp.getAccessToken(context));
         tvIsLogin.setVisibility(b? View.VISIBLE:View.GONE);
-
+        L.e("lgh_user","model  = "+model.toString());
+        L.e("lgh_user","model  = "+MySp.getAccessToken(context));
         ImageView imageView = holder.itemView.findViewById(R.id.iv_avatar);
         GlideUtil.setImageCircle(context,model.getImg(),imageView,R.mipmap.icon_avatar);
 

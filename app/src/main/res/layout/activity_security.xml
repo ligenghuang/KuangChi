@@ -90,6 +90,18 @@
             android:gravity="center_vertical"
             android:drawableRight="@mipmap/icon_back_security_right"
             />
+        <!--支付密码-->
+        <TextView
+            android:id="@+id/tv_security_login_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_height45"
+            android:text="@string/my_tab_22_2"
+            android:textSize="@dimen/text_size15"
+            android:textColor="@color/color_15"
+            android:gravity="center_vertical"
+            android:drawableRight="@mipmap/icon_back_security_right"
+            />
+
 
         <!--切换用户-->
         <TextView
