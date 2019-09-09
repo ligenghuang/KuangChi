@@ -14,6 +14,7 @@ import com.lgh.huanglib.retrofitlib.listener.HttpOnNextListener;
 import com.lgh.huanglib.util.L;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.zhifeng.kuangchi.net.api.SubjectPostApi;
+import com.zhifeng.kuangchi.net.api.SubjectPostApi2;
 import com.zhifeng.kuangchi.net.service.HttpPostService;
 
 
@@ -40,6 +41,7 @@ public class BaseAction<V> extends ActionCreator {
 
     RxAppCompatActivity rxAppCompatActivity;
     protected SubjectPostApi postEntity;
+    protected SubjectPostApi2 postEntity2;
     protected HttpManager manager;
 
     public BaseAction(RxAppCompatActivity _rxAppCompatActivity) {
@@ -87,6 +89,27 @@ public class BaseAction<V> extends ActionCreator {
         postEntity.setMethod(url);
         postEntity.setCache(isCatch);
         HttpPostService service = (HttpPostService) manager.initRetrofit(postEntity, HttpPostService.class);
+        if (serviceListener != null) {
+            serviceListener.callBackService(service);
+        }
+    }
+
+    /**
+     * 设置带缓冲的访问
+     *
+     * @param url
+     * @param isCatch
+     * @param serviceListener
+     */
+    public void post2(String url, boolean isCatch, ServiceListener serviceListener) {
+        /**
+         * 初始化 Http 以及API
+         */
+        postEntity2 = new SubjectPostApi2(simpleOnNextListener, rxAppCompatActivity);
+        manager = HttpManager.getInstance();
+        postEntity2.setMethod(url);
+        postEntity2.setCache(isCatch);
+        HttpPostService service = (HttpPostService) manager.initRetrofit(postEntity2, HttpPostService.class);
         if (serviceListener != null) {
             serviceListener.callBackService(service);
         }

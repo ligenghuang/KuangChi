@@ -1,7 +1,14 @@
 <resources>
-    <string name="app_name">矿池</string>
+    <string name="app_name">涅布拉云</string>
 
     <string name="camera">拍照</string>
     <string name="photo_album">从相册选择</string>
     <string name="cancel">取消</string>
+
+    <string name="srl_footer_nothing_1">没有更多数据了</string>
+    <string name="srl_footer_pulling_1">上拉刷新</string>
+    <string name="srl_footer_release_1">释放立即刷新</string>
+    <string name="srl_footer_failed_1">刷新失败</string>
+    <string name="srl_footer_finish_1">刷新完成</string>
+    <string name="srl_footer_loading_1">正在刷新…</string>
 </resources>

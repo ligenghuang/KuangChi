@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import com.lgh.huanglib.actions.Action;
 import com.lgh.huanglib.util.L;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+import com.zhifeng.kuangchi.module.KLineDto;
 import com.zhifeng.kuangchi.module.ServiceDto;
 import com.zhifeng.kuangchi.net.WebUrlUtil;
 import com.zhifeng.kuangchi.ui.impl.FoundView;
@@ -21,13 +22,14 @@ public class FoundAction extends BaseAction<FoundView> {
         super(_rxAppCompatActivity);
         attachView(view);
     }
+
     /**
      *
      * 获取存储服务器群组
      */
     public void getService(){
-        post(WebUrlUtil.POST_MINERS_INDEX,false, service -> manager.runHttp(
-                service.PostData(WebUrlUtil.POST_MINERS_INDEX)));
+        post(WebUrlUtil.POST_HISTORY_KLINE,false, service -> manager.runHttp(
+                service.GetKLine(WebUrlUtil.POST_HISTORY_KLINE,"lambusdt")));
     }
 
     /**
@@ -53,18 +55,18 @@ public class FoundAction extends BaseAction<FoundView> {
                 L.e("xx", "输出返回结果 " + aBoolean);
 
                 switch (action.getIdentifying()) {
-                    case WebUrlUtil.POST_MINERS_INDEX:
-//                        //todo 获取存储服务器群组
+                    case WebUrlUtil.POST_HISTORY_KLINE:
+//                        //todo 获取行情
                         if (aBoolean) {
                             L.e("xx", "输出返回结果 " + action.getUserData().toString());
-                            ServiceDto serviceDto = new Gson().fromJson(action.getUserData().toString(), new TypeToken<ServiceDto>() {
+                            KLineDto kLineDto = new Gson().fromJson(action.getUserData().toString(), new TypeToken<KLineDto>() {
                             }.getType());
-                            if (serviceDto.getStatus() == 200){
-                                //todo 获取存储服务器群组成功
-                                view.getServiceSuccess(serviceDto);
+                            if (kLineDto.getStatus()==200){
+                                //todo 获取行情成功
+                                view.getServiceSuccess(kLineDto);
                                 return;
                             }
-                            view.onError(serviceDto.getMsg(),action.getErrorType());
+                            view.onError(kLineDto.getMsg(),action.getErrorType());
                             return;
                         }
                         view.onError(msg,action.getErrorType());

@@ -62,6 +62,7 @@ public class EntrustedPurchasePost {
                 "sku_id=" + sku_id +
                 ", cart_number=" + cart_number +
                 ", pay_type=" + pay_type +
+                ", pwsseord='" + pwsseord + '\'' +
                 '}';
     }
 }

@@ -51,13 +51,9 @@ public class LoginAction extends BaseAction<LoginView> {
      * @param phone 手机号码
      * @param verify_code 验证码
      */
-    public void Login(String phone,String verify_code,int inviteCode){
+    public void Login(String phone,String verify_code){
         Map<Object,Object> map = new HashMap<>();
-        if (inviteCode == 0){
-            map = CollectionsUtils.generateMap("phone",phone,"password",verify_code);
-        }else {
-            map = CollectionsUtils.generateMap("phone",phone,"password",verify_code,"inviteCode",inviteCode);
-        }
+        map = CollectionsUtils.generateMap("phone",phone,"password",verify_code);
         Map<Object, Object> finalMap = map;
         post(WebUrlUtil.POST_LOGIN, false, service -> manager.runHttp(
                 service.PostData(finalMap,WebUrlUtil.POST_LOGIN)));
@@ -69,13 +65,9 @@ public class LoginAction extends BaseAction<LoginView> {
      * @param verify_code
      * @param inviteCode
      */
-    public void Registered(String phone,String verify_code,int inviteCode,String password){
+    public void Registered(String phone,String verify_code,String inviteCode,String password){
         Map<Object,Object> map = new HashMap<>();
-        if (inviteCode == 0){
-            map = CollectionsUtils.generateMap("phone",phone,"verify_code",verify_code,"password",password);
-        }else {
-            map = CollectionsUtils.generateMap("phone",phone,"verify_code",verify_code,"inviteCode",inviteCode,"password",password);
-        }
+        map = CollectionsUtils.generateMap("phone",phone,"verify_code",verify_code,"inviteCode",inviteCode,"password",password);
         Map<Object, Object> finalMap = map;
         post(WebUrlUtil.POST_LOGIN, false, service -> manager.runHttp(
                 service.PostData(finalMap,WebUrlUtil.POST_LOGIN)));

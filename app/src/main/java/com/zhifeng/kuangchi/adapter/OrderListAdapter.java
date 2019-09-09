@@ -37,12 +37,12 @@ public class OrderListAdapter extends BaseRecyclerAdapter<OrderListDto.DataBean.
         long time = model.getAdd_time() * (long)1000;
         holder.text(R.id.tv_item_order_time, DynamicTimeFormat.LongToString2(time));//时间
         holder.text(R.id.tv_item_order_name,model.getGoods_name());//名称
-        holder.text(R.id.tv_item_order_pay_type, ResUtil.getFormatString(R.string.my_tab_84,model.getPay_type()+""));//todo 支付方式
-        holder.text(R.id.tv_item_order_t_num,ResUtil.getFormatString(R.string.my_tab_85,model.getT_num()));//存储空间
+        holder.text(R.id.tv_item_order_pay_type, ResUtil.getFormatString(R.string.my_tab_84,"USDT"));//todo 支付方式
+        holder.text(R.id.tv_item_order_t_num,ResUtil.getFormatString(R.string.my_tab_85,model.getT_num()+"T"));//存储空间
         holder.text(R.id.tv_item_order_money,"￥"+model.getOrder_amount());//金额
 
         ImageView imageView = holder.itemView.findViewById(R.id.iv_item_order_img);
-        GlideUtil.setImage(context,"",imageView,R.mipmap.goods_img);//todo 商品图片
+        GlideUtil.setImage(context,model.getM_pic(),imageView);//todo 商品图片
 
         TextView type = holder.itemView.findViewById(R.id.tv_item_order_type);
         setType(type,model.getEntrust_status());
@@ -54,6 +54,7 @@ public class OrderListAdapter extends BaseRecyclerAdapter<OrderListDto.DataBean.
             }
         });
     }
+
 
     private void setType(TextView type, int entrust_status) {
         String text = "待审核";

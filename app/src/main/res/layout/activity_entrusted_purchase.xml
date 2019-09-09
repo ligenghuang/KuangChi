@@ -157,7 +157,7 @@
                        android:paddingBottom="5dp"
                        android:hint="@string/my_tab_149"
                        android:background="@color/transparent"
-                       android:inputType="textPassword"
+                       android:inputType="numberPassword"
                        android:maxLength="6"
                        android:textSize="@dimen/text_size15"/>
 

@@ -127,7 +127,16 @@ public class OrderListDto {
             private int entrust_status;
             private String goods_name;
             private String spec_key_name;
-            private String T_num;
+            private int T_num;
+            private String m_pic;
+
+            public String getM_pic() {
+                return m_pic == null ? "" : m_pic;
+            }
+
+            public void setM_pic(String m_pic) {
+                this.m_pic = m_pic == null ? "" : m_pic;
+            }
 
             public int getUser_id() {
                 return user_id;
@@ -193,12 +202,12 @@ public class OrderListDto {
                 this.spec_key_name = spec_key_name == null ? "" : spec_key_name;
             }
 
-            public String getT_num() {
-                return T_num == null ? "" : T_num;
+            public int getT_num() {
+                return T_num;
             }
 
-            public void setT_num(String t_num) {
-                T_num = t_num == null ? "" : t_num;
+            public void setT_num(int t_num) {
+                T_num = t_num;
             }
         }
     }

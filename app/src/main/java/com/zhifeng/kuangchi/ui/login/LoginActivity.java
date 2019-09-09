@@ -314,7 +314,7 @@ public class LoginActivity extends UserBaseActivity<LoginAction> implements Logi
             return;
         }
         String pwd = etLoginPwd.getText().toString();
-
+        int invitecode = 0;
      if (type == 0){
          //todo 判断是否再次输入密码
          if (TextUtils.isEmpty(etLoginAgainPwd.getText().toString())) {
@@ -339,19 +339,21 @@ public class LoginActivity extends UserBaseActivity<LoginAction> implements Logi
              return;
          }
          code = etLoginCode.getText().toString();
+
+         if (TextUtils.isEmpty(etLoginInvitecode.getText().toString())) {
+             showNormalToast(ResUtil.getString(R.string.login_tab_14));
+             return;
+         }
+
      }
 
 
-        //TODO 判断是否勾选用户协议
-        if (!isReadAgreement) {
-            showNormalToast(ResUtil.getString(R.string.login_tab_12));
-            return;
-        }
+//        //TODO 判断是否勾选用户协议
+//        if (!isReadAgreement) {
+//            showNormalToast(ResUtil.getString(R.string.login_tab_12));
+//            return;
+//        }
 
-        int invitecode = 0;
-        if (!TextUtils.isEmpty(etLoginInvitecode.getText().toString())) {
-            invitecode = Integer.parseInt(etLoginInvitecode.getText().toString());
-        }
 
         //todo 判断网络是否可用后请求接口
         if (CheckNetwork.checkNetwork2(mContext)) {
@@ -359,11 +361,11 @@ public class LoginActivity extends UserBaseActivity<LoginAction> implements Logi
            switch (type){
                case 0:
                    //todo 注册
-                   baseAction.Registered(phone, code, invitecode,pwd);
+                   baseAction.Registered(phone, code, etLoginInvitecode.getText().toString(),pwd);
                    break;
                case 1:
                    //todo 登录
-                   baseAction.Login(phone, pwd, invitecode);
+                   baseAction.Login(phone, pwd);
                    break;
            }
         }

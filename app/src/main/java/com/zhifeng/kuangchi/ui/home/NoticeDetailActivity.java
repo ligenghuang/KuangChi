@@ -123,7 +123,8 @@ public class NoticeDetailActivity extends UserBaseActivity<NoticeDetailAction> i
     @Override
     public void onError(String message, int code) {
         loadDiss();
-        showNormalToast(message);
+//        showNormalToast(message);
+        xrichtext.text("获取数据失败");
     }
 
     @Override

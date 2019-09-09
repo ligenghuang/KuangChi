@@ -33,6 +33,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.zhifeng.kuangchi.R;
 import com.zhifeng.kuangchi.actions.GoodsDetailAction;
 import com.zhifeng.kuangchi.adapter.Banner;
+import com.zhifeng.kuangchi.adapter.BannerGoods;
 import com.zhifeng.kuangchi.adapter.SpecListAdapter;
 import com.zhifeng.kuangchi.module.BalanceDto;
 import com.zhifeng.kuangchi.module.GoodsDetailDto;
@@ -105,7 +106,7 @@ public class GoodsDetailActivity extends UserBaseActivity<GoodsDetailAction> imp
     /**
      * 轮播图所需参数
      */
-    Banner banner;
+    BannerGoods banner;
 
     List<String> imgs = new ArrayList<>();
     List<String> tips = new ArrayList<>();
@@ -172,7 +173,7 @@ public class GoodsDetailActivity extends UserBaseActivity<GoodsDetailAction> imp
         id = getIntent().getIntExtra("goods_id", 0);
 
         //轮播图
-        banner = new Banner();
+        banner = new BannerGoods();
         bannerMain.setAdapter(banner);
 
         refreshLayout.setEnableLoadMore(false);//禁止上拉加载更多

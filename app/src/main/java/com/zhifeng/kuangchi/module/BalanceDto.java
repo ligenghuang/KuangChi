@@ -120,6 +120,15 @@ public class BalanceDto {
             private double to_rmb;
             boolean isClick;
             private double user_money;
+            private double heigt_limit;
+
+            public double getHeigt_limit() {
+                return heigt_limit;
+            }
+
+            public void setHeigt_limit(double heigt_limit) {
+                this.heigt_limit = heigt_limit;
+            }
 
             public double getUser_money() {
                 return user_money;

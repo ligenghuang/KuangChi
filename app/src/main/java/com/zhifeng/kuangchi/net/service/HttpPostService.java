@@ -64,5 +64,14 @@ public interface HttpPostService {
     @GET
     Observable<BaseResultEntity> GetData(@Url String url,@Query("token")String id);
 
+    /**
+     * 带id的get请求
+     * @param symbol=lambusdt
+     * @param url
+     * @return
+     */
+    @GET
+    Observable<BaseResultEntity> GetKLine(@Url String url,@Query("symbol")String symbol);
+
 
 }

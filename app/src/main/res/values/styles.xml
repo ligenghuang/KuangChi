@@ -67,12 +67,12 @@
         <!-- 提示文案的文字颜色 -->
         <item name="banner_tipTextColor">@android:color/white</item>
         <!-- 加载网络数据时覆盖在BGABanner最上层的占位图 -->
-        <item name="banner_placeholderDrawable">@mipmap/banner</item>
+        <item name="banner_placeholderDrawable">@mipmap/icon_i</item>
     </style>
 
     <style name="BannerStyle_goods_detail">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">375dp</item>
+        <item name="android:layout_height">wrap_content</item>
         <!-- 自定义属性在styles.xml中不需要命名空间,直接用属性名就可以了 -->
         <!-- 开启自动轮播 -->
         <item name="banner_pointAutoPlayAble">true</item>
@@ -97,7 +97,7 @@
         <!-- 提示文案的文字颜色 -->
         <item name="banner_tipTextColor">@android:color/white</item>
         <!-- 加载网络数据时覆盖在BGABanner最上层的占位图 -->
-        <item name="banner_placeholderDrawable">@mipmap/goods_img</item>
+<!--        <item name="banner_placeholderDrawable">@mipmap/goods_img</item>-->
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

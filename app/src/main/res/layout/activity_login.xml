@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:fitsSystemWindows="false"
     tools:context=".ui.login.LoginActivity">
 
     <include layout="@layout/layout_no_back_right_title_bar"/>
@@ -211,7 +212,7 @@
                      android:textColor="@color/black"
                      android:textColorHint="@color/color_8d"
                      android:textSize="@dimen/text_size15"
-                     android:inputType="textEmailAddress"
+                     android:inputType="number"
                      android:maxLength="6"
                      android:hint="@string/login_tab_4"/>
 
@@ -296,6 +297,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_marginTop="8dp">
 
              <ImageView

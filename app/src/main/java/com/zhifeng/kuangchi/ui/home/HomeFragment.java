@@ -215,13 +215,15 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
     public void getHomeDataSuccess(HomeDataDto homeDataDto) {
         loadDiss();
         refreshLayout.finishRefresh();
+        banner_main.setFocusable(true);
+        banner_main.setFocusableInTouchMode(true);
         HomeDataDto.DataBean dataBean = homeDataDto.getData();
         getAnnounceList(dataBean.getAnnounce());//设置公告轮播
         setBanner(dataBean.getBanners());//设置图片轮播
         tvHomeBounsDay.setText(dataBean.getDay_bouns() + "");//今日收益
         tvHomeBouns.setText(dataBean.getBouns() + "");//总收益
-        L.e("lgh_img", dataBean.getGoods_gift().getImg());
-        GlideUtil.setImage(mActivity, dataBean.getGoods_gift().getImg(), ivImg, R.mipmap.goods_img);// 商品图片
+//        L.e("lgh_img", dataBean.getGoods_gift().getImg());
+        GlideUtil.setImage(mActivity, dataBean.getGoods_gift().getImg(), ivImg,R.mipmap.icon_i);// 商品图片
         goodsId = dataBean.getGoods_gift().getGoods_id();//商品id
         setSelectedLin(Position);
         setData(dataBean.getAnnounce());

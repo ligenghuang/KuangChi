@@ -1,7 +1,9 @@
 package com.zhifeng.kuangchi.ui.home;
 
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
@@ -15,6 +17,11 @@ import com.zhifeng.kuangchi.actions.AgreementAction;
 import com.zhifeng.kuangchi.ui.impl.AgreementView;
 import com.zhifeng.kuangchi.util.base.UserBaseActivity;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
 
 import butterknife.BindView;
@@ -30,12 +37,12 @@ public class PayActivity extends UserBaseActivity<AgreementAction> implements Ag
     Toolbar toolbar;
     @BindView(R.id.f_title_tv)
     TextView fTitleTv;
-    @BindView(R.id.xrichtext)
-    XRichText xrichtext;
+    @BindView(R.id.webView)
+    WebView webView;
 
     @Override
     public int intiLayout() {
-        return R.layout.activity_agreement;
+        return R.layout.activity_pay;
     }
 
     @Override
@@ -74,7 +81,7 @@ public class PayActivity extends UserBaseActivity<AgreementAction> implements Ag
         mContext = this;
 
 //        getAgreement();
-        xrichtext.text("购买协议购买协议购买协议");
+        webView.loadUrl("file:///android_asset/index.html");
     }
 
     /**
@@ -96,7 +103,7 @@ public class PayActivity extends UserBaseActivity<AgreementAction> implements Ag
     @Override
     public void getAgreementSuccess(String data) {
         loadDiss();
-        xrichtext.text(data);
+//        xrichtext.text(data);
     }
 
     /**
@@ -122,4 +129,7 @@ public class PayActivity extends UserBaseActivity<AgreementAction> implements Ag
         super.onPause();
         baseAction.toUnregister();
     }
+
+
+
 }

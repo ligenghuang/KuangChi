@@ -70,6 +70,7 @@
     <string name="my_tab_55">金额： %0$s</string>
 
     <string name="my_tab_56">金币</string>
+    <string name="my_tab_56_1">余额</string>
     <string name="my_tab_57">备注</string>
     <string name="my_tab_58">查看</string>
 
@@ -83,7 +84,7 @@
     <string name="my_tab_65">提币</string>
     <string name="my_tab_66">请选择充值方式</string>
     <string name="my_tab_67">提现到</string>
-    <string name="my_tab_68">单日交易限额</string>
+    <string name="my_tab_68">单日交易限额:</string>
     <string name="my_tab_69">提币额度</string>
     <string name="my_tab_69_2">充币额度</string>
     <string name="my_tab_70">提交</string>
@@ -109,7 +110,7 @@
     <string name="my_tab_87">ID</string>
     <string name="my_tab_88">等级</string>
     <string name="my_tab_89">%0$s代理列表</string>
-    <string name="my_tab_89_1">星河代理列表</string>
+    <string name="my_tab_89_1">代理明细</string>
 
     <string name="my_tab_90">切换账户登录</string>
     <string name="my_tab_91">轻触账户以登录</string>
@@ -187,5 +188,7 @@
     <string name="my_tab_150">短信验证码：</string>
     <string name="my_tab_151">请输入验证码</string>
     <string name="my_tab_152">USDT提币数量≥50个,LAMB提币数量≥100个</string>
+    <string name="my_tab_153">每日审核时间：10:00~22:00</string>
+    <string name="my_tab_154">复制地址</string>
 
 </resources>

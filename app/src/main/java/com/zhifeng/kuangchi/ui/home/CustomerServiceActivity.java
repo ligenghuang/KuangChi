@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +19,8 @@ import com.lgh.huanglib.util.L;
 import com.lgh.huanglib.util.base.ActivityStack;
 import com.lgh.huanglib.util.data.ResUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.zhifeng.kuangchi.R;
 import com.zhifeng.kuangchi.actions.BaseAction;
 import com.zhifeng.kuangchi.actions.CustomerServiceAction;
@@ -108,7 +111,7 @@ public class CustomerServiceActivity extends UserBaseActivity<CustomerServiceAct
         mContext = this;
 
         //todo 2019/09/02 禁止列表刷新加载
-        refreshLayout.setEnableLoadMore(false);
+//        refreshLayout.setEnableLoadMore(false);
         refreshLayout.setEnableRefresh(false);
 
         customerServiceListAdapter = new CustomerServiceListAdapter(mContext);
@@ -118,7 +121,10 @@ public class CustomerServiceActivity extends UserBaseActivity<CustomerServiceAct
         loadDialog();
         getCustomerServiceList();
         SoftKeyBoardListener.setListener(this, onSoftKeyBoardChangeListener);
+        loadView();
     }
+
+
 
     /**
      * 软键盘弹出收起监听
@@ -166,6 +172,13 @@ public class CustomerServiceActivity extends UserBaseActivity<CustomerServiceAct
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+            }
+        });
+
+        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                getCustomerServiceList();
             }
         });
 
@@ -230,6 +243,7 @@ public class CustomerServiceActivity extends UserBaseActivity<CustomerServiceAct
             baseAction.getCustomerService();
         }else {
             loadDiss();
+            refreshLayout.finishLoadMore();
         }
     }
 
@@ -240,6 +254,7 @@ public class CustomerServiceActivity extends UserBaseActivity<CustomerServiceAct
     @Override
     public void getCustomerServiceListSuccess(CustomerServiceListDto customerServiceListDto) {
         loadDiss();
+        refreshLayout.finishLoadMore();
         customerServiceListAdapter.refresh(customerServiceListDto.getData());
         recyclerView.postDelayed(new Runnable() {
             @Override
@@ -281,6 +296,7 @@ public class CustomerServiceActivity extends UserBaseActivity<CustomerServiceAct
     @Override
     public void onError(String message, int code) {
         loadDiss();
+        refreshLayout.finishLoadMore();
         showNormalToast(message);
     }
 

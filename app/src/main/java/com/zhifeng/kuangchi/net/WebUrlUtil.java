@@ -7,14 +7,20 @@ public class WebUrlUtil {
     static {
         //配合retrofit，需要以/结尾
         if (BuildConfig.DEBUG) {
-            BASE_URL = "http://orepool.zhifengwangluo.com/api/";
+//            BASE_URL = "http://orepool.zhifengwangluo.com/api/";
+//            BASE_URL = "http://www.dxzh.net/api/";
+            BASE_URL = " http://www.imnebula.com/api/";
+            BASE_URL2 = "https://api.huobi.pro/market/";
         } else {
-            BASE_URL = "http://orepool.zhifengwangluo.com/api/";
-
+//            BASE_URL = "http://orepool.zhifengwangluo.com/api/";
+//            BASE_URL = "http://www.dxzh.net/api/";
+            BASE_URL = " http://www.imnebula.com/api/";
+            BASE_URL2 = "https://api.huobi.pro/market/";
         }
     }
 
     public static String BASE_URL;
+    public static String BASE_URL2;
 
     /**
      * 登录或注册
@@ -196,4 +202,9 @@ public class WebUrlUtil {
      * 修改登录密码
      */
     public static final String POST_MOBLIE_LOGIN_PWD = "safe/reset_password";
+
+    /**
+     *行情
+     */
+    public static final String POST_HISTORY_KLINE = "user/lamb_hangqing";
 }

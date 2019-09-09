@@ -100,7 +100,7 @@ public class MyFragment extends UserBaseFragment<MyAction> implements MyView {
 //                loadDialog();
 //                isFirst = false;
 //            }
-//            getMyInfo();
+            getMyInfo();
         }
     }
 

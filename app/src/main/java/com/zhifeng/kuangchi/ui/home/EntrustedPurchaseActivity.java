@@ -123,7 +123,7 @@ public class EntrustedPurchaseActivity extends UserBaseActivity<EntrustedPurchas
     /**
      * 是否阅读协议
      */
-    boolean isReadAgreement = true;
+    boolean isReadAgreement = false;
 
     @Override
     public int intiLayout() {
@@ -185,6 +185,7 @@ public class EntrustedPurchaseActivity extends UserBaseActivity<EntrustedPurchas
         recyclerview.setLayoutManager(new LinearLayoutManager(mContext));
         recyclerview.setAdapter(coinListAdapter);
         tvConfirm.setSelected(isReadAgreement);
+        ivRoundConsult.setImageResource(isReadAgreement ? R.mipmap.round_on : 0);
         getBalance();
         initImagePicker();
         loadView();
@@ -196,7 +197,7 @@ public class EntrustedPurchaseActivity extends UserBaseActivity<EntrustedPurchas
         //todo 列表item点击事件监听
         coinListAdapter.setOnClickListener(new CoinListAdapter.OnClickListener() {
             @Override
-            public void onClick(String address, int id, int coinType,int res,double user_money,double Rate) {
+            public void onClick(String address, int id, int coinType,int res,double user_money,double Rate,String Name) {
                 isOther = false;
                 setOther();
                 List<BalanceDto.DataBean.CoinAddressBean> list = coinListAdapter.getAllData();
@@ -205,6 +206,7 @@ public class EntrustedPurchaseActivity extends UserBaseActivity<EntrustedPurchas
                 }
                 coinListAdapter.notifyDataSetChanged();
                 etCoinAddress.setText(address);//todo 地址
+                pay_type = coinType;
                 isType = true;
                 tvConfirm.setSelected(isReadAgreement&&isType);
             }

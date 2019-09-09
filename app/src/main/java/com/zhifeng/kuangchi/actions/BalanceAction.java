@@ -67,8 +67,8 @@ public class BalanceAction extends BaseAction<BalanceView>{
     public void getCoin(GetCoinPost getCoinPost){
         post(WebUrlUtil.POST_GET_COIN,false, service -> manager.runHttp(
                 service.PostData(CollectionsUtils.generateMap("token", MySp.getAccessToken(MyApp.getContext())
-                        ,"coin_type",getCoinPost.getCoin_type(),"money",getCoinPost.getMoney(),"address",getCoinPost.getAddress(),
-//                        ,"input_money",getCoinPost.getInput_money(),
+                        ,"coin_type",getCoinPost.getCoin_type(),"money",getCoinPost.getMoney(),"address",getCoinPost.getAddress()
+                        ,"input_money",getCoinPost.getInput_money(),"verify_code",getCoinPost.getVerify_code(),
                         "password",getCoinPost.getPassword())
                         ,WebUrlUtil.POST_GET_COIN)));
     }
@@ -78,10 +78,11 @@ public class BalanceAction extends BaseAction<BalanceView>{
      * @param putCoinPost
      */
     public void putCoin(PutCoinPost putCoinPost){
+
         post(WebUrlUtil.POST_PUT_COIN,false, service -> manager.runHttp(
                 service.PostData(CollectionsUtils.generateMap("token", MySp.getAccessToken(MyApp.getContext())
-                        ,"coin_type",putCoinPost.getCoin_type(),"money",putCoinPost.getMoney(),"address",putCoinPost.getAddress(),
-//                        ,"input_money",putCoinPost.getInput_money(),
+                        ,"coin_type",putCoinPost.getCoin_type(),"money",putCoinPost.getMoney(),"address",putCoinPost.getAddress()
+                        ,"input_money",putCoinPost.getInput_money(),
                         "proof_pic",putCoinPost.getProof_pic())
                         ,WebUrlUtil.POST_PUT_COIN)));
     }

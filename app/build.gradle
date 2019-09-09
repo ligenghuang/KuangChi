@@ -14,7 +14,8 @@ android {
         android.applicationVariants.all { variant ->
             variant.outputs.all {
                 if ("release".equals(variant.buildType.name)) {
-                    def fileName = "KuangChi_v${defaultConfig.versionName}_${defaultConfig.versionCode}_${packageTime()}_release.apk"
+//                    def fileName = "KuangChi_v${defaultConfig.versionName}_${defaultConfig.versionCode}_${packageTime()}_release.apk"
+                    def fileName = "Nebula.apk"
                     outputFileName = fileName
                 } else if ("debug".equals(variant.buildType.name)) {
                     def fileName = "KuangChi_v${defaultConfig.versionName}_${packageTime()}_debug.apk"

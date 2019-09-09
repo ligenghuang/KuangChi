@@ -56,7 +56,6 @@
                 android:id="@+id/iv_item_order_img"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@mipmap/goods_img"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"/>
 

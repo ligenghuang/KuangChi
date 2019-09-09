@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="found_tab_1">行情走势图</string>
+    <string name="found_tab_1">当前行情</string>
     <string name="found_tab_2">公益</string>
     <string name="found_tab_3">教育</string>
     <string name="found_tab_4">风投</string>
+
+    <string name="found_tab_5">LAMB:1 ≈ %0$s</string>
 
 </resources>
