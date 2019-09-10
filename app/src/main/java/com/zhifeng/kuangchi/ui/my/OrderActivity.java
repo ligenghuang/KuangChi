@@ -173,26 +173,18 @@ public class OrderActivity extends UserBaseActivity {
         tvOrderStatus2.setSelected(false);
         tvOrderStatus3.setSelected(false);
         tvOrderStatus4.setSelected(false);
-        tvOrderStatus1.setTextSize(13f);
-        tvOrderStatus2.setTextSize(13f);
-        tvOrderStatus3.setTextSize(13f);
-        tvOrderStatus4.setTextSize(13f);
         switch (position) {
             case 0:
                 tvOrderStatus1.setSelected(true);
-                tvOrderStatus1.setTextSize(15f);
                 break;
             case 1:
                 tvOrderStatus2.setSelected(true);
-                tvOrderStatus2.setTextSize(15f);
                 break;
             case 2:
                 tvOrderStatus3.setSelected(true);
-                tvOrderStatus3.setTextSize(15f);
                 break;
             case 3:
                 tvOrderStatus4.setSelected(true);
-                tvOrderStatus4.setTextSize(15f);
                 break;
 
             default:

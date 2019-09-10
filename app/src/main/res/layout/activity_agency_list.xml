@@ -4,26 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".ui.my.AgencyListActivity">
 
-    <include layout="@layout/layout_title_black_bar"/>
+    <include layout="@layout/layout_title_black_bar" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="@dimen/dp_10">
+        android:layout_margin="@dimen/dp_10"
+        android:orientation="vertical">
 
         <!--用户昵称和等级-->
         <TextView
             android:id="@+id/tv_agency_realname_lever"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size15"
             android:textColor="@color/color_15"
-            />
+            android:textSize="@dimen/text_size15" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,55 +33,53 @@
             <!--舵手-->
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal">
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
                     android:text="@string/my_tab_40"
                     android:textColor="@color/color_15"
-                    android:textSize="@dimen/text_size15"
-                    android:layout_marginRight="15dp"/>
+                    android:textSize="@dimen/text_size15" />
 
                 <TextView
                     android:id="@+id/tv_agency_level_count_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size15"
-                    android:textColor="@color/color_15"
                     android:text="10人"
-                    />
+                    android:textColor="@color/color_15"
+                    android:textSize="@dimen/text_size15" />
 
             </LinearLayout>
 
             <!--大副-->
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal">
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
                     android:text="@string/my_tab_41"
                     android:textColor="@color/color_15"
-                    android:textSize="@dimen/text_size15"
-                    android:layout_marginRight="15dp"/>
+                    android:textSize="@dimen/text_size15" />
 
                 <TextView
                     android:id="@+id/tv_agency_level_count_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size15"
-                    android:textColor="@color/color_15"
                     android:text="10人"
-                    />
+                    android:textColor="@color/color_15"
+                    android:textSize="@dimen/text_size15" />
 
             </LinearLayout>
 
@@ -93,61 +90,59 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <!--舰长-->
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal">
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
                     android:text="@string/my_tab_42"
                     android:textColor="@color/color_15"
-                    android:textSize="@dimen/text_size15"
-                    android:layout_marginRight="15dp"/>
+                    android:textSize="@dimen/text_size15" />
 
                 <TextView
                     android:id="@+id/tv_agency_level_count_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size15"
-                    android:textColor="@color/color_15"
                     android:text="10人"
-                    />
+                    android:textColor="@color/color_15"
+                    android:textSize="@dimen/text_size15" />
 
             </LinearLayout>
 
             <!--舰队长-->
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="horizontal"
                 android:gravity="right"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal">
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
                     android:text="@string/my_tab_43"
                     android:textColor="@color/color_15"
-                    android:textSize="@dimen/text_size15"
-                    android:layout_marginRight="15dp"/>
+                    android:textSize="@dimen/text_size15" />
 
                 <TextView
                     android:id="@+id/tv_agency_level_count_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size15"
-                    android:textColor="@color/color_15"
                     android:text="10人"
-                    />
+                    android:textColor="@color/color_15"
+                    android:textSize="@dimen/text_size15" />
 
             </LinearLayout>
 
@@ -157,11 +152,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:background="@color/color_e4"
+        android:gravity="center"
+        android:orientation="horizontal"
         android:paddingTop="6dp"
-        android:paddingBottom="6dp"
-        android:gravity="center">
+        android:paddingBottom="6dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -170,7 +165,8 @@
             android:gravity="center"
             android:text="@string/my_tab_45"
             android:textColor="@color/color_15"
-            android:textSize="@dimen/text_size15"/>
+            android:textSize="@dimen/text_size15" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -178,15 +174,17 @@
             android:gravity="center"
             android:text="@string/my_tab_46"
             android:textColor="@color/color_15"
-            android:textSize="@dimen/text_size15"/>
+            android:textSize="@dimen/text_size15" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/my_tab_47"
+            android:visibility="gone"
             android:textColor="@color/color_15"
-            android:textSize="@dimen/text_size15"/>
+            android:textSize="@dimen/text_size15" />
 
     </LinearLayout>
 
@@ -196,30 +194,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        >
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:overScrollMode="never"
-            />
+        android:paddingRight="12dp">
 
-        <TextView
-            android:id="@+id/tv_nodata"
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:id="@+id/classicsheader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            app:srlTextSizeTitle="13dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:drawablePadding="15dp"
-            android:drawableTop="@drawable/icon_default_null"
-            android:text="@string/my_tab_132"
-            android:visibility="gone"/>
-</LinearLayout>
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never" />
+
+            <TextView
+                android:id="@+id/tv_nodata"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/icon_default_null"
+                android:drawablePadding="15dp"
+                android:gravity="center"
+                android:text="@string/my_tab_132"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:id="@+id/classicsfooter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srlTextSizeTitle="13dp" />
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>

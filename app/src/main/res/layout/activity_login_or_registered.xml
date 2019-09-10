@@ -57,12 +57,7 @@
 
 
     </LinearLayout>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="163dp"
-        android:layout_gravity="bottom"
-        android:scaleType="matrix"
-        android:src="@mipmap/login_bg"/>
+
 
 
 </LinearLayout>

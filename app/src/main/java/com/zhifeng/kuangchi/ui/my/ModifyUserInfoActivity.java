@@ -122,7 +122,7 @@ public class ModifyUserInfoActivity extends UserBaseActivity<ModifyUserInfoActio
         name = getIntent().getStringExtra("name");
         path = getIntent().getStringExtra("avatar");
         etModifyName.setText(name);
-        GlideUtil.setImageCircle(mContext,path,ivUserImg,R.mipmap.icon_avatar);
+        GlideUtil.setImageCircle(mContext,path,ivUserImg, R.drawable.logo);
     }
 
     @OnClick({R.id.tv_confirm,R.id.iv_user_img,R.id.tv_user_avatar})

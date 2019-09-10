@@ -45,6 +45,7 @@ public class MyApp extends MyApplication {
             public RefreshHeader createRefreshHeader(@NonNull Context context, @NonNull RefreshLayout layout) {
                 ClassicsHeader header = new ClassicsHeader(context).setSpinnerStyle(SpinnerStyle.FixedBehind);
                 header.setPrimaryColorId(com.lgh.huanglib.R.color.white);
+                header.setTextSizeTime(15);
                 header.setAccentColorId(android.R.color.black);
                 return header;//指定为经典Header，默认是 贝塞尔雷达Header
             }
@@ -57,6 +58,7 @@ public class MyApp extends MyApplication {
                 layout.setEnableLoadMoreWhenContentNotFull(true);//内容不满一页时候启用加载更多
                 ClassicsFooter footer = new ClassicsFooter(context);
                 footer.setBackgroundResource(android.R.color.white);
+                footer.setTextSizeTitle(15);
                 footer.setSpinnerStyle(SpinnerStyle.Scale);//设置为拉伸模式
                 return footer;//指定为经典Footer，默认是 BallPulseFooter
             }

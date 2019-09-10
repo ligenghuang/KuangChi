@@ -2,13 +2,14 @@
 <resources>
 
     <string name="home_tab_1">首页</string>
-    <string name="home_tab_2">发现</string>
+    <string name="home_tab_2">资产</string>
     <string name="home_tab_3">我的</string>
 
 
     <string name="home_tab_4">今日收益</string>
     <string name="home_tab_5">累计收益</string>
     <string name="home_tab_6">LAMB</string>
+    <string name="home_tab_6_1">FILECOIN</string>
     <string name="home_tab_7">存储空间算力</string>
     <string name="home_tab_8">委托购买</string>
     <string name="home_tab_9">资讯</string>

@@ -246,10 +246,14 @@
                  android:gravity="center_vertical"
                  android:paddingTop="6dp"
                  android:paddingBottom="6dp"
-                 android:paddingLeft="11dp"
                  android:layout_marginTop="@dimen/dp_10"
                  android:orientation="horizontal">
 
+                 <ImageView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginRight="8dp"
+                     android:src="@drawable/icon_invitecode" />
 
 
                  <!-- todo 邀请码-->
@@ -258,7 +262,6 @@
                      android:layout_width="match_parent"
                      android:layout_weight="1"
                      android:layout_height="wrap_content"
-                     android:layout_marginLeft="15dp"
                      android:background="@color/transparent"
                      android:textSize="@dimen/text_size15"
                      android:hint="@string/login_tab_14"
@@ -333,6 +336,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/item_height50"
                 android:orientation="horizontal">
                 
@@ -360,6 +364,7 @@
                 android:layout_height="wrap_content"
                 android:src="@mipmap/login_weixin"
                 android:layout_marginTop="33dp"
+                android:visibility="gone"
                 android:layout_gravity="center_horizontal"/>
 
         </LinearLayout>

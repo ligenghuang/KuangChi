@@ -2,7 +2,7 @@
 <resources>
 
     <string name="my_tab_1">委托明细</string>
-    <string name="my_tab_2">代理明细</string>
+    <string name="my_tab_2">节点明细</string>
     <string name="my_tab_3">收益明细</string>
     <string name="my_tab_4">提币明细</string>
 
@@ -44,7 +44,7 @@
     <string name="my_tab_33">确定</string>
     <string name="my_tab_34">请输入%0$s收到的短信效验码</string>
 
-    <string name="my_tab_35">委托人</string>
+    <string name="my_tab_35">会员姓名</string>
     <string name="my_tab_36">日期</string>
     <string name="my_tab_37">购买数量</string>
     <string name="my_tab_38">状态</string>
@@ -61,15 +61,16 @@
 
 
     <string name="my_tab_48">全部</string>
-    <string name="my_tab_49">分享奖励</string>
-    <string name="my_tab_50">节点奖励</string>
-    <string name="my_tab_51">无限奖励</string>
+    <string name="my_tab_49">分享收益</string>
+    <string name="my_tab_50">节点收益</string>
+    <string name="my_tab_51">全球分红收益</string>
     <string name="my_tab_52">每日释放</string>
     <string name="my_tab_53">提币</string>
     <string name="my_tab_54">释放</string>
     <string name="my_tab_55">金额： %0$s</string>
 
     <string name="my_tab_56">金币</string>
+    <string name="my_tab_56_2">币种</string>
     <string name="my_tab_56_1">余额</string>
     <string name="my_tab_57">备注</string>
     <string name="my_tab_58">查看</string>

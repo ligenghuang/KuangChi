@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@color/color_f8"
@@ -10,6 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:id="@+id/classicsheader"
+            android:layout_width="match_parent"
+            app:srlTextSizeTitle="13dp"
+            android:layout_height="wrap_content"/>
 
        <androidx.core.widget.NestedScrollView
            android:layout_width="match_parent"
@@ -41,6 +49,7 @@
                    android:drawablePadding="15dp"
                    android:drawableTop="@drawable/icon_default_null"
                    android:text="@string/my_tab_132"
+                   android:textSize="14dp"
                    android:visibility="gone"/>
 
 
@@ -49,6 +58,11 @@
            </LinearLayout>
 
        </androidx.core.widget.NestedScrollView>
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:id="@+id/classicsfooter"
+            android:layout_width="match_parent"
+            app:srlTextSizeTitle="13dp"
+            android:layout_height="wrap_content"/>
 
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>

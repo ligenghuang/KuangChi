@@ -20,12 +20,18 @@ import com.zhifeng.kuangchi.R;
 import com.zhifeng.kuangchi.actions.FoundAction;
 import com.zhifeng.kuangchi.module.KLineDto;
 import com.zhifeng.kuangchi.ui.impl.FoundView;
+import com.zhifeng.kuangchi.ui.my.AgencyListActivity;
+import com.zhifeng.kuangchi.ui.my.ArningsActivity;
+import com.zhifeng.kuangchi.ui.my.CarryActivity;
+import com.zhifeng.kuangchi.ui.my.EntrustListActivity;
 import com.zhifeng.kuangchi.util.base.UserBaseFragment;
+import com.zhifeng.kuangchi.util.data.MySp;
 
 import java.text.DecimalFormat;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * 发现fragment
@@ -34,12 +40,18 @@ public class FoundFragment extends UserBaseFragment<FoundAction> implements Foun
     View view;
     @BindView(R.id.top_view)
     View topView;
-    @BindView(R.id.linechart)
-    LineChart mLineChart;
     @BindView(R.id.tv_lamb)
     TextView tvLamb;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
+    @BindView(R.id.tv_home_bouns_day)
+    TextView tvHomeBounsDay;
+    @BindView(R.id.tv_home_bouns)
+    TextView tvHomeBouns;
+    @BindView(R.id.tv_home_bouns_day_f)
+    TextView tvHomeBounsDayF;
+    @BindView(R.id.tv_home_bouns_f)
+    TextView tvHomeBounsF;
 
 
     @Override
@@ -76,6 +88,8 @@ public class FoundFragment extends UserBaseFragment<FoundAction> implements Foun
         super.onFragmentVisibleChange(isVisible);
         if (isVisible) {
             getService();
+            tvHomeBouns.setText(MySp.getBouns(mContext));
+            tvHomeBounsDay.setText(MySp.getBounsDay(mContext));
         }
     }
 
@@ -136,5 +150,27 @@ public class FoundFragment extends UserBaseFragment<FoundAction> implements Foun
     public void onPause() {
         super.onPause();
         baseAction.toUnregister();
+    }
+
+    @OnClick({R.id.tv_user_entrust, R.id.tv_user_agency, R.id.tv_user_earnings, R.id.tv_usere_mention_money})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv_user_entrust:
+                //todo 委托明细
+                jumpActivityNotFinish(mContext, EntrustListActivity.class);
+                break;
+            case R.id.tv_user_agency:
+                //todo 代理明细
+                jumpActivityNotFinish(mContext, AgencyListActivity.class);
+                break;
+            case R.id.tv_user_earnings:
+                //todo 收益明细
+                jumpActivityNotFinish(mContext, ArningsActivity.class);
+                break;
+            case R.id.tv_usere_mention_money:
+                //todo 提币明细
+                jumpActivityNotFinish(mContext, CarryActivity.class);
+                break;
+        }
     }
 }

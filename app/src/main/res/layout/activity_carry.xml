@@ -33,7 +33,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="@color/color_15"
-            android:text="@string/my_tab_56"
+            android:text="@string/my_tab_56_2"
             android:textSize="@dimen/text_size15"
             android:layout_height="wrap_content"/>
 
@@ -57,6 +57,12 @@
         android:paddingRight="12dp"
 
         >
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:id="@+id/classicsheader"
+            android:layout_width="match_parent"
+            app:srlTextSizeTitle="13dp"
+            android:layout_height="wrap_content"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -82,7 +88,11 @@
                 android:visibility="gone"/>
         </LinearLayout>
 
-
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:id="@+id/classicsfooter"
+            android:layout_width="match_parent"
+            app:srlTextSizeTitle="13dp"
+            android:layout_height="wrap_content"/>
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 

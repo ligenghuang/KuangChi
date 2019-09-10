@@ -27,6 +27,8 @@ public class MySp extends MySharedPreferencesUtil {
         setUserImg(context,null);
         setUserVip(context,0);
         setUserNameapi(context,0);
+        setBouns(context,"0");
+        setBounsDay(context,"0");
     }
 
     /**
@@ -227,5 +229,51 @@ public class MySp extends MySharedPreferencesUtil {
     }
 
 
+    /**
+     * 获取 日收益
+     *
+     * @param context
+     * @return
+     */
+    public static String getBounsDay(Context context) {
+        SharedPreferences sp = getProjectSP(context);
+        return sp.getString("BounsDay", "0");
+    }
+
+    /**
+     * 设置 日收益
+     *
+     * @param context
+     * @param BounsDay
+     */
+    public static boolean setBounsDay(Context context, String BounsDay) {
+        SharedPreferences sp = getProjectSP(context);
+        SharedPreferences.Editor editor = sp.edit();
+        return editor.putString("BounsDay", BounsDay).commit();
+    }
+
+
+    /**
+     * 获取 总收益
+     *
+     * @param context
+     * @return
+     */
+    public static String getBouns(Context context) {
+        SharedPreferences sp = getProjectSP(context);
+        return sp.getString("Bouns", "0");
+    }
+
+    /**
+     * 设置 累计收益
+     *
+     * @param context
+     * @param Bouns
+     */
+    public static boolean setBouns(Context context, String Bouns) {
+        SharedPreferences sp = getProjectSP(context);
+        SharedPreferences.Editor editor = sp.edit();
+        return editor.putString("Bouns", Bouns).commit();
+    }
 
 }

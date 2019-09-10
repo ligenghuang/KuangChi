@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/color_f2"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <View
@@ -14,7 +15,11 @@
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:id="@+id/classicsheader"
+            android:layout_width="match_parent"
+            app:srlTextSizeTitle="13dp"
+            android:layout_height="wrap_content"/>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -26,6 +31,190 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:padding="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="15dp">
+
+
+                    <!--今日收益-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:background="@mipmap/bouns_day_bg"
+                        android:layout_marginRight="7dp"
+                        android:padding="11dp"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="@string/home_tab_4"
+                            android:textSize="@dimen/text_size15"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_home_bouns_day"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size20"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_marginBottom="@dimen/dp_10"
+                            android:textColor="@color/white"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size15"
+                            android:text="@string/home_tab_6"/>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:background="@mipmap/bouns_bg"
+                        android:layout_marginLeft="7dp"
+                        android:padding="11dp"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="@string/home_tab_5"
+                            android:textSize="@dimen/text_size15"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_home_bouns"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size20"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_marginBottom="@dimen/dp_10"
+                            android:textColor="@color/white"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size15"
+                            android:text="@string/home_tab_6"/>
+
+
+                    </LinearLayout>
+
+
+
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="15dp">
+
+
+                    <!--今日收益-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:background="@mipmap/bouns_day_bg"
+                        android:layout_marginRight="7dp"
+                        android:padding="11dp"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="@string/home_tab_4"
+                            android:textSize="@dimen/text_size15"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_home_bouns_day_f"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_marginBottom="@dimen/dp_10"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size20" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size15"
+                            android:text="@string/home_tab_6_1"/>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:background="@mipmap/bouns_bg"
+                        android:layout_marginLeft="7dp"
+                        android:padding="11dp"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="@string/home_tab_5"
+                            android:textSize="@dimen/text_size15"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_home_bouns_f"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_marginBottom="@dimen/dp_10"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size20" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size15"
+                            android:text="@string/home_tab_6_1"/>
+
+
+                    </LinearLayout>
+
+
+
+
+
+
+                </LinearLayout>
 
 
                 <TextView
@@ -40,26 +229,6 @@
                     android:paddingTop="@dimen/dp_40"
                     android:paddingBottom="@dimen/dp_40"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="220dp"
-                    android:visibility="gone"
-                    android:fillViewport="true">
-
-                    <!--              <com.zhifeng.kuangchi.util.view.LineChartView-->
-                    <!--                  android:id="@+id/linechart"-->
-                    <!--                  android:layout_width="match_parent"-->
-                    <!--                  android:layout_height="200dp"-->
-                    <!--                  android:visibility="invisible"-->
-                    <!--                  />-->
-                    <com.github.mikephil.charting.charts.LineChart
-                        android:id="@+id/linechart"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"/>
-
-                </LinearLayout>
-
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -70,51 +239,89 @@
                     android:textSize="@dimen/text_size15"
                     android:textColor="@color/color_15"/>
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="170dp"
-                    android:src="@mipmap/icon_found_1"
-                    android:scaleType="fitXY"/>
-                <TextView
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/found_tab_2"
-                    android:layout_marginTop="@dimen/dp_10"
-                    android:layout_marginBottom="@dimen/dp_10"
-                    android:textSize="@dimen/text_size15"
-                    android:textColor="@color/color_15"/>
+                    android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="170dp"
-                    android:src="@mipmap/icon_found_2"
-                    android:scaleType="fitXY"/>
-                <TextView
+                    <!--委托明细-->
+                    <TextView
+                        android:id="@+id/tv_user_entrust"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/my_tab_1"
+                        android:textSize="14dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/color_15"
+                        android:drawablePadding="6dp"
+                        android:gravity="center"
+                        android:padding="15dp"
+                        android:background="@color/white"
+                        android:layout_marginRight="7dp"
+                        android:drawableTop="@mipmap/icon_entrust"/>
+
+                    <!--代理明细-->
+                    <TextView
+                        android:id="@+id/tv_user_agency"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/my_tab_2"
+                        android:textSize="14dp"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="7dp"
+                        android:textColor="@color/color_15"
+                        android:drawablePadding="6dp"
+                        android:background="@color/white"
+
+                        android:padding="15dp"
+                        android:drawableTop="@mipmap/icon_agency"/>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/found_tab_3"
-                    android:layout_marginTop="@dimen/dp_10"
-                    android:layout_marginBottom="@dimen/dp_10"
-                    android:textSize="@dimen/text_size15"
-                    android:textColor="@color/color_15"/>
+                    android:orientation="horizontal"
+                    android:layout_marginTop="14dp">
 
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="170dp"
-                    android:src="@mipmap/icon_found_3"
-                    android:scaleType="fitXY"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/found_tab_4"
-                    android:layout_marginTop="@dimen/dp_10"
-                    android:layout_marginBottom="@dimen/dp_10"
-                    android:textSize="@dimen/text_size15"
-                    android:textColor="@color/color_15"/>
+                    <!--收益明细-->
+                    <TextView
+                        android:id="@+id/tv_user_earnings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/my_tab_3"
+                        android:textSize="14dp"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:padding="15dp"
+                        android:textColor="@color/color_15"
+                        android:drawablePadding="6dp"
+                        android:layout_marginRight="7dp"
+                        android:drawableTop="@mipmap/icon_earnings"/>
+
+                    <!--提币明细-->
+                    <TextView
+                        android:id="@+id/tv_usere_mention_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/my_tab_4"
+                        android:textSize="14dp"
+                        android:gravity="center"
+                        android:background="@color/white"
+                        android:padding="15dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/color_15"
+                        android:drawablePadding="6dp"
+                        android:layout_marginLeft="7dp"
+                        android:drawableTop="@mipmap/icon_mention_money"/>
+
+
+                </LinearLayout>
+
 
             </LinearLayout>
 

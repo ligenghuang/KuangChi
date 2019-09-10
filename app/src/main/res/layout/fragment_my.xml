@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/shape_my_top_bg"
-        android:paddingBottom="@dimen/dp_40"
+        android:paddingBottom="30dp"
 
         >
 
@@ -46,7 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/color_031523"
-                    android:textSize="@dimen/text_size15"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
 
                 <!--用户id-->
@@ -56,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_10"
                     android:textColor="@color/color_031523"
-                    android:textSize="@dimen/text_size15"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -69,7 +69,7 @@
                 android:layout_below="@id/ll_user_avatarAndname"
                 android:layout_marginTop="7dp"
                 android:textColor="@color/color_031523"
-                android:textSize="@dimen/text_size12" />
+                android:textSize="12dp" />
 
 
             <TextView
@@ -79,7 +79,7 @@
                 android:layout_below="@id/tv_user_createtime"
                 android:layout_marginTop="7dp"
                 android:textColor="@color/color_031523"
-                android:textSize="@dimen/text_size12" />
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/tv_user_address"
@@ -88,7 +88,8 @@
                 android:layout_below="@id/tv_user_mobile"
                 android:layout_marginTop="7dp"
                 android:textColor="@color/color_031523"
-                android:textSize="@dimen/text_size12" />
+                android:visibility="gone"
+                android:textSize="12dp" />
 
             <!--用户身份-->
             <LinearLayout
@@ -104,7 +105,7 @@
                     android:id="@+id/tv_user_level"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@mipmap/icon_level_bg"
+                    android:background="@drawable/icon_level_bg"
                     android:drawableLeft="@mipmap/icon_level"
                     android:drawablePadding="@dimen/dp_10"
                     android:gravity="center_vertical"
@@ -112,7 +113,7 @@
                     android:paddingLeft="@dimen/dp_10"
                     android:paddingRight="5dp"
                     android:textColor="@color/color_031523"
-                    android:textSize="@dimen/text_size15"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -150,6 +151,7 @@
         android:gravity="center_vertical"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
+        android:visibility="gone"
         android:background="@drawable/shape_ll_white_bg">
 
 
@@ -159,7 +161,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/my_tab_1"
-            android:textSize="@dimen/sp_14"
+            android:textSize="14dp"
             android:layout_weight="1"
             android:textColor="@color/color_15"
             android:drawablePadding="6dp"
@@ -171,7 +173,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/my_tab_2"
-            android:textSize="@dimen/sp_14"
+            android:textSize="14dp"
             android:layout_weight="1"
             android:textColor="@color/color_15"
             android:drawablePadding="6dp"
@@ -183,7 +185,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/my_tab_3"
-            android:textSize="@dimen/sp_14"
+            android:textSize="14dp"
             android:layout_weight="1"
             android:textColor="@color/color_15"
             android:drawablePadding="6dp"
@@ -195,7 +197,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/my_tab_4"
-            android:textSize="@dimen/sp_14"
+            android:textSize="14dp"
             android:layout_weight="1"
             android:textColor="@color/color_15"
             android:drawablePadding="6dp"
@@ -213,7 +215,7 @@
         android:drawablePadding="@dimen/dp_10"
         android:text="@string/my_tab_5"
         android:textColor="@color/color_15"
-        android:textSize="@dimen/sp_14"
+        android:textSize="14dp"
         android:gravity="center_vertical"
         android:layout_marginTop="6dp"
         android:background="@color/white"
@@ -241,7 +243,7 @@
                 android:layout_height="wrap_content"
                 android:drawableTop="@mipmap/icon_seriver"
                 android:text="@string/my_tab_6"
-                android:textSize="@dimen/sp_14"
+                android:textSize="14dp"
                 android:textColor="@color/color_15"
                 android:drawablePadding="18dp"
                 />
@@ -262,7 +264,7 @@
                 android:layout_height="wrap_content"
                 android:drawableTop="@mipmap/icon_balance"
                 android:text="@string/my_tab_7"
-                android:textSize="@dimen/sp_14"
+                android:textSize="14dp"
                 android:textColor="@color/color_15"
                 android:drawablePadding="18dp"
                 />
@@ -283,7 +285,7 @@
                 android:layout_height="wrap_content"
                 android:drawableTop="@mipmap/icon_id_card"
                 android:text="@string/my_tab_8"
-                android:textSize="@dimen/sp_14"
+                android:textSize="14dp"
                 android:textColor="@color/color_15"
                 android:drawablePadding="18dp"
                 />
@@ -315,7 +317,7 @@
                 android:layout_height="wrap_content"
                 android:drawableTop="@mipmap/icon_invitation"
                 android:text="@string/my_tab_9"
-                android:textSize="@dimen/sp_14"
+                android:textSize="14dp"
                 android:textColor="@color/color_15"
                 android:drawablePadding="18dp"
                 />
@@ -336,7 +338,7 @@
                 android:layout_height="wrap_content"
                 android:drawableTop="@mipmap/icon_security"
                 android:text="@string/my_tab_10"
-                android:textSize="@dimen/sp_14"
+                android:textSize="14dp"
                 android:textColor="@color/color_15"
                 android:drawablePadding="18dp"
                 />
@@ -357,7 +359,7 @@
                 android:layout_height="wrap_content"
                 android:drawableTop="@mipmap/icon_message"
                 android:text="@string/my_tab_11"
-                android:textSize="@dimen/sp_14"
+                android:textSize="14dp"
                 android:textColor="@color/color_15"
                 android:drawablePadding="18dp"
                 />

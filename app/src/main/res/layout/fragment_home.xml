@@ -22,6 +22,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                android:id="@+id/classicsheader"
+                android:layout_width="match_parent"
+                app:srlTextSizeTitle="13dp"
+                android:layout_height="wrap_content"/>
+
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -44,7 +50,7 @@
                     <!--公告-->
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="35dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="@dimen/dp_10"
                         android:layout_marginRight="12dp"
@@ -67,101 +73,11 @@
                         <com.superluo.textbannerlibrary.TextBannerView
                             android:id="@+id/tv_banner"
                             android:layout_width="match_parent"
-                            android:layout_height="20dp"
+                            android:layout_height="25dp"
                             app:setSingleLine="true"
+                            app:setTextSize="14dp"
                             app:setDirection="bottom_to_top"
                             app:setTextColor="@color/color_fff15a"/>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginRight="12dp">
-
-
-                        <!--今日收益-->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_weight="1"
-                            android:gravity="center_horizontal"
-                            android:background="@mipmap/bouns_day_bg"
-                            android:layout_marginRight="14dp"
-                            android:padding="11dp"
-                            >
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/white"
-                                android:text="@string/home_tab_4"
-                                android:textSize="@dimen/text_size15"
-                                />
-
-                            <TextView
-                                android:id="@+id/tv_home_bouns_day"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="@dimen/text_size20"
-                                android:layout_marginTop="@dimen/dp_10"
-                                android:layout_marginBottom="@dimen/dp_10"
-                                android:textColor="@color/white"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/text_size15"
-                                android:text="@string/home_tab_6"/>
-
-                        </LinearLayout>
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_weight="1"
-                            android:gravity="center_horizontal"
-                            android:background="@mipmap/bouns_bg"
-                            android:padding="11dp"
-                            >
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/white"
-                                android:text="@string/home_tab_5"
-                                android:textSize="@dimen/text_size15"
-                                />
-
-                            <TextView
-                                android:id="@+id/tv_home_bouns"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="@dimen/text_size20"
-                                android:layout_marginTop="@dimen/dp_10"
-                                android:layout_marginBottom="@dimen/dp_10"
-                                android:textColor="@color/white"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/text_size15"
-                                android:text="@string/home_tab_6"/>
-
-
-                        </LinearLayout>
-
-
-
-
 
 
                     </LinearLayout>
@@ -232,6 +148,7 @@
                                 android:paddingRight="31dp"
                                 android:paddingBottom="5dp"
                                 android:text="@string/home_tab_9"
+                                android:textSize="14dp"
                                 android:background="@drawable/selector_announce_bg"
                                 android:textColor="@color/announce_text_selector"/>
 
@@ -245,6 +162,7 @@
                                 android:paddingRight="31dp"
                                 android:paddingBottom="5dp"
                                 android:text="@string/home_tab_10"
+                                android:textSize="14dp"
                                 android:background="@drawable/selector_announce_bg"
                                 android:textColor="@color/announce_text_selector"/>
 
@@ -282,7 +200,6 @@
             android:layout_height="@dimen/item_height60"
             android:layout_centerVertical="true"
             android:layout_margin="@dimen/dp_10"
-            android:visibility="gone"
             android:layout_alignParentRight="true">
 
            <LinearLayout

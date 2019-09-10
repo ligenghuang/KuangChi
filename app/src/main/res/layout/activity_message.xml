@@ -38,6 +38,7 @@
                     android:drawablePadding="15dp"
                     android:drawableTop="@drawable/icon_default_null"
                     android:text="@string/my_tab_132"
+                    android:textSize="14dp"
                     android:visibility="gone"/>
 
 

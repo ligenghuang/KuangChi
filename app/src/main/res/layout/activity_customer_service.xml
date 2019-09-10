@@ -52,6 +52,7 @@
                     <com.zhifeng.kuangchi.util.view.ClassicsFooter
                         android:id="@+id/classicsfooter"
                         android:layout_width="match_parent"
+                        app:srlTextSizeTitle="13dp"
                         android:layout_height="wrap_content"/>
 
 
