@@ -53,14 +53,14 @@ public class ArningsActivity extends UserBaseActivity {
     TextView tvState5;
     @BindView(R.id.tv_state_6)
     TextView tvState6;
-    @BindView(R.id.tv_state_7)
-    TextView tvState7;
+//    @BindView(R.id.tv_state_7)
+//    TextView tvState7;
     @BindView(R.id.my_pager)
     CustomViewPager myPager;
 
     public static int Position = 0;
     private MyFragmentPagerAdapter fragmentPagerAdapter;
-    private int fragmentSize = 7;
+    private int fragmentSize = 6;
     private ArrayList<Fragment> fragments;
     private final int POIONTONE = 0;
     private final int POIONTTWO = 1;
@@ -68,7 +68,7 @@ public class ArningsActivity extends UserBaseActivity {
     private final int POIONTFOUR = 3;
     private final int POIONTFIVE = 4;
     private final int POIONTSIX = 5;
-    private final int POIONTSEVEN = 6;
+//    private final int POIONTSEVEN = 6;
 
 
     @Override
@@ -149,7 +149,7 @@ public class ArningsActivity extends UserBaseActivity {
     }
 
     @OnTouch({R.id.tv_state_1, R.id.tv_state_2, R.id.tv_state_3,
-            R.id.tv_state_4, R.id.tv_state_5,R.id.tv_state_6, R.id.tv_state_7})
+            R.id.tv_state_4, R.id.tv_state_5,R.id.tv_state_6})
     public boolean onTouch(View v) {
         int i = v.getId();
 
@@ -172,9 +172,9 @@ public class ArningsActivity extends UserBaseActivity {
             case R.id.tv_state_6:
                 Position = POIONTSIX;
                 break;
-            case R.id.tv_state_7:
-                Position = POIONTSEVEN;
-                break;
+//            case R.id.tv_state_7:
+//                Position = POIONTSEVEN;
+//                break;
         }
 
         // TODO: 2018/10/19 false  禁止滚动
@@ -194,7 +194,7 @@ public class ArningsActivity extends UserBaseActivity {
         tvState4.setSelected(false);
         tvState5.setSelected(false);
         tvState6.setSelected(false);
-        tvState7.setSelected(false);
+//        tvState7.setSelected(false);
         switch (position) {
             case 0:
                 tvState1.setSelected(true);
@@ -214,9 +214,9 @@ public class ArningsActivity extends UserBaseActivity {
             case 5:
                 tvState6.setSelected(true);
                 break;
-            case 6:
-                tvState7.setSelected(true);
-                break;
+//            case 6:
+//                tvState7.setSelected(true);
+//                break;
             default:
                 break;
         }

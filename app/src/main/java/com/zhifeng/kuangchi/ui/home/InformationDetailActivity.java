@@ -110,6 +110,9 @@ public class InformationDetailActivity extends UserBaseActivity<InformationDetai
         }
     }
 
+     String htmlString = "<p><span style=\"font-size: 24px;\">怎么在火币网上注册、充币、提币？一个视频教会你！</span></p><p><br/></p><p><br/></p><p><br/></p><p style=\"text-align: center;\"><video class=\"edui-upload-video  vjs-default-skin    video-js\" controls=\"\" preload=\"none\" width=\"420\" height=\"280\" src=\"http://www.imnebula.com/ueditor/php/upload/video/20190911/1568173841169620.mp4\" data-setup=\"{}\"><source src=\"http://www.imnebula.com/ueditor/php/upload/video/20190911/1568173841169620.mp4\" type=\"video/mp4\"/></video></p>";
+
+
     /**
      * 获取详情页数据成功
      *
@@ -122,6 +125,8 @@ public class InformationDetailActivity extends UserBaseActivity<InformationDetai
 //        tvDetailTitle.setText(dataBean.getTitle());
 //        xrichtext.text(dataBean.getDesc());
         webView.loadUrl(dataBean.getUrllink());
+
+
     }
 
     /**

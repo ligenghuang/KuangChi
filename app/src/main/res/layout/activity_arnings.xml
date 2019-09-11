@@ -101,24 +101,24 @@
                   android:textColor="@color/arnings_text_selector"
                   android:background="@drawable/selector_arnings_text_bg"/>
 
-              <TextView
-                  android:id="@+id/tv_state_6"
-                  android:layout_width="match_parent"
-                  android:layout_weight="1"
-                  android:gravity="center"
-                  android:paddingLeft="12dp"
-                  android:paddingTop="6dp"
-                  android:paddingRight="12dp"
-                  android:paddingBottom="6dp"
-                  android:layout_height="wrap_content"
-                  android:textSize="@dimen/text_size13"
-                  android:text="@string/my_tab_53"
-                  android:layout_marginRight="5dp"
-                  android:textColor="@color/arnings_text_selector"
-                  android:background="@drawable/selector_arnings_text_bg"/>
+<!--              <TextView-->
+<!--                  android:id="@+id/tv_state_6"-->
+<!--                  android:layout_width="match_parent"-->
+<!--                  android:layout_weight="1"-->
+<!--                  android:gravity="center"-->
+<!--                  android:paddingLeft="12dp"-->
+<!--                  android:paddingTop="6dp"-->
+<!--                  android:paddingRight="12dp"-->
+<!--                  android:paddingBottom="6dp"-->
+<!--                  android:layout_height="wrap_content"-->
+<!--                  android:textSize="@dimen/text_size13"-->
+<!--                  android:text="@string/my_tab_53"-->
+<!--                  android:layout_marginRight="5dp"-->
+<!--                  android:textColor="@color/arnings_text_selector"-->
+<!--                  android:background="@drawable/selector_arnings_text_bg"/>-->
 
               <TextView
-                  android:id="@+id/tv_state_7"
+                  android:id="@+id/tv_state_6"
                   android:layout_width="match_parent"
                   android:layout_weight="1"
                   android:gravity="center"

@@ -54,7 +54,7 @@ public class EarningsAction extends BaseAction<EarningsView> {
      * all_node:节点奖励,
      * all_Infinite:无限奖励,
      * day_release:每日释放,
-     * 7:提币,
+//     * 7:提币,
      * 11:释放
      * @return
      */
@@ -77,11 +77,11 @@ public class EarningsAction extends BaseAction<EarningsView> {
                 source_type = "day_release";
                 break;
             case 5:
-                source_type = "7";
-                break;
-            case 6:
                 source_type = "11";
                 break;
+//            case 6:
+//                source_type = "11";
+//                break;
         }
         return source_type;
     }

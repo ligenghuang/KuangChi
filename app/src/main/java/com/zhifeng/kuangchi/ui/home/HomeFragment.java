@@ -189,6 +189,7 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
                 banner_main.stopAutoPlay();
                Intent intent = new Intent(mContext,BannerActivity.class);
                intent.putExtra("title",types.get(position));
+               intent.putExtra("url",url.get(position));
                startActivity(intent);
             }
         });
