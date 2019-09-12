@@ -17,9 +17,9 @@
         android:layout_height="40dp">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/logo"/>
+            android:background="@drawable/icon_logo"/>
     </LinearLayout>
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
@@ -316,6 +316,24 @@
                         android:drawablePadding="6dp"
                         android:layout_marginRight="7dp"
                         android:drawableTop="@mipmap/icon_earnings"/>
+
+                    <!--充值明细-->
+                    <TextView
+                        android:id="@+id/tv_usere_put_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/my_tab_156"
+                        android:textSize="14dp"
+                        android:gravity="center"
+                        android:background="@color/white"
+                        android:paddingTop="45dp"
+                        android:paddingBottom="45dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/color_15"
+                        android:drawablePadding="6dp"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp"
+                        android:drawableTop="@mipmap/icon_mention_money"/>
 
                     <!--提币明细-->
                     <TextView

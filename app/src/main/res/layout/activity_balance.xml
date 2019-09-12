@@ -295,7 +295,7 @@
                                android:orientation="vertical">
 
 
-                               <TextView
+                               <EditText
                                    android:id="@+id/tv_balance_address"
                                    android:layout_width="wrap_content"
                                    android:layout_height="wrap_content"
@@ -304,6 +304,7 @@
                                    android:layout_marginLeft="5dp"
                                    android:layout_marginBottom="5dp"
                                    android:text=""
+                                   android:background="@color/transparent"
                                    android:textSize="@dimen/text_size15"/>
 
                                <View

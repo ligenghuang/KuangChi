@@ -128,7 +128,8 @@ public class MyFragment extends UserBaseFragment<MyAction> implements MyView {
         MySp.setUserId(mContext, dataBean.getId() + "");//保存id
         tvUxerId.setText(ResUtil.getFormatString(R.string.my_tab_12, dataBean.getId() + ""));//用户id
         tvUserCreatetime.setText(ResUtil.getFormatString(R.string.my_tab_13, dataBean.getReg_time()));//注册时间
-        tvUserMobile.setText(ResUtil.getFormatString(R.string.my_tab_14, dataBean.getMobile()));//手机号
+        String phone = dataBean.getMobile();
+        tvUserMobile.setText(ResUtil.getFormatString(R.string.my_tab_14, phone.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2")));//手机号
         MySp.setUserPhone(mContext, dataBean.getMobile());//保存手机号
         tvUserAddress.setText(ResUtil.getFormatString(R.string.my_tab_15, dataBean.getAddress()));//地址
         tvUserLevel.setText(dataBean.getLevel_name());//身份等级

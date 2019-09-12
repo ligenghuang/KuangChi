@@ -99,6 +99,8 @@ public class LoginActivity extends UserBaseActivity<LoginAction> implements Logi
     LinearLayout llRegistered;
     @BindView(R.id.ll_login_consult)
     LinearLayout llLoginConsult;
+    @BindView(R.id.tv_login_pwd)
+    TextView tvLoginPwd;
 
     //获取验证码倒计时
     private MyCountDownTimer timer;
@@ -226,7 +228,7 @@ public class LoginActivity extends UserBaseActivity<LoginAction> implements Logi
      */
     @OnClick({R.id.btn_login, R.id.tv_login_get_code, R.id.f_right_tv,
             R.id.tv_login_consult, R.id.ll_login_consult,
-            R.id.iv_login_phone_close, R.id.iv_login_code_close})
+            R.id.iv_login_phone_close, R.id.iv_login_code_close,R.id.tv_login_pwd})
     void onClick(View view) {
         switch (view.getId()) {
             case R.id.f_right_tv:
@@ -277,6 +279,9 @@ public class LoginActivity extends UserBaseActivity<LoginAction> implements Logi
             case R.id.tv_login_consult:
                 //todo 跳转至用户协议页面
                 jumpActivityNotFinish(mContext, AgreementActivity.class);
+                break;
+            case R.id.tv_login_pwd:
+                jumpActivityNotFinish(mContext, FindLoginPwdActivity.class);
                 break;
 
         }
@@ -444,6 +449,7 @@ public class LoginActivity extends UserBaseActivity<LoginAction> implements Logi
         fRightTv.setText(ResUtil.getString(type == 0 ? R.string.login_tab_1 : R.string.login_tab_2));
         btnLogin.setText(ResUtil.getString(type == 0 ? R.string.login_tab_2 : R.string.login_tab_1));
         llRegistered.setVisibility(type == 0?View.VISIBLE :View.GONE);
+        tvLoginPwd.setVisibility(type == 1?View.VISIBLE :View.GONE);
     }
 
     //todo 判断手机号码是否为空或格式不正确

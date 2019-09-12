@@ -7,6 +7,7 @@ import com.lgh.huanglib.net.CollectionsUtils;
 import com.lgh.huanglib.util.L;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.zhifeng.kuangchi.module.CarryDetailDto;
+import com.zhifeng.kuangchi.module.PutDetailDto;
 import com.zhifeng.kuangchi.net.WebUrlUtil;
 import com.zhifeng.kuangchi.ui.impl.CarryDetailView;
 import com.zhifeng.kuangchi.util.config.MyApp;
@@ -44,6 +45,15 @@ public class CarryDetailAction extends BaseAction<CarryDetailView> {
     }
 
     /**
+     * 获取充值详情
+     * @param id
+     */
+    public void getPutDetail(String id){
+        post(WebUrlUtil.POST_USER_PUT_DETAIL,false, service -> manager.runHttp(
+                service.PostData(CollectionsUtils.generateMap("token",MySp.getAccessToken(MyApp.getContext()),"id",id),WebUrlUtil.POST_USER_PUT_DETAIL)));
+    }
+
+    /**
      * sticky:表明优先接收最高级  threadMode = ThreadMode.MAIN：表明在主线程
      *
      * @param action
@@ -75,6 +85,22 @@ public class CarryDetailAction extends BaseAction<CarryDetailView> {
                             if (carryDetailDto.getStatus() == 200){
                                 //todo 获取提币详情成功
                                 view.getCarryDetailSuccess(carryDetailDto);
+                                return;
+                            }
+                            view.onError(carryDetailDto.getMsg(),action.getErrorType());
+                            return;
+                        }
+                        view.onError(msg,action.getErrorType());
+                        break;
+                    case WebUrlUtil.POST_USER_PUT_DETAIL:
+                        //todo 获取充值详情
+                        if (aBoolean) {
+                            L.e("xx", "输出返回结果 " + action.getUserData().toString());
+                            PutDetailDto carryDetailDto = new Gson().fromJson(action.getUserData().toString(), new TypeToken<PutDetailDto>() {
+                            }.getType());
+                            if (carryDetailDto.getStatus() == 200){
+                                //todo 获取充值详情成功
+                                view.getPutDetailSuccess(carryDetailDto);
                                 return;
                             }
                             view.onError(carryDetailDto.getMsg(),action.getErrorType());

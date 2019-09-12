@@ -20,4 +20,5 @@
     <string name="login_tab_16_1">请输入6位密码(数字)</string>
     <string name="login_tab_17">请再次输入您的密码</string>
     <string name="login_tab_18">两次密码不一致</string>
+    <string name="login_tab_19">找回密码</string>
 </resources>

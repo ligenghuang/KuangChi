@@ -2,6 +2,7 @@ package com.zhifeng.kuangchi.ui.impl;
 
 import com.lgh.huanglib.util.base.BaseView;
 import com.zhifeng.kuangchi.module.CarryDetailDto;
+import com.zhifeng.kuangchi.module.PutDetailDto;
 
 /**
   *
@@ -18,4 +19,7 @@ public interface CarryDetailView extends BaseView {
      */
     void getCarryDetail();
     void getCarryDetailSuccess(CarryDetailDto carryDetailDto);
+
+    void getPutDetail();
+    void getPutDetailSuccess(PutDetailDto putDetailDto);
 }

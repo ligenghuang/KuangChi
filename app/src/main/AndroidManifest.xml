@@ -18,6 +18,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/activity_theme">
+        <activity android:name=".ui.my.TopUpDetailActivity"></activity>
+        <activity android:name=".ui.login.FindLoginPwdActivity"></activity>
         <activity android:name=".ui.my.MoblieLoginPwdActivity"></activity>
         <activity android:name=".ui.home.PayActivity" />
         <activity android:name=".ui.home.BannerActivity" />

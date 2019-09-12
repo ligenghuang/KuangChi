@@ -207,4 +207,14 @@ public class WebUrlUtil {
      *行情
      */
     public static final String POST_HISTORY_KLINE = "user/lamb_hangqing";
+
+    /**
+     * 充值明细
+     */
+    public static final String POST_PUT_LIST ="user/put_lst";
+
+    /**
+     * 充值详情
+     */
+    public static final String POST_USER_PUT_DETAIL = "user/put_detail";
 }

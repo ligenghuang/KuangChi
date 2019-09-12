@@ -20,24 +20,25 @@
             android:textColor="@color/color_15"
             android:textSize="@dimen/text_size13"/>
 
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:layout_weight="1"
-           android:gravity="center">
+        <TextView
+            android:id="@+id/tv_item_coin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="-100"
+            android:layout_weight="1"
+            android:textColor="@color/color_15"
+            android:textSize="@dimen/text_size13"/>
 
-           <TextView
-               android:id="@+id/tv_item_money"
-               android:layout_width="wrap_content"
-               android:layout_height="match_parent"
-               android:gravity="center"
-               android:text="-100"
-               android:drawablePadding="@dimen/dp_10"
-               android:drawableLeft="@mipmap/icon_carry"
-               android:textColor="@color/color_15"
-               android:textSize="@dimen/text_size13"/>
-
-       </LinearLayout>
+        <TextView
+            android:id="@+id/tv_item_money"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="-100"
+            android:layout_weight="1"
+            android:textColor="@color/color_15"
+            android:textSize="@dimen/text_size13"/>
         <TextView
             android:id="@+id/tv_item_remark"
             android:layout_width="match_parent"

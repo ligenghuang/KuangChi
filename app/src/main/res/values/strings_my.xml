@@ -8,7 +8,7 @@
 
     <string name="my_tab_5">我的订单</string>
 
-    <string name="my_tab_6">存储服务器群组</string>
+    <string name="my_tab_6">存储服务器空间</string>
     <string name="my_tab_7">我的余额</string>
     <string name="my_tab_8">身份认证</string>
     <string name="my_tab_9">邀请链接</string>
@@ -29,7 +29,7 @@
     <string name="my_tab_21">修改手机号码</string>
     <string name="my_tab_22">支付密码</string>
     <string name="my_tab_22_1">修改密码</string>
-    <string name="my_tab_22_2">修改登录密码</string>
+    <string name="my_tab_22_2">找回登录密码</string>
     <string name="my_tab_23">切换用户</string>
 
     <string name="my_tab_24">换绑手机</string>
@@ -44,7 +44,7 @@
     <string name="my_tab_33">确定</string>
     <string name="my_tab_34">请输入%0$s收到的短信效验码</string>
 
-    <string name="my_tab_35">会员姓名</string>
+    <string name="my_tab_35">矿主姓名</string>
     <string name="my_tab_36">日期</string>
     <string name="my_tab_37">购买数量</string>
     <string name="my_tab_38">状态</string>
@@ -70,12 +70,14 @@
     <string name="my_tab_55">金额： %0$s</string>
 
     <string name="my_tab_56">金币</string>
+    <string name="my_tab_56_3">币数</string>
     <string name="my_tab_56_2">币种</string>
     <string name="my_tab_56_1">余额</string>
     <string name="my_tab_57">备注</string>
     <string name="my_tab_58">查看</string>
 
     <string name="my_tab_59">提币详情</string>
+    <string name="my_tab_59_1">充值详情</string>
     <string name="my_tab_60">金额 ：</string>
     <string name="my_tab_61">提币日期</string>
     <string name="my_tab_62">提现方式</string>
@@ -191,5 +193,7 @@
     <string name="my_tab_152">USDT提币数量≥50个,LAMB提币数量≥100个</string>
     <string name="my_tab_153">每日审核时间：10:00~22:00</string>
     <string name="my_tab_154">复制地址</string>
+    <string name="my_tab_155">请输入地址</string>
+    <string name="my_tab_156">充值明细</string>
 
 </resources>

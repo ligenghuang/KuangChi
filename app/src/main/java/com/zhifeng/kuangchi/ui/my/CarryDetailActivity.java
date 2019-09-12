@@ -12,6 +12,7 @@ import com.lgh.huanglib.util.data.ResUtil;
 import com.zhifeng.kuangchi.R;
 import com.zhifeng.kuangchi.actions.CarryDetailAction;
 import com.zhifeng.kuangchi.module.CarryDetailDto;
+import com.zhifeng.kuangchi.module.PutDetailDto;
 import com.zhifeng.kuangchi.ui.impl.CarryDetailView;
 import com.zhifeng.kuangchi.util.base.UserBaseActivity;
 import com.zhifeng.kuangchi.util.data.DynamicTimeFormat;
@@ -48,6 +49,7 @@ public class CarryDetailActivity extends UserBaseActivity<CarryDetailAction> imp
     TextView tvCarryDetailStatus;
 
     int id;
+    int type;
     @BindView(R.id.tv_carry_detail_account)
     TextView tvCarryDetailAccount;
 
@@ -83,7 +85,7 @@ public class CarryDetailActivity extends UserBaseActivity<CarryDetailAction> imp
                 .navigationBarWithKitkatEnable(false)
                 .init();
         toolbar.setNavigationOnClickListener(view -> finish());
-        fTitleTv.setText(ResUtil.getString(R.string.my_tab_59));
+
     }
 
     @Override
@@ -93,7 +95,14 @@ public class CarryDetailActivity extends UserBaseActivity<CarryDetailAction> imp
         mContext = this;
 
         id = getIntent().getIntExtra("id", 0);
-        getCarryDetail();
+        type = getIntent().getIntExtra("type", 0);
+        if (type == 0) {
+            getCarryDetail();
+            fTitleTv.setText(ResUtil.getString(R.string.my_tab_59));
+        } else {
+            getPutDetail();
+            fTitleTv.setText(ResUtil.getString(R.string.my_tab_59_1));
+        }
     }
 
     /**
@@ -116,10 +125,10 @@ public class CarryDetailActivity extends UserBaseActivity<CarryDetailAction> imp
     public void getCarryDetailSuccess(CarryDetailDto carryDetailDto) {
         loadDiss();
         CarryDetailDto.DataBean dataBean = carryDetailDto.getData();
-        tvCarryDetailAccount.setText(dataBean.getMoney()+"");//金额
-        long data = (long) dataBean.getAdd_time()*(long)1000;
+        tvCarryDetailAccount.setText(dataBean.getMoney() + "");//金额
+        long data = (long) dataBean.getAdd_time() * (long) 1000;
         tvCarryDetailTime.setText(DynamicTimeFormat.LongToString(data));//时间
-        tvCarryDetailMoney.setText(dataBean.getInput_money()+"");//提币金额
+        tvCarryDetailMoney.setText(dataBean.getInput_money() + "");//提币金额
         tvCarryDetailAddress.setText(dataBean.getAddress());//地址
         String status = getStatus(dataBean.getStatus());//获取状态
         tvCarryDetailStatus.setText(status);
@@ -128,27 +137,54 @@ public class CarryDetailActivity extends UserBaseActivity<CarryDetailAction> imp
     }
 
     /**
+     * 获取充值详情
+     */
+    @Override
+    public void getPutDetail() {
+        if (CheckNetwork.checkNetwork2(mContext)) {
+            loadDialog();
+            baseAction.getPutDetail(id + "");
+        }
+    }
+
+    @Override
+    public void getPutDetailSuccess(PutDetailDto putDetailDto) {
+        loadDiss();
+        PutDetailDto.DataBean dataBean = putDetailDto.getData();
+        tvCarryDetailAccount.setText(dataBean.getMoney() + "");//金额
+        long data = (long) dataBean.getAdd_time() * (long) 1000;
+        tvCarryDetailTime.setText(DynamicTimeFormat.LongToString(data));//时间
+        tvCarryDetailMoney.setText(dataBean.getInput_money() + "");//提币金额
+        tvCarryDetailAddress.setText(dataBean.getAddress());//地址
+        String status = getPutStatus(dataBean.getStatus());//获取状态
+        tvCarryDetailStatus.setText(status);
+        String coinType = getCoinType(dataBean.getCoin_type());
+        tvCarryDetailType.setText(coinType);
+    }
+
+    /**
      * 4:usdt  5:lamb 6:btc 7:eth 8:filecoin
+     *
      * @param coin_type
      * @return
      */
     private String getCoinType(int coin_type) {
-        String text = "usdt";
-        switch (coin_type){
+        String text = "USDT";
+        switch (coin_type) {
             case 4:
-                text = "usdt";
+                text = "USDT";
                 break;
             case 5:
-                text = "lamb";
+                text = "LAMB";
                 break;
             case 6:
-                text = "btc";
+                text = "BTC";
                 break;
             case 7:
-                text = "eth";
+                text = "ETH";
                 break;
             case 8:
-                text = "filecoin";
+                text = "FILECOIN";
                 break;
         }
         return text;
@@ -181,13 +217,13 @@ public class CarryDetailActivity extends UserBaseActivity<CarryDetailAction> imp
 
     /**
      * 获取状态
-     * @param status
-     * -1不通过审批，1待审批，2通过审批’
+     *
+     * @param status -1不通过审批，1待审批，2通过审批’
      * @return
      */
     private String getStatus(int status) {
         String str = "";
-        switch (status){
+        switch (status) {
             case 1:
                 str = "待审核";
                 break;
@@ -195,6 +231,28 @@ public class CarryDetailActivity extends UserBaseActivity<CarryDetailAction> imp
                 str = "通过审核";
                 break;
             default:
+                str = "未通过审核";
+                break;
+        }
+        return str;
+    }
+
+    /**
+     * 获取状态
+     *
+     * @param status 0待审核  1审核通过 2审核不通过',’
+     * @return
+     */
+    private String getPutStatus(int status) {
+        String str = "";
+        switch (status) {
+            case 0:
+                str = "待审核";
+                break;
+            case 1:
+                str = "通过审核";
+                break;
+            case 2:
                 str = "未通过审核";
                 break;
         }

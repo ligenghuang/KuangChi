@@ -24,6 +24,7 @@ import com.zhifeng.kuangchi.ui.my.AgencyListActivity;
 import com.zhifeng.kuangchi.ui.my.ArningsActivity;
 import com.zhifeng.kuangchi.ui.my.CarryActivity;
 import com.zhifeng.kuangchi.ui.my.EntrustListActivity;
+import com.zhifeng.kuangchi.ui.my.TopUpDetailActivity;
 import com.zhifeng.kuangchi.util.base.UserBaseFragment;
 import com.zhifeng.kuangchi.util.data.MySp;
 
@@ -152,7 +153,7 @@ public class FoundFragment extends UserBaseFragment<FoundAction> implements Foun
         baseAction.toUnregister();
     }
 
-    @OnClick({R.id.tv_user_entrust, R.id.tv_user_agency, R.id.tv_user_earnings, R.id.tv_usere_mention_money})
+    @OnClick({R.id.tv_user_entrust, R.id.tv_user_agency, R.id.tv_user_earnings, R.id.tv_usere_mention_money,R.id.tv_usere_put_money})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_user_entrust:
@@ -170,6 +171,10 @@ public class FoundFragment extends UserBaseFragment<FoundAction> implements Foun
             case R.id.tv_usere_mention_money:
                 //todo 提币明细
                 jumpActivityNotFinish(mContext, CarryActivity.class);
+                break;
+            case R.id.tv_usere_put_money:
+                //todo 充值明细
+                jumpActivityNotFinish(mContext, TopUpDetailActivity.class);
                 break;
         }
     }

@@ -120,7 +120,7 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
     @BindView(R.id.et_balance)
     EditText etBalance;
     @BindView(R.id.tv_balance_address)
-    TextView tvBalanceAddress;
+    EditText tvBalanceAddress;
     @BindView(R.id.tv_balance_money)
     TextView tvBalanceMoney;
     @BindView(R.id.ll_balance_money)
@@ -322,7 +322,9 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
                     list.get(i).setClick(list.get(i).getId() == id);
                 }
                 coinListAdapter.notifyDataSetChanged();
-                tvBalanceAddress.setText(address);//todo 地址
+                if (Type == POIONTONE){
+                    tvBalanceAddress.setText(address);//todo 地址
+                }
                 //todo 获取转换率
 //                getRate(coinType + "");
                 rate = Rate;
@@ -359,7 +361,9 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
                 showSelectDiaLog();
                 break;
             case R.id.tv_balance_address:
-                Copy();
+                if (Type == POIONTONE){
+                    Copy();
+                }
                 break;
         }
     }
@@ -368,18 +372,6 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
      * 提币
      */
     private void GetBalanceCoin() {
-        if (TextUtils.isEmpty(etBalancePayPwd.getText().toString())) {
-            showNormalToast(ResUtil.getString(R.string.my_tab_149));
-            return;
-        }
-        String pwd = etBalancePayPwd.getText().toString();
-
-        if (TextUtils.isEmpty(etBalancePayCode.getText().toString())) {
-            showNormalToast(ResUtil.getString(R.string.my_tab_151));
-            return;
-        }
-
-        String code = etBalancePayCode.getText().toString();
 
         if (money == 0) {
             showNormalToast(ResUtil.getString(R.string.my_tab_112_1));
@@ -399,9 +391,28 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
                 break;
         }
 
+        if (TextUtils.isEmpty(tvBalanceAddress.getText().toString())){
+            showNormalToast(ResUtil.getString(R.string.my_tab_155));
+            return;
+        }
+
+
+        if (TextUtils.isEmpty(etBalancePayPwd.getText().toString())) {
+            showNormalToast(ResUtil.getString(R.string.my_tab_149));
+            return;
+        }
+        String pwd = etBalancePayPwd.getText().toString();
+
+        if (TextUtils.isEmpty(etBalancePayCode.getText().toString())) {
+            showNormalToast(ResUtil.getString(R.string.my_tab_151));
+            return;
+        }
+
+        String code = etBalancePayCode.getText().toString();
+
 
         GetCoinPost getCoinPost = new GetCoinPost();
-        getCoinPost.setAddress(Address);//地址
+        getCoinPost.setAddress(tvBalanceAddress.getText().toString());//地址
         getCoinPost.setCoin_type(coin_type);//币类型
         getCoinPost.setMoney(money + "");//币数量
         getCoinPost.setInput_money(inputMoney);//输入金额
@@ -481,7 +492,9 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
         Address = list.get(0).getAddress();
 //        getRate(coin_type);
 
-        tvBalanceAddress.setText(Address);
+        if (Type == POIONTONE){
+            tvBalanceAddress.setText(Address);
+        }
         tvBalance.setText(list.get(0).getUser_money() + "");
         tvBalanceLines.setText(list.get(0).getHeigt_limit() + "");//单日交易额
         name = list.get(0).getCoin_name();
@@ -679,6 +692,8 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
         tvTime.setVisibility(View.GONE);
         String text = ResUtil.getString(R.string.my_tab_66);
         String text1 = ResUtil.getString(R.string.my_tab_69_2);
+        tvBalanceAddress.setFocusable(false);
+        tvBalanceAddress.setFocusableInTouchMode(false);
         switch (position) {
             case 0:
                 //todo 充币
@@ -692,6 +707,10 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
                 tvBalanceGet.setSelected(true);
                 llGetCoin.setVisibility(View.VISIBLE);
                 ivPutCoin.setVisibility(View.GONE);
+                tvBalanceAddress.setFocusableInTouchMode(true);
+                tvBalanceAddress.setFocusable(true);
+                tvBalanceAddress.requestFocus();
+                tvBalanceAddress.setText("");
                 text = ResUtil.getString(R.string.my_tab_67);
                 text1 = ResUtil.getString(R.string.my_tab_69);
                 setList(getList);

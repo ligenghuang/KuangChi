@@ -273,7 +273,16 @@
 
             </LinearLayout>
 
-
+            <TextView
+                android:id="@+id/tv_login_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="@string/login_tab_19"
+                android:visibility="gone"
+                android:textColor="@color/color_0095ff"
+                android:textSize="@dimen/text_size15"
+                android:gravity="right"/>
             <TextView
                 android:id="@+id/btn_login"
                 android:layout_width="match_parent"
@@ -285,6 +294,7 @@
                 android:text="@string/login_tab_1"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size18" />
+
 
             <LinearLayout
                 android:id="@+id/ll_login_consult"
