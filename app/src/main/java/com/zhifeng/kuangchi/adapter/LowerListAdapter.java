@@ -2,8 +2,11 @@ package com.zhifeng.kuangchi.adapter;
 
 import android.widget.TextView;
 
+import com.lgh.huanglib.util.data.ResUtil;
 import com.zhifeng.kuangchi.R;
 import com.zhifeng.kuangchi.module.LowerListDto;
+import com.zhifeng.kuangchi.util.data.DynamicTimeFormat;
+
 /**
   *
   * @ClassName:     下级代理列表适配器
@@ -21,10 +24,18 @@ public class LowerListAdapter extends BaseRecyclerAdapter<LowerListDto.DataBeanX
     @Override
     protected void onBindViewHolder(SmartViewHolder holder, LowerListDto.DataBeanX.DataBean model, int position) {
         holder.setIsRecyclable(false);
-        holder.text(R.id.tv_item_name,model.getRealname());//名称
-        holder.text(R.id.tv_item_id,model.getId()+"");//id
-        TextView lever = holder.itemView.findViewById(R.id.tv_item_lever);
+        String phone = model.getMobile();
+        holder.text(R.id.tv_item_phone,phone.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2"));
+        holder.text(R.id.tv_item_name_id,"ID:"+model.getId());
+        long data = (long) model.getCreatetime()*(long)1000;
+        holder.text(R.id.tv_item_time, DynamicTimeFormat.LongToString2(data));
+        TextView lever = holder.itemView.findViewById(R.id.tv_item_lower);
         setLever(lever,model.getLevel());
+
+        TextView tvVip = holder.itemView.findViewById(R.id.tv_item_vip);
+        tvVip.setText(ResUtil.getString(model.getIs_vip() == 1?R.string.my_tab_135:R.string.my_tab_136));
+        TextView tvNameApi = holder.itemView.findViewById(R.id.tv_item_nameapi);
+        tvNameApi.setText(ResUtil.getString(model.getIs_vip() == 1?R.string.my_tab_145:R.string.my_tab_146));
     }
 
     /**

@@ -11,4 +11,13 @@ public interface FoundView extends BaseView {
      */
     void getService();
     void getServiceSuccess(KLineDto serviceDto);
+
+    /**
+     * 验证密码
+     * @param pwd
+     */
+    void verifyPassword(String pwd);
+    void verifyPasswordSuccess();
+    void verifyPasswordError(String msg);
+
 }

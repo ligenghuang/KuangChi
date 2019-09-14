@@ -3,12 +3,16 @@ package com.zhifeng.kuangchi.actions;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lgh.huanglib.actions.Action;
+import com.lgh.huanglib.net.CollectionsUtils;
 import com.lgh.huanglib.util.L;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+import com.zhifeng.kuangchi.module.GeneralDto;
 import com.zhifeng.kuangchi.module.KLineDto;
 import com.zhifeng.kuangchi.module.ServiceDto;
 import com.zhifeng.kuangchi.net.WebUrlUtil;
 import com.zhifeng.kuangchi.ui.impl.FoundView;
+import com.zhifeng.kuangchi.util.config.MyApp;
+import com.zhifeng.kuangchi.util.data.MySp;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -31,6 +35,17 @@ public class FoundAction extends BaseAction<FoundView> {
         post(WebUrlUtil.POST_HISTORY_KLINE,false, service -> manager.runHttp(
                 service.GetKLine(WebUrlUtil.POST_HISTORY_KLINE,"lambusdt")));
     }
+
+    /***
+     * 验证密码
+     * @param pwd
+     */
+    public void verifyPassword(String pwd){
+        post(WebUrlUtil.POST_VERIFY_PWD,false,service -> manager.runHttp(
+                service.PostData(CollectionsUtils.generateMap("token", MySp.getAccessToken(MyApp.getContext()),"password",pwd),WebUrlUtil.POST_VERIFY_PWD)
+        ));
+    }
+
 
     /**
      * sticky:表明优先接收最高级  threadMode = ThreadMode.MAIN：表明在主线程
@@ -67,6 +82,22 @@ public class FoundAction extends BaseAction<FoundView> {
                                 return;
                             }
                             view.onError(kLineDto.getMsg(),action.getErrorType());
+                            return;
+                        }
+                        view.onError(msg,action.getErrorType());
+                        break;
+                    case WebUrlUtil.POST_VERIFY_PWD:
+                        //todo 验证密码
+                        if (aBoolean) {
+                            L.e("xx", "输出返回结果 " + action.getUserData().toString());
+                            GeneralDto generalDto = new Gson().fromJson(action.getUserData().toString(), new TypeToken<GeneralDto>() {
+                            }.getType());
+                            if (generalDto.getStatus()==200){
+                                //todo 验证密码成功
+                                view.verifyPasswordSuccess();
+                                return;
+                            }
+                            view.verifyPasswordError(generalDto.getMsg());
                             return;
                         }
                         view.onError(msg,action.getErrorType());

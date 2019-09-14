@@ -44,34 +44,34 @@
     <string name="my_tab_33">确定</string>
     <string name="my_tab_34">请输入%0$s收到的短信效验码</string>
 
-    <string name="my_tab_35">矿主姓名</string>
+    <string name="my_tab_35">姓名</string>
     <string name="my_tab_36">日期</string>
     <string name="my_tab_37">购买数量</string>
     <string name="my_tab_38">状态</string>
 
-    <string name="my_tab_39">%1$s/ID%2$s：分享服务客户人数%3$s</string>
+    <string name="my_tab_39">数量 %0$s</string>
     <string name="my_tab_40">星月</string>
     <string name="my_tab_41">星光</string>
     <string name="my_tab_42">星宝</string>
     <string name="my_tab_43">星河</string>
-    <string name="my_tab_44">%0$s人</string>
-    <string name="my_tab_45">姓名/ID</string>
+    <string name="my_tab_44">%0$s</string>
+    <string name="my_tab_45">电话号码/ID</string>
     <string name="my_tab_46">等级</string>
-    <string name="my_tab_47">操作</string>
+    <string name="my_tab_47">注册时间</string>
 
 
     <string name="my_tab_48">全部</string>
     <string name="my_tab_49">分享收益</string>
     <string name="my_tab_50">节点收益</string>
-    <string name="my_tab_51">全球分红收益</string>
+    <string name="my_tab_51">全球分红</string>
     <string name="my_tab_52">日产量</string>
     <string name="my_tab_53">提币</string>
-    <string name="my_tab_54">产量</string>
+    <string name="my_tab_54">累计产量</string>
     <string name="my_tab_55">金额： %0$s</string>
 
     <string name="my_tab_56">金币</string>
-    <string name="my_tab_56_3">币数</string>
-    <string name="my_tab_56_2">币种</string>
+    <string name="my_tab_56_3">数量</string>
+    <string name="my_tab_56_2">类别</string>
     <string name="my_tab_56_1">余额</string>
     <string name="my_tab_57">备注</string>
     <string name="my_tab_58">查看</string>
@@ -88,10 +88,11 @@
     <string name="my_tab_66">请选择充值方式</string>
     <string name="my_tab_67">提现到</string>
     <string name="my_tab_68">单日交易限额:</string>
-    <string name="my_tab_69">提币额度</string>
+    <string name="my_tab_69">转出额度</string>
     <string name="my_tab_69_2">充币额度</string>
     <string name="my_tab_70">提交</string>
     <string name="my_tab_71">地址：</string>
+    <string name="my_tab_71_1">转出地址：</string>
 
     <string name="my_tab_72">姓名</string>
     <string name="my_tab_73">身份证</string>
@@ -113,7 +114,7 @@
     <string name="my_tab_87">ID</string>
     <string name="my_tab_88">等级</string>
     <string name="my_tab_89">%0$s代理列表</string>
-    <string name="my_tab_89_1">代理明细</string>
+    <string name="my_tab_89_1">节点明细</string>
 
     <string name="my_tab_90">切换账户登录</string>
     <string name="my_tab_91">轻触账户以登录</string>
@@ -159,10 +160,10 @@
     <string name="my_tab_121">设备与时间变化</string>
     <string name="my_tab_122">收益明细</string>
     <string name="my_tab_123">存储空间ID</string>
-    <string name="my_tab_124">空间算力(TB)</string>
-    <string name="my_tab_125">加入矿池时间</string>
+    <string name="my_tab_124">算力(TB)</string>
+    <string name="my_tab_125">委托时间</string>
     <string name="my_tab_126">收益区间</string>
-    <string name="my_tab_127">日收益(Lamb)</string>
+    <string name="my_tab_127">日收益</string>
     <string name="my_tab_128">当前所属矿池：%0$s</string>
     <string name="my_tab_129">当前余额：%0$s &#160;&#160;&#160;&#160;&#160;&#160;Lamb</string>
     <string name="my_tab_130">设备地址：%0$s</string>
@@ -190,10 +191,12 @@
     <string name="my_tab_149">请输入支付密码</string>
     <string name="my_tab_150">短信验证码：</string>
     <string name="my_tab_151">请输入验证码</string>
-    <string name="my_tab_152">USDT提币数量≥50个,LAMB提币数量≥100个</string>
+    <string name="my_tab_152">USDT提币数量≥50个,LAMB提币数量≥50个</string>
     <string name="my_tab_153">每日审核时间：10:00~22:00</string>
     <string name="my_tab_154">复制地址</string>
     <string name="my_tab_155">请输入地址</string>
     <string name="my_tab_156">充值明细</string>
+    <string name="my_tab_157">状态</string>
+    <string name="my_tab_158">复制链接</string>
 
 </resources>

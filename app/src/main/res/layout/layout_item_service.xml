@@ -19,6 +19,7 @@
           android:gravity="center"
           android:paddingTop="@dimen/dp_10"
           android:paddingBottom="@dimen/dp_10"
+          android:visibility="gone"
           android:text="@string/my_tab_123"
           />
       <TextView

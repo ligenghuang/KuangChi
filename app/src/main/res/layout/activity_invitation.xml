@@ -57,8 +57,24 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="@dimen/text_size15"
+                android:gravity="center"
                 android:textColor="@color/white"
                 android:layout_marginTop="20dp"/>
+
+            <!--复制-->
+            <TextView
+                android:id="@+id/tv_invitation_copy_url"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/my_tab_158"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size13"
+                android:paddingLeft="18dp"
+                android:layout_marginTop="20dp"
+                android:paddingTop="4dp"
+                android:paddingRight="18dp"
+                android:paddingBottom="4dp"
+                android:background="@drawable/shape_login_bg"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"

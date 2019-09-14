@@ -98,7 +98,7 @@
                 android:textSize="@dimen/text_size12"
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="@dimen/item_height45"
-                android:text="TB/D"/>
+                android:text="数量/TB"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"

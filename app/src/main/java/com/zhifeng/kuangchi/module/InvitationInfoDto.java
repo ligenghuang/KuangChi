@@ -59,6 +59,15 @@ public class InvitationInfoDto {
         private String realname;
         private String id;
         private String address;
+        private String reg_url;
+
+        public String getReg_url() {
+            return reg_url == null ? "" : reg_url;
+        }
+
+        public void setReg_url(String reg_url) {
+            this.reg_url = reg_url;
+        }
 
         public String getUrl() {
             return url;

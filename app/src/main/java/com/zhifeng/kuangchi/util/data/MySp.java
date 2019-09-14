@@ -29,6 +29,7 @@ public class MySp extends MySharedPreferencesUtil {
         setUserNameapi(context,0);
         setBouns(context,"0");
         setBounsDay(context,"0");
+        setFound(context,0);
     }
 
     /**
@@ -274,6 +275,28 @@ public class MySp extends MySharedPreferencesUtil {
         SharedPreferences sp = getProjectSP(context);
         SharedPreferences.Editor editor = sp.edit();
         return editor.putString("Bouns", Bouns).commit();
+    }
+
+    /**
+     * 获取状态值  检验资产页是否需要验证密码 0需要验证 1不需要
+     * @param context
+     * @return
+     */
+    public static int getFound(Context context){
+        SharedPreferences sp = getProjectSP(context);
+        return sp.getInt("isFound", 0);
+    }
+
+    /**
+     * 设置状态值
+     * @param context
+     * @param isFound
+     * @return
+     */
+    public static boolean setFound(Context context,int isFound){
+        SharedPreferences sp = getProjectSP(context);
+        SharedPreferences.Editor editor = sp.edit();
+        return editor.putInt("isFound", isFound).commit();
     }
 
 }

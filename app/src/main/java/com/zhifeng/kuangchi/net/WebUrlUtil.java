@@ -217,4 +217,9 @@ public class WebUrlUtil {
      * 充值详情
      */
     public static final String POST_USER_PUT_DETAIL = "user/put_detail";
+
+    /**
+     * 验证密码
+     */
+    public static final String POST_VERIFY_PWD  ="user/password";
 }

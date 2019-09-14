@@ -1,367 +1,630 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <View
-        android:id="@+id/top_view"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/white" />
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:background="@color/white"
-        android:gravity="center"
-        android:layout_height="40dp">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/icon_logo"/>
-    </LinearLayout>
-
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/refreshLayout"
-        android:background="@color/color_f2"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.scwang.smartrefresh.layout.header.ClassicsHeader
-            android:id="@+id/classicsheader"
-            android:layout_width="match_parent"
-            app:srlTextSizeTitle="13dp"
-            android:layout_height="wrap_content"/>
 
-        <androidx.core.widget.NestedScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_logo" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/top_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/white" />
+
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/refreshLayout"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/color_f2">
+
+                <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                    android:id="@+id/classicsheader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srlTextSizeTitle="13dp" />
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
+                            android:orientation="horizontal">
+
+
+                            <!--今日收益-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="7dp"
+                                android:layout_weight="1"
+                                android:background="@mipmap/bouns_day_bg"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical"
+                                android:padding="11dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/home_tab_4"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/text_size15" />
+
+                                <TextView
+                                    android:id="@+id/tv_home_bouns_day"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/dp_10"
+                                    android:layout_marginBottom="@dimen/dp_10"
+                                    android:text="888"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/text_size20" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/home_tab_6"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/text_size15" />
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="7dp"
+                                android:layout_weight="1"
+                                android:background="@mipmap/bouns_bg"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical"
+                                android:padding="11dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/home_tab_5"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/text_size15" />
+
+                                <TextView
+                                    android:id="@+id/tv_home_bouns"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/dp_10"
+                                    android:layout_marginBottom="@dimen/dp_10"
+                                    android:text="888"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/text_size20" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/home_tab_6"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/text_size15" />
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
+                            android:orientation="horizontal">
+
+
+                            <!--今日收益-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="7dp"
+                                android:layout_weight="1"
+                                android:background="@mipmap/bouns_day_bg"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical"
+                                android:padding="11dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/home_tab_4"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/text_size15" />
+
+                                <TextView
+                                    android:id="@+id/tv_home_bouns_day_f"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/dp_10"
+                                    android:layout_marginBottom="@dimen/dp_10"
+                                    android:text="888"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/text_size20" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/home_tab_6_1"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/text_size15" />
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="7dp"
+                                android:layout_weight="1"
+                                android:background="@mipmap/bouns_bg"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical"
+                                android:padding="11dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/home_tab_5"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/text_size15" />
+
+                                <TextView
+                                    android:id="@+id/tv_home_bouns_f"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/dp_10"
+                                    android:layout_marginBottom="@dimen/dp_10"
+                                    android:text="888"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/text_size20" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/home_tab_6_1"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/text_size15" />
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+
+
+                        <TextView
+                            android:id="@+id/tv_lamb"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/color_2d244f"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/dp_40"
+                            android:paddingBottom="@dimen/dp_40"
+                            android:text="LAMB:1 ≈ 888 USDT"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size20" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_marginBottom="@dimen/dp_10"
+                            android:gravity="center"
+                            android:text="@string/found_tab_1"
+                            android:textColor="@color/color_15"
+                            android:textSize="@dimen/text_size15" />
+
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <!--委托明细-->
+                            <TextView
+                                android:id="@+id/tv_user_entrust"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="7dp"
+                                android:layout_weight="1"
+                                android:background="@color/white"
+                                android:drawableTop="@mipmap/icon_entrust"
+                                android:drawablePadding="6dp"
+                                android:gravity="center"
+                                android:paddingTop="45dp"
+                                android:paddingBottom="45dp"
+                                android:text="@string/my_tab_1"
+                                android:textColor="@color/color_15"
+                                android:textSize="14dp" />
+
+                            <!--代理明细-->
+                            <TextView
+                                android:id="@+id/tv_user_agency"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="7dp"
+                                android:layout_weight="1"
+                                android:background="@color/white"
+                                android:drawableTop="@mipmap/icon_agency"
+                                android:drawablePadding="6dp"
+                                android:gravity="center"
+                                android:paddingTop="45dp"
+                                android:paddingBottom="45dp"
+                                android:text="@string/my_tab_2"
+                                android:textColor="@color/color_15"
+                                android:textSize="14dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="14dp"
+                            android:orientation="horizontal">
+
+
+                            <!--收益明细-->
+                            <TextView
+                                android:id="@+id/tv_user_earnings"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="7dp"
+                                android:layout_weight="1"
+                                android:background="@color/white"
+                                android:drawableTop="@mipmap/icon_earnings"
+                                android:drawablePadding="6dp"
+                                android:gravity="center"
+                                android:paddingTop="45dp"
+                                android:paddingBottom="45dp"
+                                android:text="@string/my_tab_3"
+                                android:textColor="@color/color_15"
+                                android:textSize="14dp" />
+
+                            <!--充值明细-->
+                            <TextView
+                                android:id="@+id/tv_usere_put_money"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginRight="7dp"
+                                android:layout_weight="1"
+                                android:background="@color/white"
+                                android:drawableTop="@mipmap/icon_mention_money"
+                                android:drawablePadding="6dp"
+                                android:gravity="center"
+                                android:paddingTop="45dp"
+                                android:paddingBottom="45dp"
+                                android:text="@string/my_tab_156"
+                                android:textColor="@color/color_15"
+                                android:textSize="14dp" />
+
+                            <!--提币明细-->
+                            <TextView
+                                android:id="@+id/tv_usere_mention_money"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="7dp"
+                                android:layout_weight="1"
+                                android:background="@color/white"
+                                android:drawableTop="@mipmap/icon_mention_money"
+                                android:drawablePadding="6dp"
+                                android:gravity="center"
+                                android:paddingTop="45dp"
+                                android:paddingBottom="45dp"
+                                android:text="@string/my_tab_4"
+                                android:textColor="@color/color_15"
+                                android:textSize="14dp" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </androidx.core.widget.NestedScrollView>
+
+
+
+
+
+            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_find_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_find_bg"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="12dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="15dp">
-
-
-                    <!--今日收益-->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:gravity="center_horizontal"
-                        android:background="@mipmap/bouns_day_bg"
-                        android:layout_marginRight="7dp"
-                        android:padding="11dp"
-                        >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:text="@string/home_tab_4"
-                            android:textSize="@dimen/text_size15"
-                            />
-
-                        <TextView
-                            android:id="@+id/tv_home_bouns_day"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/text_size20"
-                            android:layout_marginTop="@dimen/dp_10"
-                            android:layout_marginBottom="@dimen/dp_10"
-                            android:textColor="@color/white"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/text_size15"
-                            android:text="@string/home_tab_6"/>
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:gravity="center_horizontal"
-                        android:background="@mipmap/bouns_bg"
-                        android:layout_marginLeft="7dp"
-                        android:padding="11dp"
-                        >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:text="@string/home_tab_5"
-                            android:textSize="@dimen/text_size15"
-                            />
-
-                        <TextView
-                            android:id="@+id/tv_home_bouns"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/text_size20"
-                            android:layout_marginTop="@dimen/dp_10"
-                            android:layout_marginBottom="@dimen/dp_10"
-                            android:textColor="@color/white"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/text_size15"
-                            android:text="@string/home_tab_6"/>
-
-
-                    </LinearLayout>
-
-
-
-
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="15dp">
-
-
-                    <!--今日收益-->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:gravity="center_horizontal"
-                        android:background="@mipmap/bouns_day_bg"
-                        android:layout_marginRight="7dp"
-                        android:padding="11dp"
-                        >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:text="@string/home_tab_4"
-                            android:textSize="@dimen/text_size15"
-                            />
-
-                        <TextView
-                            android:id="@+id/tv_home_bouns_day_f"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_10"
-                            android:layout_marginBottom="@dimen/dp_10"
-                            android:text="0"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/text_size20" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/text_size15"
-                            android:text="@string/home_tab_6_1"/>
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:gravity="center_horizontal"
-                        android:background="@mipmap/bouns_bg"
-                        android:layout_marginLeft="7dp"
-                        android:padding="11dp"
-                        >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:text="@string/home_tab_5"
-                            android:textSize="@dimen/text_size15"
-                            />
-
-                        <TextView
-                            android:id="@+id/tv_home_bouns_f"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_10"
-                            android:layout_marginBottom="@dimen/dp_10"
-                            android:text="0"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/text_size20" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/text_size15"
-                            android:text="@string/home_tab_6_1"/>
-
-
-                    </LinearLayout>
-
-
-
-
-
-
-                </LinearLayout>
+                android:gravity="center"
+                android:background="@drawable/shape_dialog_bg"
+                android:layout_marginTop="@dimen/item_height50"
+                android:layout_marginLeft="@dimen/item_height50"
+                android:layout_marginRight="@dimen/item_height50">
 
 
                 <TextView
-                    android:id="@+id/tv_lamb"
-                    android:layout_width="match_parent"
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:background="@color/color_2d244f"
-                    android:textColor="@color/white"
-                    android:text="LAMB:1 ≈ 0"
-                    android:textSize="@dimen/text_size20"
-                    android:paddingTop="@dimen/dp_40"
-                    android:paddingBottom="@dimen/dp_40"/>
+                    android:text="@string/my_tab_113"
+                    android:layout_margin="@dimen/dp_10"
+                    android:textSize="@dimen/text_size16"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/black"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/found_tab_1"
-                    android:layout_marginTop="@dimen/dp_10"
-                    android:layout_marginBottom="@dimen/dp_10"
-                    android:textSize="@dimen/text_size15"
-                    android:textColor="@color/color_15"/>
-
-
+                <View
+                    style="@style/line_3"/>
                 <LinearLayout
+                    android:id="@+id/ll_pwd"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/shape_pwd_bg"
                     android:orientation="horizontal">
 
-                    <!--委托明细-->
-                    <TextView
-                        android:id="@+id/tv_user_entrust"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/my_tab_1"
-                        android:textSize="14dp"
-                        android:layout_weight="1"
-                        android:textColor="@color/color_15"
-                        android:drawablePadding="6dp"
-                        android:gravity="center"
-                        android:paddingTop="45dp"
-                        android:paddingBottom="45dp"
-                        android:background="@color/white"
-                        android:layout_marginRight="7dp"
-                        android:drawableTop="@mipmap/icon_entrust"/>
+                    <!-- inputType设置隐藏密码明文
+                         textSize设置大一点，否则“点”太小了，不美观 -->
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
 
-                    <!--代理明细-->
-                    <TextView
-                        android:id="@+id/tv_user_agency"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/my_tab_2"
-                        android:textSize="14dp"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="7dp"
-                        android:textColor="@color/color_15"
-                        android:drawablePadding="6dp"
-                        android:background="@color/white"
-                        android:paddingTop="45dp"
-                        android:paddingBottom="45dp"
-                        android:drawableTop="@mipmap/icon_agency"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="14dp">
+                        <TextView
+                            android:id="@+id/tv_pass1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:inputType="numberPassword"
+                            android:text=""
+                            android:textColor="#000000"
+                            android:textSize="36sp" />
 
 
-                    <!--收益明细-->
-                    <TextView
-                        android:id="@+id/tv_user_earnings"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/my_tab_3"
-                        android:textSize="14dp"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:background="@color/white"
-                        android:paddingTop="45dp"
-                        android:paddingBottom="45dp"
-                        android:textColor="@color/color_15"
-                        android:drawablePadding="6dp"
-                        android:layout_marginRight="7dp"
-                        android:drawableTop="@mipmap/icon_earnings"/>
+                        <ImageView
+                            android:id="@+id/img_pass1"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/img_psw_bg"
+                            android:visibility="invisible" />
 
-                    <!--充值明细-->
-                    <TextView
-                        android:id="@+id/tv_usere_put_money"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/my_tab_156"
-                        android:textSize="14dp"
-                        android:gravity="center"
-                        android:background="@color/white"
-                        android:paddingTop="45dp"
-                        android:paddingBottom="45dp"
-                        android:layout_weight="1"
-                        android:textColor="@color/color_15"
-                        android:drawablePadding="6dp"
-                        android:layout_marginLeft="7dp"
-                        android:layout_marginRight="7dp"
-                        android:drawableTop="@mipmap/icon_mention_money"/>
+                    </FrameLayout>
 
-                    <!--提币明细-->
-                    <TextView
-                        android:id="@+id/tv_usere_mention_money"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/my_tab_4"
-                        android:textSize="14dp"
-                        android:gravity="center"
-                        android:background="@color/white"
-                        android:paddingTop="45dp"
-                        android:paddingBottom="45dp"
-                        android:layout_weight="1"
-                        android:textColor="@color/color_15"
-                        android:drawablePadding="6dp"
-                        android:layout_marginLeft="7dp"
-                        android:drawableTop="@mipmap/icon_mention_money"/>
+                    <View
+                        android:layout_width="0.66dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="0.66dp"
+                        android:layout_marginTop="0.66dp"
+                        android:background="#eeeeee" />
 
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_pass2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:inputType="numberPassword"
+                            android:text=""
+                            android:textColor="#000000"
+                            android:textSize="36sp" />
+
+
+                        <ImageView
+                            android:id="@+id/img_pass2"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/img_psw_bg"
+                            android:visibility="invisible" />
+
+                    </FrameLayout>
+
+
+                    <View
+                        android:layout_width="0.66dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="0.66dp"
+                        android:layout_marginTop="0.66dp"
+                        android:background="#eeeeee" />
+
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_pass3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:inputType="numberPassword"
+                            android:text=""
+                            android:textColor="#000000"
+                            android:textSize="36sp" />
+
+
+                        <ImageView
+                            android:id="@+id/img_pass3"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/img_psw_bg"
+                            android:visibility="invisible" />
+
+                    </FrameLayout>
+
+                    <View
+                        android:layout_width="0.66dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="0.66dp"
+                        android:layout_marginTop="0.66dp"
+                        android:background="#eeeeee" />
+
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_pass4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:inputType="numberPassword"
+                            android:text=""
+                            android:textColor="#000000"
+                            android:textSize="36sp" />
+
+
+                        <ImageView
+                            android:id="@+id/img_pass4"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/img_psw_bg"
+                            android:visibility="invisible" />
+
+                    </FrameLayout>
+
+                    <View
+                        android:layout_width="0.66dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="0.66dp"
+                        android:layout_marginTop="0.66dp"
+                        android:background="#eeeeee" />
+
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_pass5"
+                            android:layout_width="match_parent"
+                            android:layout_height="46dp"
+                            android:gravity="center"
+                            android:inputType="numberPassword"
+                            android:text=""
+                            android:textColor="#000000"
+                            android:textSize="36sp" />
+
+
+                        <ImageView
+                            android:id="@+id/img_pass5"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/img_psw_bg"
+                            android:visibility="invisible" />
+
+                    </FrameLayout>
+
+                    <View
+                        android:layout_width="0.66dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="0.66dp"
+                        android:layout_marginTop="0.66dp"
+                        android:background="#eeeeee" />
+
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_pass6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:inputType="numberPassword"
+                            android:text=""
+                            android:textColor="#000000"
+                            android:textSize="36sp" />
+
+
+                        <ImageView
+                            android:id="@+id/img_pass6"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/img_psw_bg"
+                            android:visibility="invisible" />
+
+                    </FrameLayout>
 
                 </LinearLayout>
 
 
             </LinearLayout>
 
+            <com.zhifeng.kuangchi.util.view.VirtualKeyboardView
+                android:id="@+id/virtualKeyboardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="@dimen/dp_40" />
 
 
-        </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
 
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </RelativeLayout>
+
 
 </LinearLayout>

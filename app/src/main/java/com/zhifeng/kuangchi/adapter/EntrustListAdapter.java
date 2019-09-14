@@ -35,7 +35,7 @@ public class EntrustListAdapter extends BaseRecyclerAdapter<EntrustListDto.DataB
         holder.text(R.id.tv_enteust_name,model.getRealname());//委托人
         try {
             long date = DynamicTimeFormat.stringToLong(model.getCreate_time(),"yyyy-MM-dd HH:mm:ss");
-            holder.text(R.id.tv_enteust_add_time, DynamicTimeFormat.LongToString4(date));//日期
+            holder.text(R.id.tv_enteust_add_time, DynamicTimeFormat.LongToString(date));//日期
             holder.text(R.id.tv_enteust_num,model.getT_num()+"T");//数量
 //        holder.text(R.id.tv_enteust_type,"");//状态
             TextView type = holder.itemView.findViewById(R.id.tv_enteust_type);

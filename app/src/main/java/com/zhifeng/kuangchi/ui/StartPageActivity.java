@@ -54,6 +54,7 @@ public class StartPageActivity extends BaseActivity {
         mActicity = this;
         mContext = this;
 
+        MySp.setFound(mContext,0);
         //todo 引导页
 //        if (!MySp.getFirst(getApplicationContext())) {
 //            jumpActivityNotFinish(this, GuidePageActivity.class);

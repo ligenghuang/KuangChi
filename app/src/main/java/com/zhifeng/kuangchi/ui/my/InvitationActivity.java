@@ -55,6 +55,7 @@ public class InvitationActivity extends UserBaseActivity<InvitationAction> imple
     TextView tvInvitationAddress;
 
     String code = "";
+    String url = "";
 
     @Override
     public int intiLayout() {
@@ -124,7 +125,8 @@ public class InvitationActivity extends UserBaseActivity<InvitationAction> imple
         GlideUtil.setImageCircle(mContext,dataBean.getAvatar(),ivInvitationAvatar,R.mipmap.icon_avatar);//头像
         tvInvitationRealname.setText(dataBean.getRealname());//昵称
         GlideUtil.setImage(mContext,dataBean.getUrl(),ivInvitationQrcode);//二维码
-        tvInvitationAddress.setText(dataBean.getAddress());//地址
+        url = dataBean.getReg_url();
+        tvInvitationAddress.setText(dataBean.getReg_url());//邀请链接
         code = dataBean.getId();
         tvInvitationCode.setText(ResUtil.getFormatString(R.string.my_tab_16,dataBean.getId()));//邀请码
     }
@@ -157,12 +159,16 @@ public class InvitationActivity extends UserBaseActivity<InvitationAction> imple
      * 监听点击事件
      * @param view
      */
-    @OnClick(R.id.tv_invitation_copy)
+    @OnClick({R.id.tv_invitation_copy,R.id.tv_invitation_copy_url})
     void OnClick(View view){
         switch (view.getId()){
             case R.id.tv_invitation_copy:
                 //todo 复制邀请码
-                Copy();
+                Copy(code);
+                break;
+            case R.id.tv_invitation_copy_url:
+                //todo 复制邀请链接
+                Copy(url);
                 break;
         }
     }
@@ -170,7 +176,7 @@ public class InvitationActivity extends UserBaseActivity<InvitationAction> imple
     /**
      * 复制邀请码
      */
-    private void Copy(){
+    private void Copy(String code){
         //获取剪贴板管理器：
         ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         // 创建普通字符型ClipData

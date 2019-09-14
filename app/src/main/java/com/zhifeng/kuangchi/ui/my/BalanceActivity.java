@@ -129,6 +129,8 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
     TextView typeTv;
     @BindView(R.id.tv_time)
     TextView tvTime;
+    @BindView(R.id.tv_address)
+    TextView tvAddress;
 
 
     public static int Type = 0;
@@ -692,6 +694,7 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
         tvTime.setVisibility(View.GONE);
         String text = ResUtil.getString(R.string.my_tab_66);
         String text1 = ResUtil.getString(R.string.my_tab_69_2);
+        tvAddress.setText(ResUtil.getString(R.string.my_tab_71));
         tvBalanceAddress.setFocusable(false);
         tvBalanceAddress.setFocusableInTouchMode(false);
         switch (position) {
@@ -711,6 +714,8 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
                 tvBalanceAddress.setFocusable(true);
                 tvBalanceAddress.requestFocus();
                 tvBalanceAddress.setText("");
+
+                tvAddress.setText(ResUtil.getString(R.string.my_tab_71_1));
                 text = ResUtil.getString(R.string.my_tab_67);
                 text1 = ResUtil.getString(R.string.my_tab_69);
                 setList(getList);

@@ -5,10 +5,11 @@ import java.util.List;
 
 public class AgencyListDto {
 
+
     /**
      * status : 200
      * msg : success
-     * data : {"level_count_1":0,"level_count_2":0,"level_count_3":0,"level_count_4":0,"user_first":{"total":1,"per_page":20,"current_page":1,"last_page":1,"data":[{"id":27761,"level":5,"realname":"默认昵称","first_leader":27760}]},"team_count":1}
+     * data : {"level_count_1":0,"level_count_2":0,"level_count_3":0,"level_count_4":0,"user_first":{"total":1,"per_page":20,"current_page":1,"last_page":1,"data":[{"id":31051,"level":0,"realname":"默认昵称","first_leader":31033,"is_vip":0,"mobile":"15219781117","createtime":1568189768,"is_nameapi":0}]},"team_count":1}
      */
 
     private int status;
@@ -45,7 +46,7 @@ public class AgencyListDto {
          * level_count_2 : 0
          * level_count_3 : 0
          * level_count_4 : 0
-         * user_first : {"total":1,"per_page":20,"current_page":1,"last_page":1,"data":[{"id":27761,"level":5,"realname":"默认昵称","first_leader":27760}]}
+         * user_first : {"total":1,"per_page":20,"current_page":1,"last_page":1,"data":[{"id":31051,"level":0,"realname":"默认昵称","first_leader":31033,"is_vip":0,"mobile":"15219781117","createtime":1568189768,"is_nameapi":0}]}
          * team_count : 1
          */
 
@@ -110,7 +111,7 @@ public class AgencyListDto {
              * per_page : 20
              * current_page : 1
              * last_page : 1
-             * data : [{"id":27761,"level":5,"realname":"默认昵称","first_leader":27760}]
+             * data : [{"id":31051,"level":0,"realname":"默认昵称","first_leader":31033,"is_vip":0,"mobile":"15219781117","createtime":1568189768,"is_nameapi":0}]
              */
 
             private int total;
@@ -164,16 +165,24 @@ public class AgencyListDto {
 
             public static class DataBean {
                 /**
-                 * id : 27761
-                 * level : 5
+                 * id : 31051
+                 * level : 0
                  * realname : 默认昵称
-                 * first_leader : 27760
+                 * first_leader : 31033
+                 * is_vip : 0
+                 * mobile : 15219781117
+                 * createtime : 1568189768
+                 * is_nameapi : 0
                  */
 
                 private int id;
                 private int level;
                 private String realname;
                 private int first_leader;
+                private int is_vip;
+                private String mobile;
+                private int createtime;
+                private int is_nameapi;
 
                 public int getId() {
                     return id;
@@ -196,7 +205,7 @@ public class AgencyListDto {
                 }
 
                 public void setRealname(String realname) {
-                    this.realname = realname == null ? "" : realname;
+                    this.realname = realname;
                 }
 
                 public int getFirst_leader() {
@@ -205,6 +214,38 @@ public class AgencyListDto {
 
                 public void setFirst_leader(int first_leader) {
                     this.first_leader = first_leader;
+                }
+
+                public int getIs_vip() {
+                    return is_vip;
+                }
+
+                public void setIs_vip(int is_vip) {
+                    this.is_vip = is_vip;
+                }
+
+                public String getMobile() {
+                    return mobile == null ? "" : mobile;
+                }
+
+                public void setMobile(String mobile) {
+                    this.mobile = mobile;
+                }
+
+                public int getCreatetime() {
+                    return createtime;
+                }
+
+                public void setCreatetime(int createtime) {
+                    this.createtime = createtime;
+                }
+
+                public int getIs_nameapi() {
+                    return is_nameapi;
+                }
+
+                public void setIs_nameapi(int is_nameapi) {
+                    this.is_nameapi = is_nameapi;
                 }
             }
         }

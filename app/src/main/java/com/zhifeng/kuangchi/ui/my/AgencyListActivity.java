@@ -196,7 +196,7 @@ public class AgencyListActivity extends UserBaseActivity<AgencyListAction> imple
                 recyclerview.setVisibility(View.GONE);
             }
         }
-        tvAgencyRealnameLever.setText(ResUtil.getFormatString(R.string.my_tab_39, MySp.getUserName(mContext), MySp.getUserId(mContext), dataBeanX.getTeam_count()+""));
+        tvAgencyRealnameLever.setText(ResUtil.getFormatString(R.string.my_tab_39,  dataBeanX.getTeam_count()+""));
         tvAgencyLevelCount1.setText(ResUtil.getFormatString(R.string.my_tab_44, dataBeanX.getLevel_count_1() + ""));//舵手
         tvAgencyLevelCount2.setText(ResUtil.getFormatString(R.string.my_tab_44, dataBeanX.getLevel_count_2() + ""));//大副
         tvAgencyLevelCount3.setText(ResUtil.getFormatString(R.string.my_tab_44, dataBeanX.getLevel_count_3() + ""));//舰长

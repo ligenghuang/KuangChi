@@ -110,6 +110,43 @@ public class LowerListDto {
             private int level;
             private String realname;
             private int first_leader;
+            private int is_vip;
+            private String mobile;
+            private int createtime;
+            private int is_nameapi;
+
+
+            public int getIs_vip() {
+                return is_vip;
+            }
+
+            public void setIs_vip(int is_vip) {
+                this.is_vip = is_vip;
+            }
+
+            public String getMobile() {
+                return mobile == null ? "" : mobile;
+            }
+
+            public void setMobile(String mobile) {
+                this.mobile = mobile;
+            }
+
+            public int getCreatetime() {
+                return createtime;
+            }
+
+            public void setCreatetime(int createtime) {
+                this.createtime = createtime;
+            }
+
+            public int getIs_nameapi() {
+                return is_nameapi;
+            }
+
+            public void setIs_nameapi(int is_nameapi) {
+                this.is_nameapi = is_nameapi;
+            }
 
             public int getId() {
                 return id;
