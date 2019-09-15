@@ -11,4 +11,12 @@
     <string name="srl_footer_failed_1">刷新失败</string>
     <string name="srl_footer_finish_1">刷新完成</string>
     <string name="srl_footer_loading_1">正在刷新…</string>
+
+    <string name="update_tab_1">版本更新</string>
+    <string name="update_tab_2">检测到有更新。点击更新</string>
+
+    <string name="down_title_name">涅布拉云</string>
+    <string name="down_downing">下载中...</string>
+    <string name="down_install">APK安装包已下载完成，点击安装</string>
+    <string name="down_update">检测到有更新。点击更新</string>
 </resources>

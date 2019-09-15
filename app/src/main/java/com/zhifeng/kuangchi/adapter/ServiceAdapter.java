@@ -23,7 +23,7 @@ public class ServiceAdapter extends BaseRecyclerAdapter<ServiceDto.DataBean.Mine
     @Override
     protected void onBindViewHolder(SmartViewHolder holder, ServiceDto.DataBean.MinerInfoBean model, int position) {
         holder.setIsRecyclable(false);
-        holder.text(R.id.tv_item_miner_id,model.getMiner_id());
+//        holder.text(R.id.tv_item_miner_id,model.getMiner_id());
         String minSuanli = Math.round(Double.valueOf(model.getMinimum_suanli()))+"";
         String minSuanyi = Math.round(Double.valueOf(model.getMinimum_shouyi()))+"";
         String maxSuanli = Math.ceil(Double.valueOf(model.getMaximum_suanli()))+"";

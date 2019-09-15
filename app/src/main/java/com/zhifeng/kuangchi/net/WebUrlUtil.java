@@ -222,4 +222,9 @@ public class WebUrlUtil {
      * 验证密码
      */
     public static final String POST_VERIFY_PWD  ="user/password";
+
+    /**
+     * 检测版本
+     */
+    public static final String POST_UPDATE = "user/android";
 }

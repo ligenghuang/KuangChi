@@ -1,2 +1,2 @@
-include ':app', ':HuangLib', ':imagepickerLib'
+include ':app', ':HuangLib', ':imagepickerLib', ':updatepluginlib'
 rootProject.name='KuangChi'

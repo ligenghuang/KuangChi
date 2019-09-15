@@ -1,11 +1,18 @@
 package com.zhifeng.kuangchi.ui.home;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,11 +35,23 @@ import com.zhifeng.kuangchi.adapter.AnnounceAdapter;
 import com.zhifeng.kuangchi.adapter.Banner;
 import com.zhifeng.kuangchi.adapter.InformationAdapter;
 import com.zhifeng.kuangchi.module.HomeDataDto;
+import com.zhifeng.kuangchi.module.UpdateDto;
 import com.zhifeng.kuangchi.ui.MainActivity;
 import com.zhifeng.kuangchi.ui.impl.HomeView;
 import com.zhifeng.kuangchi.ui.login.LoginOrRegisteredActivity;
 import com.zhifeng.kuangchi.util.base.UserBaseFragment;
 import com.zhifeng.kuangchi.util.data.MySp;
+import com.zhifeng.kuangchi.util.update.AllDialogShowStrategy;
+import com.zhifeng.kuangchi.util.update.NotificationDownloadCreator;
+import com.zhifeng.kuangchi.util.update.NotificationForODownloadCreator;
+import com.zhifeng.kuangchi.util.update.NotificationInstallCreator;
+import com.zhifeng.kuangchi.util.update.ToastCallback;
+
+import org.lzh.framework.updatepluginlib.UpdateBuilder;
+import org.lzh.framework.updatepluginlib.base.DownloadCallback;
+import org.lzh.framework.updatepluginlib.base.DownloadNotifier;
+import org.lzh.framework.updatepluginlib.flow.Launcher;
+import org.lzh.framework.updatepluginlib.model.Update;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +74,7 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
     private static final int POIONTONE = 0;
     private static final int POIONTTWO = 1;
 
-
+    ToastCallback callback;
     //轮播图
     @BindView(R.id.banner_main)
     BGABanner banner_main;
@@ -150,6 +169,7 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
     protected void onFragmentVisibleChange(boolean isVisible) {
         super.onFragmentVisibleChange(isVisible);
         if (isVisible) {
+            updata();
             if (isFirst) {
                 loadDialog();
                 isFirst = false;
@@ -169,6 +189,8 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+
+                updata();
                 getHomeData();
             }
         });
@@ -240,6 +262,34 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
             tvMessageNum.setVisibility(View.VISIBLE);
         }else {
             tvMessageNum.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void updata() {
+        if (CheckNetwork.checkNetwork2(mContext)){
+            baseAction.updata();
+        }
+    }
+
+    @Override
+    public void updataSuccessful(UpdateDto updateDto) {
+        String downloadUrl = updateDto.getData().getUrl();
+        int versionNum = updateDto.getData().getAndroid();
+        L.e("updataSuccessful","versionNum = "+versionNum);
+        PackageManager manager = mContext.getPackageManager();
+        PackageInfo info = null;
+        int code = 0;
+        try {
+            info = manager.getPackageInfo(mContext.getPackageName(), 0);
+            code = info.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        L.e("updataSuccessful","getSDKVersionNumber() = "+getSDKVersionNumber());
+        if (versionNum > code) {
+            //todo 检测更新
+            showUpdata(downloadUrl, versionNum);
         }
     }
 
@@ -406,6 +456,70 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
                 jumpActivityNotFinish(mContext,CustomerServiceActivity.class);
                 break;
         }
+    }
+
+
+    /**
+     * 更新 弹窗
+     */
+    private void showUpdata( String downloadUrl, int versionNum) {
+
+        Dialog dialog = new Dialog(getActivity(), R.style.MY_AlertDialog);
+        dialog.setCanceledOnTouchOutside(false);
+        View inflate = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_updata, null);
+        TextView tv_updata = inflate.findViewById(R.id.tv_dialog_confirm);
+        tv_updata.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //todo 立即更新
+                loadDown(downloadUrl, versionNum);
+                tv_updata.setText("正在下载");
+                tv_updata.setEnabled(false);
+            }
+        });
+        dialog.setContentView(inflate);
+        Window dialogWindow = dialog.getWindow();
+        dialogWindow.setGravity(Gravity.CENTER);
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        lp.y = 20;
+        dialogWindow.setAttributes(lp);
+        dialog.show();
+    }
+
+
+    public void loadDown(String downloadUrl, int versionNum) {
+        UpdateBuilder builder = UpdateBuilder.create();
+        // 配置toast通知的回调
+        builder.setDownloadCallback(callback);
+        builder.setCheckCallback(callback);
+        builder.setUpdateStrategy(new AllDialogShowStrategy());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            builder.setDownloadNotifier(new NotificationForODownloadCreator());
+        } else {
+
+            builder.setDownloadNotifier(new NotificationDownloadCreator());
+        }
+        builder.setInstallNotifier(new NotificationInstallCreator());
+
+
+        Update update = new Update();
+        // 此apk包的下载地址
+//        update.setUpdateUrl("https://raw.githubusercontent.com/yjfnypeu/UpdatePlugin/master/update_plugin.apk");
+        update.setUpdateUrl(downloadUrl);
+        // 此apk包的版本号
+        update.setVersionCode(versionNum);
+        // 此apk包的版本名称
+        update.setVersionName("v"+versionNum);
+        // 此apk包的更新内容
+        update.setUpdateContent("");
+        // 此apk包是否为强制更新
+        update.setForced(true);
+        // 是否显示忽略此次版本更新按钮
+        update.setIgnore(false);
+        update.setMd5(null);
+
+        Launcher.getInstance().launchDownload(update, builder);
     }
 
 

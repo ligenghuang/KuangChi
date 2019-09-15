@@ -7,6 +7,7 @@ import com.lgh.huanglib.actions.Action;
 import com.lgh.huanglib.util.L;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.zhifeng.kuangchi.module.HomeDataDto;
+import com.zhifeng.kuangchi.module.UpdateDto;
 import com.zhifeng.kuangchi.net.WebUrlUtil;
 import com.zhifeng.kuangchi.ui.impl.HomeView;
 import com.zhifeng.kuangchi.util.config.MyApp;
@@ -31,6 +32,11 @@ public class HomeAction extends BaseAction<HomeView> {
     public void getHomeData(){
         post(WebUrlUtil.POST_GET_HOME_INDEX,false, service -> manager.runHttp(
                 service.GetData(WebUrlUtil.POST_GET_HOME_INDEX, MySp.getAccessToken(MyApp.getContext()))));
+    }
+
+    public void updata(){
+        post(WebUrlUtil.POST_UPDATE,false, service -> manager.runHttp(
+                service.PostData(WebUrlUtil.POST_UPDATE)));
     }
 
     /**
@@ -74,6 +80,20 @@ public class HomeAction extends BaseAction<HomeView> {
                               view.onError(msg,action.getErrorType());
                           }
 
+                        }
+                        view.onError(msg,action.getErrorType());
+                        break;
+                    case WebUrlUtil.POST_UPDATE:
+                        if (aBoolean) {
+                            UpdateDto updateDto = new Gson().fromJson(action.getUserData().toString(), new TypeToken<UpdateDto>() {
+                            }.getType());
+                            if (updateDto.getStatus() == 200){
+                                //todo 获取版本信息成功
+                                view.updataSuccessful(updateDto);
+                                return;
+                            }
+                            view.onError(updateDto.getMsg(),action.getErrorType());
+                            return;
                         }
                         view.onError(msg,action.getErrorType());
                         break;

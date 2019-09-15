@@ -30,6 +30,8 @@
             android:gravity="center"
             android:textColor="@color/color_15"
             android:text="20191215"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
             android:textSize="@dimen/text_size13"
             android:layout_height="wrap_content"/>
 
@@ -42,6 +44,8 @@
             android:textColor="@color/color_15"
             android:text="8T"
             android:textSize="@dimen/text_size13"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
             android:layout_height="wrap_content"/>
 
         <!--状态-->
