@@ -3,6 +3,7 @@ package com.lgh.huanglib.util.config;
 import android.content.Context;
 import android.widget.ImageView;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
@@ -32,6 +33,8 @@ public class GlideUtil {
                         .error(errorPic)
                         .centerCrop()
                         .circleCrop()
+                        .skipMemoryCache(true) // 不使用内存缓存
+                        .diskCacheStrategy(DiskCacheStrategy.NONE) // 不使用磁盘缓存
                         .into(main_user_iv);
             } else {
                 main_user_iv.setImageResource(errorPic);

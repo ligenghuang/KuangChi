@@ -121,6 +121,7 @@ public class MyFragment extends UserBaseFragment<MyAction> implements MyView {
     public void getMyInfoSuccess(MyInfoDto infoDto) {
         loadDiss();
         MyInfoDto.DataBean dataBean = infoDto.getData();
+        L.d("lgh_Avatar",dataBean.getAvatar());
         GlideUtil.setImageCircle(mContext, dataBean.getAvatar(), ivAvatar, R.drawable.logo);//todo 头像
         MySp.setUserImg(mContext, dataBean.getAvatar());//保存头像
         tvUserName.setText(dataBean.getRealname());//昵称

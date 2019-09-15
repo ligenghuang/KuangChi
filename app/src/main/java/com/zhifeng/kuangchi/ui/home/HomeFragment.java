@@ -62,6 +62,8 @@ import butterknife.OnClick;
 import butterknife.OnTouch;
 import cn.bingoogolapple.bgabanner.BGABanner;
 
+import static org.greenrobot.greendao.async.AsyncOperation.OperationType.Update;
+
 /**
  * 首页
  */
@@ -473,7 +475,7 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
             public void onClick(View view) {
                 //todo 立即更新
                 loadDown(downloadUrl, versionNum);
-                tv_updata.setText("正在下载");
+                tv_updata.setText("正在下载，请稍等");
                 tv_updata.setEnabled(false);
             }
         });

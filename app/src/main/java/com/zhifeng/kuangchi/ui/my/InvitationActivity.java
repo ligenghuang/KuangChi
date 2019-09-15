@@ -122,7 +122,7 @@ public class InvitationActivity extends UserBaseActivity<InvitationAction> imple
     public void getInvitationSuccess(InvitationInfoDto invitationInfoDto) {
         loadDiss();
         InvitationInfoDto.DataBean dataBean = invitationInfoDto.getData();
-        GlideUtil.setImageCircle(mContext,dataBean.getAvatar(),ivInvitationAvatar,R.mipmap.icon_avatar);//头像
+        GlideUtil.setImageCircle(mContext,dataBean.getAvatar(),ivInvitationAvatar,R.drawable.logo);//头像
         tvInvitationRealname.setText(dataBean.getRealname());//昵称
         GlideUtil.setImage(mContext,dataBean.getUrl(),ivInvitationQrcode);//二维码
         url = dataBean.getReg_url();
