@@ -63,7 +63,7 @@ public class TopUpDetailActivity extends UserBaseActivity<TopUpAction> implement
 
     @Override
     public int intiLayout() {
-        return R.layout.activity_carry;
+        return R.layout.activity_carry_2;
     }
 
     @Override

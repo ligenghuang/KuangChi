@@ -41,15 +41,7 @@
             android:layout_weight="1"
             android:textColor="@color/color_15"
             android:textSize="@dimen/text_size13"/>
-        <TextView
-            android:id="@+id/tv_item_poundage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="-100"
-            android:layout_weight="1"
-            android:textColor="@color/color_15"
-            android:textSize="@dimen/text_size13"/>
+
         <TextView
             android:id="@+id/tv_item_remark"
             android:layout_width="match_parent"

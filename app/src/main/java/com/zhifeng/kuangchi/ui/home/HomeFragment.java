@@ -494,7 +494,7 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
         // 配置toast通知的回调
         builder.setDownloadCallback(callback);
         builder.setCheckCallback(callback);
-        builder.setUpdateStrategy(new AllDialogShowStrategy());
+//        builder.setUpdateStrategy(new AllDialogShowStrategy());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             builder.setDownloadNotifier(new NotificationForODownloadCreator());

@@ -22,7 +22,7 @@ import com.zhifeng.kuangchi.util.data.DynamicTimeFormat;
 public class PutListAdapter extends BaseRecyclerAdapter<TopUpListDto.DataBeanX.DataBean> {
     Context context;
     public PutListAdapter(Context context) {
-        super(R.layout.layout_item_carry);
+        super(R.layout.layout_item_carry_2);
         this.context = context;
     }
 
