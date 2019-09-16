@@ -198,7 +198,7 @@ public class CarryListDto {
             }
 
             public String getTax_rate() {
-                return tax_rate == null ? "" : tax_rate;
+                return tax_rate == null ? "0" : tax_rate;
             }
 
             public void setTax_rate(String tax_rate) {
@@ -214,7 +214,7 @@ public class CarryListDto {
             }
 
             public String getTax() {
-                return tax == null ? "" : tax;
+                return tax == null ? "0" : tax;
             }
 
             public void setTax(String tax) {

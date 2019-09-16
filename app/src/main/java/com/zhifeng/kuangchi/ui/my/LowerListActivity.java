@@ -60,6 +60,7 @@ public class LowerListActivity extends UserBaseActivity<LowerListAction> impleme
     TextView tvNodata;
 
     int lever;
+    boolean isLever = false;
 
     @Override
     public int intiLayout() {
@@ -93,8 +94,14 @@ public class LowerListActivity extends UserBaseActivity<LowerListAction> impleme
                 .init();
         toolbar.setNavigationOnClickListener(view -> finish());
         lever = getIntent().getIntExtra("lever",0);
+        isLever = getIntent().getBooleanExtra("isLever",false);
+        if (isLever) {
+            setfTitle();
+        }else {
+            fTitleTv.setText(ResUtil.getFormatString(R.string.my_tab_89_1));
+        }
 //        setfTitle();
-        fTitleTv.setText(ResUtil.getFormatString(R.string.my_tab_89_1));
+
     }
 
     /**
@@ -174,7 +181,12 @@ public class LowerListActivity extends UserBaseActivity<LowerListAction> impleme
         if (CheckNetwork.checkNetwork2(mContext)) {
             isRefresh = true;
             page = 1;
-            baseAction.getLowerList(page, id);
+            if (isLever){
+                baseAction.getLowerList2(page, lever+"");
+            }else {
+                baseAction.getLowerList(page, id);
+            }
+
         } else {
             refreshLayout.finishRefresh();
         }
@@ -188,7 +200,11 @@ public class LowerListActivity extends UserBaseActivity<LowerListAction> impleme
         if (CheckNetwork.checkNetwork2(mContext)) {
             isRefresh = false;
             page++;
-            baseAction.getLowerList(page, id);
+            if (isLever){
+                baseAction.getLowerList2(page, lever+"");
+            }else {
+                baseAction.getLowerList(page, id);
+            }
         } else {
             refreshLayout.finishLoadMore();
         }

@@ -92,10 +92,10 @@ public class HomeAction extends BaseAction<HomeView> {
                                 view.updataSuccessful(updateDto);
                                 return;
                             }
-                            view.onError(updateDto.getMsg(),action.getErrorType());
+//                            view.onError(updateDto.getMsg(),action.getErrorType());
                             return;
                         }
-                        view.onError(msg,action.getErrorType());
+//                        view.onError(msg,action.getErrorType());
                         break;
                 }
 

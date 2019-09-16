@@ -197,7 +197,7 @@ public class EntrustedPurchaseActivity extends UserBaseActivity<EntrustedPurchas
         //todo 列表item点击事件监听
         coinListAdapter.setOnClickListener(new CoinListAdapter.OnClickListener() {
             @Override
-            public void onClick(String address, int id, int coinType,int res,double user_money,double Rate,String Name) {
+            public void onClick(String address, int id, int coinType,int res,double user_money,double Rate,String Name,double tax_rate) {
                 isOther = false;
                 setOther();
                 List<BalanceDto.DataBean.CoinAddressBean> list = coinListAdapter.getAllData();

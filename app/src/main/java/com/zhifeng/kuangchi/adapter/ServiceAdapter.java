@@ -28,10 +28,10 @@ public class ServiceAdapter extends BaseRecyclerAdapter<ServiceDto.DataBean.Mine
         String minSuanyi = Math.round(Double.valueOf(model.getMinimum_shouyi()))+"";
         String maxSuanli = Math.ceil(Double.valueOf(model.getMaximum_suanli()))+"";
         String maxSuanyi = Math.ceil(Double.valueOf(model.getMaximum_shouyi()))+"";
-        holder.text(R.id.tv_item_maximum_suanli,minSuanli+"~"+maxSuanli);
-        holder.text(R.id.tv_item_shouyi,minSuanyi+"~"+maxSuanyi);
+        holder.text(R.id.tv_item_maximum_suanli,model.getT_num());
+        holder.text(R.id.tv_item_shouyi,"0~3");
         long time = model.getCreatetime() * (long)1000;
         holder.text(R.id.tv_item_time, DynamicTimeFormat.LongToString2(time));
-        holder.text(R.id.tv_item_day_nums,model.getDay_nums()+"");
+//        holder.text(R.id.tv_item_day_nums,model.getDay_nums()+"");
     }
 }

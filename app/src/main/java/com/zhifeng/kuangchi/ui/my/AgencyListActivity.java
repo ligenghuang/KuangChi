@@ -1,7 +1,9 @@
 package com.zhifeng.kuangchi.ui.my;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +17,8 @@ import com.lgh.huanglib.util.base.ActivityStack;
 import com.lgh.huanglib.util.data.ResUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.zhifeng.kuangchi.R;
 import com.zhifeng.kuangchi.actions.AgencyListAction;
@@ -22,11 +26,11 @@ import com.zhifeng.kuangchi.adapter.AgencyListAdapter;
 import com.zhifeng.kuangchi.module.AgencyListDto;
 import com.zhifeng.kuangchi.ui.impl.AgencyListView;
 import com.zhifeng.kuangchi.util.base.UserBaseActivity;
-import com.zhifeng.kuangchi.util.data.MySp;
 
 import java.lang.ref.WeakReference;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * @ClassName: 代理明细(未完成)
@@ -67,6 +71,12 @@ public class AgencyListActivity extends UserBaseActivity<AgencyListAction> imple
     AgencyListAdapter agencyListAdapter;
     @BindView(R.id.tv_nodata)
     TextView tvNodata;
+    @BindView(R.id.frameLayout)
+    FrameLayout frameLayout;
+    @BindView(R.id.classicsheader)
+    ClassicsHeader classicsheader;
+    @BindView(R.id.classicsfooter)
+    ClassicsFooter classicsfooter;
 
 
     @Override
@@ -191,12 +201,12 @@ public class AgencyListActivity extends UserBaseActivity<AgencyListAction> imple
             }
         } else {
             //todo 2019/8/30 没数据 添加空布局
-            if (isRefresh){
+            if (isRefresh) {
                 tvNodata.setVisibility(View.VISIBLE);
                 recyclerview.setVisibility(View.GONE);
             }
         }
-        tvAgencyRealnameLever.setText(ResUtil.getFormatString(R.string.my_tab_39,  dataBeanX.getTeam_count()+""));
+        tvAgencyRealnameLever.setText(ResUtil.getFormatString(R.string.my_tab_39, dataBeanX.getTeam_count() + ""));
         tvAgencyLevelCount1.setText(ResUtil.getFormatString(R.string.my_tab_44, dataBeanX.getLevel_count_1() + ""));//舵手
         tvAgencyLevelCount2.setText(ResUtil.getFormatString(R.string.my_tab_44, dataBeanX.getLevel_count_2() + ""));//大副
         tvAgencyLevelCount3.setText(ResUtil.getFormatString(R.string.my_tab_44, dataBeanX.getLevel_count_3() + ""));//舰长
@@ -244,5 +254,30 @@ public class AgencyListActivity extends UserBaseActivity<AgencyListAction> imple
             refreshLayout.setNoMoreData(false);
         }
 
+    }
+
+    @OnClick({R.id.tv_agency_level_count_1, R.id.tv_agency_level_count_2, R.id.tv_agency_level_count_3, R.id.tv_agency_level_count_4})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv_agency_level_count_1:
+                jumpActivity(1);
+                break;
+            case R.id.tv_agency_level_count_2:
+                jumpActivity(2);
+                break;
+            case R.id.tv_agency_level_count_3:
+                jumpActivity(3);
+                break;
+            case R.id.tv_agency_level_count_4:
+                jumpActivity(4);
+                break;
+        }
+    }
+
+    private void jumpActivity(int i){
+        Intent intent = new Intent(mContext, LowerListActivity.class);
+        intent.putExtra("isLever",true);
+        intent.putExtra("lever",i);
+        startActivity(intent);
     }
 }

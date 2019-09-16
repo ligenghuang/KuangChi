@@ -78,7 +78,7 @@
 
     <string name="my_tab_59">提币详情</string>
     <string name="my_tab_59_1">充值详情</string>
-    <string name="my_tab_60">金额 ：</string>
+    <string name="my_tab_60">数量 ：</string>
     <string name="my_tab_61">提币日期</string>
     <string name="my_tab_62">提现方式</string>
     <string name="my_tab_63">地址</string>
@@ -140,7 +140,7 @@
     <string name="my_tab_109">请输入新密码</string>
 
     <string name="my_tab_110">请选择币类型</string>
-    <string name="my_tab_110_1">请输入金额</string>
+    <string name="my_tab_110_1">请输入数量</string>
     <string name="my_tab_111">转换币比率:</string>
 
     <string name="my_tab_112">提币金额不能为0!</string>
@@ -160,7 +160,7 @@
     <string name="my_tab_121">设备与时间变化</string>
     <string name="my_tab_122">收益明细</string>
     <string name="my_tab_123">存储空间ID</string>
-    <string name="my_tab_124">算力(TB)</string>
+    <string name="my_tab_124">存储空间(TB)</string>
     <string name="my_tab_125">委托时间</string>
     <string name="my_tab_126">收益区间</string>
     <string name="my_tab_127">日收益</string>
@@ -198,5 +198,8 @@
     <string name="my_tab_156">充值明细</string>
     <string name="my_tab_157">状态</string>
     <string name="my_tab_158">复制链接</string>
+
+    <string name="my_tab_159">转出手续费：</string>
+    <string name="my_tab_160">手续费</string>
 
 </resources>

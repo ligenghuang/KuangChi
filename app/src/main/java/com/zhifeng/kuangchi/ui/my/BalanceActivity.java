@@ -132,6 +132,11 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
     @BindView(R.id.tv_address)
     TextView tvAddress;
 
+    @BindView(R.id.ll_poundage)
+    LinearLayout llPoundage;
+    @BindView(R.id.tv_poundage)
+    TextView tvPoundage;
+
 
     public static int Type = 0;
     private final int POIONTONE = 0;
@@ -148,6 +153,7 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
     String coin_type;
     String Address;
     String name;
+    double poundage = 0;
 
     boolean isPic = false;
 
@@ -300,6 +306,8 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
                     money = Double.parseDouble(etBalance.getText().toString());
 
                     inputMoney = money;
+                    double num = money * poundage;
+                    tvPoundage.setText(num+"");
                     L.e("lgh_rate", "money  = " + inputMoney);
                     L.e("lgh_rate", "rate  = " + rate);
 //                    llBalanceMoney.setVisibility(View.VISIBLE);
@@ -318,7 +326,7 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
         //todo 列表item点击事件监听
         coinListAdapter.setOnClickListener(new CoinListAdapter.OnClickListener() {
             @Override
-            public void onClick(String address, int id, int coinType, int res, double user_money, double Rate,String Name) {
+            public void onClick(String address, int id, int coinType, int res, double user_money, double Rate,String Name,double tax_rate) {
                 List<BalanceDto.DataBean.CoinAddressBean> list = coinListAdapter.getAllData();
                 for (int i = 0; i < list.size(); i++) {
                     list.get(i).setClick(list.get(i).getId() == id);
@@ -336,6 +344,7 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
                 ivCoin2.setImageResource(res);
                 tvBalance.setText(user_money + "");
                 tvBalanceLines.setText(Rate + "");//单日交易额
+                poundage = tax_rate;
                 name = Name;
             }
         });
@@ -473,7 +482,7 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
         getList = new ArrayList<>();
         putList = new ArrayList<>();
         getList = balanceDto.getData().getCoin_address();
-
+        poundage = dataBean.getWithdrawal_rate();
         for (int i = 0; i < balanceDto.getData().getCoin_address().size(); i++) {
             if (balanceDto.getData().getCoin_address().get(i).getPay_type() != 5){
                 putList.add(balanceDto.getData().getCoin_address().get(i));
@@ -500,6 +509,7 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
         tvBalance.setText(list.get(0).getUser_money() + "");
         tvBalanceLines.setText(list.get(0).getHeigt_limit() + "");//单日交易额
         name = list.get(0).getCoin_name();
+        poundage = Double.parseDouble(list.get(0).getTax_rate());
         switch (list.get(0).getCoin_name()) {
             case "LAMB":
                 ivCoin.setImageResource(R.mipmap.icon_coin);
@@ -692,6 +702,7 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
         llGetCoin.setVisibility(View.GONE);
         ivPutCoin.setVisibility(View.VISIBLE);
         tvTime.setVisibility(View.GONE);
+        llPoundage.setVisibility(View.GONE);
         String text = ResUtil.getString(R.string.my_tab_66);
         String text1 = ResUtil.getString(R.string.my_tab_69_2);
         tvAddress.setText(ResUtil.getString(R.string.my_tab_71));
@@ -710,6 +721,7 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
                 tvBalanceGet.setSelected(true);
                 llGetCoin.setVisibility(View.VISIBLE);
                 ivPutCoin.setVisibility(View.GONE);
+                llPoundage.setVisibility(View.VISIBLE);
                 tvBalanceAddress.setFocusableInTouchMode(true);
                 tvBalanceAddress.setFocusable(true);
                 tvBalanceAddress.requestFocus();

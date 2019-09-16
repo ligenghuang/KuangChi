@@ -193,6 +193,7 @@
                     android:paddingTop="@dimen/dp_10"
                     android:paddingBottom="@dimen/dp_10"
                     android:text="@string/my_tab_127"
+                    android:visibility="gone"
                     />
 
             </LinearLayout>

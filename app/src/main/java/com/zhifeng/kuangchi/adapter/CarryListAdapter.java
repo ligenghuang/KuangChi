@@ -31,6 +31,7 @@ public class CarryListAdapter extends BaseRecyclerAdapter<CarryListDto.DataBeanX
         long data = (long) model.getAdd_time()*(long)1000;
         holder.text(R.id.tv_item_time, DynamicTimeFormat.LongToString(data));
         holder.text(R.id.tv_item_money,""+model.getMoney());
+        holder.text(R.id.tv_item_poundage,model.getTax());
         String text = "USDT";//4:usdt 5:lamb
         switch (model.getCoin_type()){
             case 4:

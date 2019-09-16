@@ -211,7 +211,7 @@ public class BalanceDto {
             }
 
             public String getTax_rate() {
-                return tax_rate == null ? "" : tax_rate;
+                return tax_rate == null ? "0" : tax_rate;
             }
 
             public void setTax_rate(String tax_rate) {

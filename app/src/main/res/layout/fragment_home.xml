@@ -200,6 +200,7 @@
             android:layout_height="@dimen/item_height60"
             android:layout_centerVertical="true"
             android:layout_margin="@dimen/dp_10"
+            android:visibility="gone"
             android:layout_alignParentRight="true">
 
            <LinearLayout

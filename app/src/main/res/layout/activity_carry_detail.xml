@@ -40,9 +40,7 @@
                 android:layout_marginLeft="@dimen/dp_10"
                 android:textStyle="bold"
                 android:textColor="@color/color_15"
-                android:textSize="@dimen/text_size15"
-                android:drawableLeft="@mipmap/icon_carry"
-                android:drawablePadding="@dimen/dp_10"/>
+                android:textSize="@dimen/text_size15"/>
 
 
         </LinearLayout>
@@ -80,6 +78,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:visibility="gone"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 

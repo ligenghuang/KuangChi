@@ -47,6 +47,17 @@ public class LowerListAction extends BaseAction<LowerListView> {
     }
 
     /**
+     * 获取舰队长代理明细列表
+     * @param page
+     */
+    public void getLowerList2(int page,String id){
+        post(WebUrlUtil.POST_AGENT_NUM_LIST,false, service -> manager.runHttp(
+                service.PostData(CollectionsUtils.generateMap("page",page,"level",
+                        id,"token",MySp.getAccessToken(MyApp.getContext())),WebUrlUtil.POST_AGENT_NUM_LIST)));
+    }
+
+
+    /**
      * sticky:表明优先接收最高级  threadMode = ThreadMode.MAIN：表明在主线程
      *
      * @param action
@@ -70,6 +81,7 @@ public class LowerListAction extends BaseAction<LowerListView> {
 
                 switch (action.getIdentifying()) {
                     case WebUrlUtil.POST_MINERESAGENT_LOWER_LISET:
+                    case WebUrlUtil.POST_AGENT_NUM_LIST:
 //                        //todo 获取舰队长代理明细列表
                         if (aBoolean) {
                             L.e("xx", "输出返回结果 " + action.getUserData().toString());

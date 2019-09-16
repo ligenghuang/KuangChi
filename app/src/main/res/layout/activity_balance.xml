@@ -268,6 +268,54 @@
 
                        </LinearLayout>
 
+                       <!--手续费-->
+                       <LinearLayout
+                           android:id="@+id/ll_poundage"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="@dimen/dp_10"
+                           android:gravity="center_vertical"
+                           android:orientation="horizontal">
+
+
+                           <TextView
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:textColor="@color/color_15"
+                               android:textSize="@dimen/text_size15"
+                               android:textStyle="bold"
+                               android:text="@string/my_tab_159"/>
+
+
+                           <LinearLayout
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_marginLeft="@dimen/dp_10"
+                               android:orientation="vertical">
+
+
+                               <!--手续费-->
+                               <TextView
+                                   android:id="@+id/tv_poundage"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:textColor="@color/color_15"
+                                   android:textStyle="bold"
+                                   android:gravity="center"
+                                   android:paddingLeft="5dp"
+                                   android:paddingRight="5dp"
+                                   android:paddingBottom="5dp"
+                                   android:background="@color/transparent"
+                                   android:textSize="@dimen/text_size15"/>
+
+                               <View
+                                   style="@style/line_3"/>
+
+
+                           </LinearLayout>
+
+
+                       </LinearLayout>
 
                        <!---地址-->
                        <LinearLayout
