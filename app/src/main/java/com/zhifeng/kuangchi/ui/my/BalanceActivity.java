@@ -482,7 +482,6 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
         getList = new ArrayList<>();
         putList = new ArrayList<>();
         getList = balanceDto.getData().getCoin_address();
-        poundage = dataBean.getWithdrawal_rate();
         for (int i = 0; i < balanceDto.getData().getCoin_address().size(); i++) {
             if (balanceDto.getData().getCoin_address().get(i).getPay_type() != 5){
                 putList.add(balanceDto.getData().getCoin_address().get(i));
@@ -509,7 +508,7 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
         tvBalance.setText(list.get(0).getUser_money() + "");
         tvBalanceLines.setText(list.get(0).getHeigt_limit() + "");//单日交易额
         name = list.get(0).getCoin_name();
-        poundage = Double.parseDouble(list.get(0).getTax_rate());
+        poundage = Double.parseDouble(list.get(0).getRate());
         switch (list.get(0).getCoin_name()) {
             case "LAMB":
                 ivCoin.setImageResource(R.mipmap.icon_coin);

@@ -203,7 +203,7 @@ public class BalanceDto {
             }
 
             public String getRate() {
-                return rate == null ? "" : rate;
+                return rate == null ? "0" : rate;
             }
 
             public void setRate(String rate) {

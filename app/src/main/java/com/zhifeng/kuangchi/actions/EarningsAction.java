@@ -38,10 +38,10 @@ public class EarningsAction extends BaseAction<EarningsView> {
      * 获取收益明细列表
      * @param type
      */
-    public void getEarningsList(int type){
+    public void getEarningsList(int type,int page){
         String source_type = getType(type);
         post(WebUrlUtil.POST_ENTRUST_LOG,false, service -> manager.runHttp(
-                service.PostData(CollectionsUtils.generateMap("source_type",source_type,"token",
+                service.PostData(CollectionsUtils.generateMap("page",page,"source_type",source_type,"token",
                         MySp.getAccessToken(MyApp.getContext())),WebUrlUtil.POST_ENTRUST_LOG)));
     }
 

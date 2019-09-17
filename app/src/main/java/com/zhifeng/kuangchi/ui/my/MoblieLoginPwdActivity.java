@@ -205,7 +205,7 @@ public class MoblieLoginPwdActivity extends UserBaseActivity<MoblieLoginPwdActio
      */
     private void submit() {
         MoblieLoginPwdPost pwdPost = new MoblieLoginPwdPost();
-        pwdPost.setPhone(phone);
+        pwdPost.setPhone(MySp.getUserPhone(mContext));
         //todo 判断是否输入验证码
         if (TextUtils.isEmpty(etLoginCode.getText().toString())){
             showNormalToast(ResUtil.getString(R.string.login_tab_4));

@@ -68,7 +68,7 @@ public class CoinListAdapter extends BaseRecyclerAdapter<BalanceDto.DataBean.Coi
             @Override
             public void onClick(View view) {
                 onClickListener.onClick(model.getAddress(),model.getId(),model.getPay_type(),
-                        finalRes,model.getUser_money(),model.getHeigt_limit(),model.getCoin_name(), Double.parseDouble(model.getTax_rate()));
+                        finalRes,model.getUser_money(),model.getHeigt_limit(),model.getCoin_name(), Double.parseDouble(model.getRate()));
             }
         });
     }

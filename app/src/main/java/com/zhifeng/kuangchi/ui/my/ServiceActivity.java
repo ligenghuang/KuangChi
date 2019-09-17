@@ -259,13 +259,13 @@ public class ServiceActivity extends UserBaseActivity<ServiceAction> implements 
                 L.e("TAG", "----->getFormattedValue: " + value);
                 //设置 xAxis.setGranularity(1);后 value是从0开始的，每次加1，
                 int v = ((int) value) - 1;
-                if (v <= mList.size() && v >= 0) {
+                if (v < mList.size() && v >= 0) {
                     String st = mList.get(v);
                     String tim1 = "";
                     tim1 = st;
                     return tim1;
                 } else {
-                    return null;
+                    return "";
                 }
             }
         });

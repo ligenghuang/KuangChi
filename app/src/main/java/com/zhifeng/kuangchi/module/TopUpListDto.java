@@ -122,7 +122,7 @@ public class TopUpListDto {
              */
 
             private int id;
-            private int money;
+            private double money;
             private String address;
             private int user_id;
             private int coin_type;
@@ -141,11 +141,11 @@ public class TopUpListDto {
                 this.id = id;
             }
 
-            public int getMoney() {
+            public double getMoney() {
                 return money;
             }
 
-            public void setMoney(int money) {
+            public void setMoney(double money) {
                 this.money = money;
             }
 

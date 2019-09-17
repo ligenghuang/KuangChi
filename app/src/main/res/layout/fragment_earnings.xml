@@ -10,25 +10,43 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview"
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:overScrollMode="never"
             android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            />
+            android:paddingRight="12dp">
 
-        <TextView
-            android:id="@+id/tv_nodata"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:drawablePadding="15dp"
-            android:drawableTop="@drawable/icon_default_null"
-            android:text="@string/my_tab_132"
-            android:visibility="gone"/>
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:gravity="center"
+             android:orientation="vertical">
+
+             <androidx.recyclerview.widget.RecyclerView
+                 android:id="@+id/recyclerview"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:overScrollMode="never"
+
+                 />
+
+             <TextView
+                 android:id="@+id/tv_nodata"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center"
+                 android:gravity="center"
+                 android:drawablePadding="15dp"
+                 android:drawableTop="@drawable/icon_default_null"
+                 android:text="@string/my_tab_132"
+                 android:visibility="gone"/>
+
+         </LinearLayout>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
     </LinearLayout>
 
 </LinearLayout>

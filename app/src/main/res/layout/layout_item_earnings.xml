@@ -20,7 +20,6 @@
             android:text="金额：100"
             android:drawablePadding="@dimen/dp_10"
             android:textSize="@dimen/text_size13"
-            android:drawableRight="@mipmap/icon_carry"
             android:textColor="@color/color_15"/>
 
         <LinearLayout

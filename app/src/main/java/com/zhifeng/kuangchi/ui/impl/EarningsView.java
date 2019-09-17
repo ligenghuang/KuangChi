@@ -14,5 +14,6 @@ import com.zhifeng.kuangchi.module.EarningsListDto;
 public interface EarningsView extends BaseView {
 
     void getEarningsList();
+    void moreEarningsList();
     void getEarningsListSuccess(EarningsListDto earningsListDto);
 }

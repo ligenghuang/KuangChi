@@ -49,17 +49,17 @@ public class ServiceDto {
          * line_data : []
          */
 
-        private int miner_nums;
+        private double miner_nums;
         private String user_money;
         private CurrencyBean currency;
         private List<MinerInfoBean> miner_info;
         private Object line_data;
 
-        public int getMiner_nums() {
+        public double getMiner_nums() {
             return miner_nums;
         }
 
-        public void setMiner_nums(int miner_nums) {
+        public void setMiner_nums(double miner_nums) {
             this.miner_nums = miner_nums;
         }
 
@@ -154,13 +154,13 @@ public class ServiceDto {
             private int id;
             private int user_id;
             private String Miner_id;
-            private int T_num;
+            private double T_num;
             private String Minimum_suanli;
             private String Maximum_suanli;
             private String Minimum_shouyi;
             private String Maximum_shouyi;
             private String expected_earnings;
-            private int day_nums;
+            private double day_nums;
             private String Miner_Address;
             private Object expire_time;
             private int createtime;
@@ -189,11 +189,11 @@ public class ServiceDto {
                 Miner_id = miner_id == null ? "" : miner_id;
             }
 
-            public int getT_num() {
+            public double getT_num() {
                 return T_num;
             }
 
-            public void setT_num(int t_num) {
+            public void setT_num(double t_num) {
                 T_num = t_num;
             }
 
@@ -237,11 +237,11 @@ public class ServiceDto {
                 this.expected_earnings = expected_earnings == null ? "" : expected_earnings;
             }
 
-            public int getDay_nums() {
+            public double getDay_nums() {
                 return day_nums;
             }
 
-            public void setDay_nums(int day_nums) {
+            public void setDay_nums(double day_nums) {
                 this.day_nums = day_nums;
             }
 
