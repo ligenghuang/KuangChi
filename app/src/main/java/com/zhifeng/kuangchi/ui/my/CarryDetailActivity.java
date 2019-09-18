@@ -2,6 +2,7 @@ package com.zhifeng.kuangchi.ui.my;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
@@ -47,6 +48,10 @@ public class CarryDetailActivity extends UserBaseActivity<CarryDetailAction> imp
     TextView tvCarryDetailAddress;
     @BindView(R.id.tv_carry_detail_status)
     TextView tvCarryDetailStatus;
+    @BindView(R.id.ll_note)
+    LinearLayout llNote;
+    @BindView(R.id.tv_carry_detail_note)
+    TextView tvNote;
 
     int id;
     int type;
@@ -160,6 +165,12 @@ public class CarryDetailActivity extends UserBaseActivity<CarryDetailAction> imp
         tvCarryDetailStatus.setText(status);
         String coinType = getCoinType(dataBean.getCoin_type());
         tvCarryDetailType.setText(coinType);
+        llNote.setVisibility(View.VISIBLE);
+        if (dataBean.getNote().length() == 0){
+            tvNote.setText("无");
+        }else {
+            tvNote.setText(dataBean.getNote());
+        }
     }
 
     /**

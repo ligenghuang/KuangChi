@@ -130,7 +130,7 @@ public class TopUpListDto {
             private String fronzen_money;
             private int add_time;
             private String tax_rate;
-            private int input_money;
+            private double input_money;
             private String tax;
 
             public int getId() {
@@ -205,11 +205,11 @@ public class TopUpListDto {
                 this.tax_rate = tax_rate == null ? "" : tax_rate;
             }
 
-            public int getInput_money() {
+            public double getInput_money() {
                 return input_money;
             }
 
-            public void setInput_money(int input_money) {
+            public void setInput_money(double input_money) {
                 this.input_money = input_money;
             }
 

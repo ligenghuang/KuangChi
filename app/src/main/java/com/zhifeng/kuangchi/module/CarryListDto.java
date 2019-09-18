@@ -122,7 +122,7 @@ public class CarryListDto {
              */
 
             private int id;
-            private int money;
+            private double money;
             private String address;
             private int user_id;
             private int coin_type;
@@ -130,7 +130,7 @@ public class CarryListDto {
             private String fronzen_money;
             private int add_time;
             private String tax_rate;
-            private int input_money;
+            private double input_money;
             private String tax;
 
             public int getId() {
@@ -141,11 +141,11 @@ public class CarryListDto {
                 this.id = id;
             }
 
-            public int getMoney() {
+            public double getMoney() {
                 return money;
             }
 
-            public void setMoney(int money) {
+            public void setMoney(double money) {
                 this.money = money;
             }
 
@@ -205,11 +205,11 @@ public class CarryListDto {
                 this.tax_rate = tax_rate == null ? "" : tax_rate;
             }
 
-            public int getInput_money() {
+            public double getInput_money() {
                 return input_money;
             }
 
-            public void setInput_money(int input_money) {
+            public void setInput_money(double input_money) {
                 this.input_money = input_money;
             }
 

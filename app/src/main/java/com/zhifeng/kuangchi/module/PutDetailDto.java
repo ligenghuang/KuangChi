@@ -62,7 +62,7 @@ public class PutDetailDto {
 
         private int id;
         private int coin_type;
-        private int money;
+        private double money;
         private int user_id;
         private int status;
         private String release_money;
@@ -71,6 +71,15 @@ public class PutDetailDto {
         private String input_money;
         private String address;
         private int change_time;
+        private String note;
+
+        public String getNote() {
+            return note == null ? "" : note;
+        }
+
+        public void setNote(String note) {
+            this.note = note == null ? "" : note;
+        }
 
         public int getId() {
             return id;
@@ -88,11 +97,11 @@ public class PutDetailDto {
             this.coin_type = coin_type;
         }
 
-        public int getMoney() {
+        public double getMoney() {
             return money;
         }
 
-        public void setMoney(int money) {
+        public void setMoney(double money) {
             this.money = money;
         }
 
