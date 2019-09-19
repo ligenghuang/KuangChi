@@ -1,5 +1,8 @@
 package com.zhifeng.kuangchi.adapter;
 
+import android.view.View;
+import android.widget.TextView;
+
 import com.lgh.huanglib.util.L;
 import com.lgh.huanglib.util.data.ResUtil;
 import com.zhifeng.kuangchi.R;
@@ -28,6 +31,8 @@ public class EarningsAdapter extends BaseRecyclerAdapter<EarningsListDto.DataBea
         holder.setIsRecyclable(false);
         holder.text(R.id.tv_item_balance, ResUtil.getFormatString(R.string.my_tab_55,model.getBalance()));//金额
         holder.text(R.id.tv_item_note,model.getNote());//描述
+        TextView tvNote = holder.itemView.findViewById(R.id.tv_item_note);
+        tvNote.setVisibility(model.getSource_type() == 12 ? View.GONE :View.VISIBLE);
         try {
             long data = (long) model.getCreate_time()*(long)1000;
             L.e("lgh_time", "time  = " + DynamicTimeFormat.longToString(data, "yyyy/MM/dd HH:mm"));

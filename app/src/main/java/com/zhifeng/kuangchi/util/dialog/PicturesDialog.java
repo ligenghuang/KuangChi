@@ -21,7 +21,7 @@ import butterknife.OnClick;
 
 /**
  * description:相机和相册选择弹窗
- * autour: feijin.lgh
+ * autour: lgh
  * date: 2019/5/14 11:40
  * update: 2019/5/14
  * version:

@@ -64,10 +64,10 @@
     <string name="my_tab_49">分享收益</string>
     <string name="my_tab_50">节点收益</string>
     <string name="my_tab_51">全球分红</string>
-    <string name="my_tab_52">日产量</string>
+    <string name="my_tab_52">日产矿量</string>
     <string name="my_tab_53">提币</string>
     <string name="my_tab_54">累计产量</string>
-    <string name="my_tab_55">金额： %0$s</string>
+    <string name="my_tab_55">产矿： %0$s</string>
 
     <string name="my_tab_56">金币</string>
     <string name="my_tab_56_3">数量</string>
@@ -192,7 +192,7 @@
     <string name="my_tab_150">短信验证码：</string>
     <string name="my_tab_151">请输入验证码</string>
     <string name="my_tab_152">USDT提币数量≥50个,LAMB提币数量≥50个</string>
-    <string name="my_tab_153">每日审核时间：10:00~22:00</string>
+    <string name="my_tab_153">每日审核时间：08:00~24:00</string>
     <string name="my_tab_154">复制地址</string>
     <string name="my_tab_155">请输入地址</string>
     <string name="my_tab_156">充值明细</string>
