@@ -56,6 +56,15 @@ public class AgencyListDto {
         private int level_count_4;
         private UserFirstBean user_first;
         private int team_count;
+        private String T_num;
+
+        public String getT_num() {
+            return T_num == null ? "0" : T_num;
+        }
+
+        public void setT_num(String t_num) {
+            T_num = t_num == null ? "0" : t_num;
+        }
 
         public int getLevel_count_1() {
             return level_count_1;
@@ -183,6 +192,15 @@ public class AgencyListDto {
                 private String mobile;
                 private int createtime;
                 private int is_nameapi;
+                private int T_time;
+
+                public int getT_time() {
+                    return T_time;
+                }
+
+                public void setT_time(int t_time) {
+                    T_time = t_time;
+                }
 
                 public int getId() {
                     return id;

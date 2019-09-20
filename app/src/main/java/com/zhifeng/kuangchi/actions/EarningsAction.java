@@ -77,7 +77,7 @@ public class EarningsAction extends BaseAction<EarningsView> {
                 source_type = "day_release";
                 break;
             case 5:
-                source_type = "11";
+                source_type = "12";
                 break;
 //            case 6:
 //                source_type = "11";

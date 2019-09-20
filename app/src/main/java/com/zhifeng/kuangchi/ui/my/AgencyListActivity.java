@@ -77,6 +77,8 @@ public class AgencyListActivity extends UserBaseActivity<AgencyListAction> imple
     ClassicsHeader classicsheader;
     @BindView(R.id.classicsfooter)
     ClassicsFooter classicsfooter;
+    @BindView(R.id.tv_t_num)
+    TextView tvTNum;
 
 
     @Override
@@ -206,6 +208,7 @@ public class AgencyListActivity extends UserBaseActivity<AgencyListAction> imple
                 recyclerview.setVisibility(View.GONE);
             }
         }
+        tvTNum.setText(ResUtil.getFormatString(R.string.my_tab_162,dataBeanX.getT_num()));
         tvAgencyRealnameLever.setText(ResUtil.getFormatString(R.string.my_tab_39, dataBeanX.getTeam_count() + ""));
         tvAgencyLevelCount1.setText(ResUtil.getFormatString(R.string.my_tab_44, dataBeanX.getLevel_count_1() + ""));//舵手
         tvAgencyLevelCount2.setText(ResUtil.getFormatString(R.string.my_tab_44, dataBeanX.getLevel_count_2() + ""));//大副

@@ -35,6 +35,12 @@ public class AgencyListAdapter extends BaseRecyclerAdapter<AgencyListDto.DataBea
         holder.text(R.id.tv_item_name_id,"ID:"+model.getId());
         long data = (long) model.getCreatetime()*(long)1000;
         holder.text(R.id.tv_item_time, DynamicTimeFormat.LongToString2(data));
+      if (model.getT_time() == 0){
+          holder.text(R.id.tv_item_buy_time,"未激活");
+      }else {
+          long timeData = (long) model.getT_time()*(long)1000;
+          holder.text(R.id.tv_item_buy_time,DynamicTimeFormat.LongToString2(timeData));
+      }
         TextView lever = holder.itemView.findViewById(R.id.tv_item_lower);
         setLever(lever,model.getLevel());
 

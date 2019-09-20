@@ -27,7 +27,7 @@
                android:layout_height="wrap_content"
                android:layout_weight="1"
                android:gravity="center"
-               android:textSize="@dimen/text_size12"
+               android:textSize="@dimen/text_size10"
                android:textColor="@color/color_15"/>
 
            <TextView
@@ -36,7 +36,7 @@
                android:layout_height="wrap_content"
                android:layout_weight="1"
                android:gravity="center"
-               android:textSize="@dimen/text_size14"
+               android:textSize="@dimen/text_size12"
                android:textColor="@color/color_15"/>
 
 
@@ -48,11 +48,21 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="@dimen/text_size14"
+            android:textSize="@dimen/text_size12"
             android:textColor="@color/color_15"
             android:paddingLeft="2dp"
             android:paddingRight="2dp"/>
 
+        <TextView
+            android:id="@+id/tv_item_buy_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="@dimen/text_size12"
+            android:textColor="@color/color_15"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"/>
 
         <TextView
             android:id="@+id/tv_item_lower"
@@ -60,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="@dimen/text_size14"
+            android:textSize="@dimen/text_size12"
             android:textColor="@color/color_15"
             android:paddingLeft="2dp"
             android:paddingRight="2dp"/>
@@ -81,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textSize="@dimen/text_size14"
+                android:textSize="@dimen/text_size12"
                 android:textColor="@color/color_15"/>
 
             <TextView
@@ -90,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textSize="@dimen/text_size14"
+                android:textSize="@dimen/text_size12"
                 android:textColor="@color/color_15"/>
 
 

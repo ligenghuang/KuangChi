@@ -16,14 +16,31 @@
         android:layout_margin="@dimen/dp_10"
         android:orientation="vertical">
 
-        <!--用户昵称和等级-->
-        <TextView
-            android:id="@+id/tv_agency_realname_lever"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/color_15"
-            android:drawableRight="@drawable/icon_p"
-            android:textSize="@dimen/text_size15" />
+            android:orientation="horizontal">
+
+            <!--用户昵称和等级-->
+            <TextView
+                android:id="@+id/tv_agency_realname_lever"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/icon_p"
+                android:textColor="@color/color_15"
+                android:textSize="@dimen/text_size15" />
+
+            <TextView
+                android:id="@+id/tv_t_num"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/my_tab_162"
+                android:textColor="@color/color_15"
+                android:textSize="@dimen/text_size15" />
+
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,8 +68,8 @@
                     android:id="@+id/tv_agency_level_count_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10"
                     android:drawableRight="@drawable/icon_p"
+                    android:text="10"
                     android:textColor="@color/color_15"
                     android:textSize="@dimen/text_size15" />
 
@@ -79,8 +96,8 @@
                     android:id="@+id/tv_agency_level_count_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10"
                     android:drawableRight="@drawable/icon_p"
+                    android:text="10"
                     android:textColor="@color/color_15"
                     android:textSize="@dimen/text_size15" />
 
@@ -116,8 +133,8 @@
                     android:id="@+id/tv_agency_level_count_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10"
                     android:drawableRight="@drawable/icon_p"
+                    android:text="10"
                     android:textColor="@color/color_15"
                     android:textSize="@dimen/text_size15" />
 
@@ -144,8 +161,8 @@
                     android:id="@+id/tv_agency_level_count_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10"
                     android:drawableRight="@drawable/icon_p"
+                    android:text="10"
                     android:textColor="@color/color_15"
                     android:textSize="@dimen/text_size15" />
 
@@ -168,21 +185,33 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
             android:text="@string/my_tab_45"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
             android:textColor="@color/color_15"
-            android:textSize="@dimen/text_size15" />
+            android:textSize="@dimen/text_size13" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
             android:text="@string/my_tab_47"
+            android:textColor="@color/color_15"
+            android:textSize="@dimen/text_size13" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
             android:paddingLeft="2dp"
             android:paddingRight="2dp"
+            android:text="@string/my_tab_163"
             android:textColor="@color/color_15"
-            android:textSize="@dimen/text_size15" />
+            android:textSize="@dimen/text_size13" />
 
 
         <TextView
@@ -190,22 +219,22 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
             android:text="@string/my_tab_46"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
             android:textColor="@color/color_15"
-            android:textSize="@dimen/text_size15" />
+            android:textSize="@dimen/text_size13" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/my_tab_157"
             android:paddingLeft="2dp"
             android:paddingRight="2dp"
+            android:text="@string/my_tab_157"
             android:textColor="@color/color_15"
-            android:textSize="@dimen/text_size15" />
-
+            android:textSize="@dimen/text_size13" />
 
 
     </LinearLayout>
