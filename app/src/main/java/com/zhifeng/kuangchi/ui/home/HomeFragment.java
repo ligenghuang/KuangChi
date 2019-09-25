@@ -179,6 +179,7 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
             }
             if (MainActivity.isLogin2) {
                 getHomeData();
+                getHomeData();
                 MainActivity.isLogin2 = false;
             }
         }
