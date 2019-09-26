@@ -2,6 +2,7 @@ package com.zhifeng.kuangchi.ui.my;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -80,6 +81,8 @@ public class AgencyListActivity extends UserBaseActivity<AgencyListAction> imple
     @BindView(R.id.tv_t_num)
     TextView tvTNum;
 
+    MyCountDownTimer agencyTimer;
+
 
     @Override
     public int intiLayout() {
@@ -120,6 +123,8 @@ public class AgencyListActivity extends UserBaseActivity<AgencyListAction> imple
         super.init();
         mActicity = this;
         mContext = this;
+
+        agencyTimer = new MyCountDownTimer(3600000,1000);
 
         //初始化适配器
         agencyListAdapter = new AgencyListAdapter(mContext);
@@ -185,6 +190,11 @@ public class AgencyListActivity extends UserBaseActivity<AgencyListAction> imple
     @Override
     public void getAgencyListSuccess(AgencyListDto agencyListDto) {
         loadDiss();
+        if (agencyTimer != null) {
+            agencyTimer.cancel();
+        }
+        agencyTimer.start();
+
         refreshLayout.finishLoadMore();
         refreshLayout.finishRefresh();
         AgencyListDto.DataBeanX dataBeanX = agencyListDto.getData();
@@ -240,6 +250,9 @@ public class AgencyListActivity extends UserBaseActivity<AgencyListAction> imple
     @Override
     protected void onPause() {
         super.onPause();
+        if (agencyTimer != null) {
+            agencyTimer.cancel();
+        }
         baseAction.toUnregister();
     }
 
@@ -282,5 +295,25 @@ public class AgencyListActivity extends UserBaseActivity<AgencyListAction> imple
         intent.putExtra("isLever",true);
         intent.putExtra("lever",i);
         startActivity(intent);
+    }
+
+    class MyCountDownTimer extends CountDownTimer {
+        public MyCountDownTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+            // TODO Auto-generated constructor stub
+
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onFinish() {
+            // TODO Auto-generated method stub
+            refreshAgencyList();
+        }
     }
 }

@@ -70,7 +70,7 @@
                             android:src="@drawable/icon_announce"/>
 
 
-                        <com.superluo.textbannerlibrary.TextBannerView
+                        <com.zhifeng.kuangchi.util.view.TextBannerView
                             android:id="@+id/tv_banner"
                             android:layout_width="match_parent"
                             android:layout_height="25dp"

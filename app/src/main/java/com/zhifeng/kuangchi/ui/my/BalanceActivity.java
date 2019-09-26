@@ -159,7 +159,8 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
 
     //获取验证码倒计时
     private MyCountDownTimer timer;
-
+    //刷新倒计时
+    MyCountDownTimer2 balanceTimer;
 
     @Override
     public int intiLayout() {
@@ -206,6 +207,7 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
         recyclerview.setLayoutManager(new LinearLayoutManager(mContext));
         recyclerview.setAdapter(coinListAdapter);
         timer = new MyCountDownTimer(60000, 1000);
+        balanceTimer = new MyCountDownTimer2(3600000,1000);
         initImagePicker();
         loadDialog();
         getBalance();
@@ -476,6 +478,10 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
     @Override
     public void getBalanceSuccess(BalanceDto balanceDto) {
         loadDiss();
+        if (balanceTimer!= null){
+            balanceTimer.cancel();
+        }
+        balanceTimer.start();
         refreshLayout.finishRefresh();
         BalanceDto.DataBean dataBean = balanceDto.getData();
         tvBalance.setText(dataBean.getRemainder_money());//余额
@@ -669,6 +675,12 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
     @Override
     protected void onPause() {
         super.onPause();
+        if (balanceTimer!= null){
+            balanceTimer.cancel();
+        }
+        if (timer != null){
+            timer.cancel();
+        }
         baseAction.toUnregister();
     }
 
@@ -829,5 +841,25 @@ public class BalanceActivity extends UserBaseActivity<BalanceAction> implements 
         cm.setPrimaryClip(mClipData);
         //复制成功提示
         showNormalToast(ResUtil.getString(R.string.my_tab_18));
+    }
+
+    class MyCountDownTimer2 extends CountDownTimer {
+        public MyCountDownTimer2(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+            // TODO Auto-generated constructor stub
+
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onFinish() {
+            // TODO Auto-generated method stub
+            getBalance();
+        }
     }
 }

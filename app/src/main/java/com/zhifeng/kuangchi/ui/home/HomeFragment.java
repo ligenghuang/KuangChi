@@ -7,6 +7,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,11 +24,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.lgh.huanglib.util.CheckNetwork;
 import com.lgh.huanglib.util.L;
 import com.lgh.huanglib.util.config.GlideUtil;
+import com.lgh.huanglib.util.data.FormatUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.superluo.textbannerlibrary.ITextBannerItemClickListener;
-import com.superluo.textbannerlibrary.TextBannerView;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.zhifeng.kuangchi.R;
 import com.zhifeng.kuangchi.actions.HomeAction;
@@ -46,6 +47,7 @@ import com.zhifeng.kuangchi.util.update.NotificationDownloadCreator;
 import com.zhifeng.kuangchi.util.update.NotificationForODownloadCreator;
 import com.zhifeng.kuangchi.util.update.NotificationInstallCreator;
 import com.zhifeng.kuangchi.util.update.ToastCallback;
+import com.zhifeng.kuangchi.util.view.TextBannerView;
 
 import org.lzh.framework.updatepluginlib.UpdateBuilder;
 import org.lzh.framework.updatepluginlib.base.DownloadCallback;
@@ -120,7 +122,7 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
     int goodsId;
 
     List<HomeDataDto.DataBean.AnnounceBean> announceBeans = new ArrayList<>();
-
+    MyCountDownTimer homeTimer;
 
     @Override
     protected HomeAction initAction() {
@@ -136,6 +138,8 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
 
     @Override
     protected void initialize() {
+        homeTimer = new MyCountDownTimer(3600000,1000);
+//        homeTimer = new MyCountDownTimer(60000,1000);
         //轮播图
         banner = new Banner();
         banner_main.setAdapter(banner);
@@ -171,6 +175,7 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
     protected void onFragmentVisibleChange(boolean isVisible) {
         super.onFragmentVisibleChange(isVisible);
         if (isVisible) {
+            baseAction.toRegister();
             updata();
             if (isFirst) {
                 loadDialog();
@@ -181,6 +186,10 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
                 getHomeData();
                 getHomeData();
                 MainActivity.isLogin2 = false;
+            }
+        }else {
+            if (homeTimer != null) {
+                homeTimer.cancel();
             }
         }
     }
@@ -202,9 +211,11 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
             @Override
             public void onItemClick(String data, int position) {
                 L.e("lgh_item","position   = "+position);
+                L.e("lgh_item","announceBeans.size()   = "+announceBeans.size());
                 Intent intent = new Intent(mContext, NoticeDetailActivity.class);
                 intent.putExtra("id",announceBeans.get(position).getId()+"");
                 startActivity(intent);
+                tvBanner.stopViewAnimator();
             }
         });
         banner_main.setDelegate(new BGABanner.Delegate() {
@@ -240,6 +251,11 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
     @Override
     public void getHomeDataSuccess(HomeDataDto homeDataDto) {
         loadDiss();
+        //todo 启动计时器
+        if (homeTimer != null) {
+            homeTimer.cancel();
+        }
+        homeTimer.start();
         refreshLayout.finishRefresh();
         banner_main.setFocusable(true);
         banner_main.setFocusableInTouchMode(true);
@@ -329,18 +345,22 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
     @Override
     public void onError(String message, int code) {
         loadDiss();
-        showToast(message);
+        showNormalToast(message);
     }
 
     @Override
     public void onResume() {
         super.onResume();
         baseAction.toRegister();
+        getHomeData();
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        if (homeTimer != null) {
+            homeTimer.cancel();
+        }
         baseAction.toUnregister();
     }
 
@@ -348,17 +368,15 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
      * 获取公告列表
      */
     private void getAnnounceList(List<HomeDataDto.DataBean.AnnounceBean> list) {
-        if (list.size() != 0) {
+        if (announceAdapter.getAllData().size() != 0) {
             List<String> strings = new ArrayList<>();
             announceBeans = new ArrayList<>();
-            for (int i = 0; i < list.size(); i++) {
-               if (list.get(i).getType() == 1){
-                   strings.add(list.get(i).getTitle());
-                   announceBeans.add(list.get(i));
-               }
+            for (int i = 0; i < announceAdapter.getAllData().size(); i++) {
+                   strings.add(announceAdapter.getAllData().get(i).getTitle());
+                   announceBeans.add(announceAdapter.getAllData().get(i));
             }
             tvBanner.setDatas(strings);
-
+            tvBanner.startViewAnimator();
         }
 
     }
@@ -523,6 +541,27 @@ public class HomeFragment extends UserBaseFragment<HomeAction> implements HomeVi
         update.setMd5(null);
 
         Launcher.getInstance().launchDownload(update, builder);
+    }
+
+
+    class MyCountDownTimer extends CountDownTimer {
+        public MyCountDownTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+            // TODO Auto-generated constructor stub
+
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onFinish() {
+            // TODO Auto-generated method stub
+          getHomeData();
+        }
     }
 
 

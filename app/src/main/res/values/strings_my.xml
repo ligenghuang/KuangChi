@@ -4,7 +4,7 @@
     <string name="my_tab_1">委托明细</string>
     <string name="my_tab_2">节点明细</string>
     <string name="my_tab_3">收益明细</string>
-    <string name="my_tab_4">提币明细</string>
+    <string name="my_tab_4">提现明细</string>
 
     <string name="my_tab_5">我的订单</string>
 
@@ -65,7 +65,7 @@
     <string name="my_tab_50">节点收益</string>
     <string name="my_tab_51">全球分红</string>
     <string name="my_tab_52">日产矿量</string>
-    <string name="my_tab_53">提币</string>
+    <string name="my_tab_53">提现</string>
     <string name="my_tab_54">累计产量</string>
     <string name="my_tab_55">产矿： %0$s</string>
 
@@ -76,20 +76,22 @@
     <string name="my_tab_57">备注</string>
     <string name="my_tab_58">查看</string>
 
-    <string name="my_tab_59">提币详情</string>
+    <string name="my_tab_59">提现详情</string>
     <string name="my_tab_59_1">充值详情</string>
     <string name="my_tab_60">数量 ：</string>
-    <string name="my_tab_61">提币日期</string>
+    <string name="my_tab_61">提现日期</string>
+    <string name="my_tab_61_2">充值日期</string>
     <string name="my_tab_62">提现方式</string>
+    <string name="my_tab_62_2">充值方式</string>
     <string name="my_tab_63">地址</string>
 
-    <string name="my_tab_64">充币</string>
-    <string name="my_tab_65">提币</string>
+    <string name="my_tab_64">充值</string>
+    <string name="my_tab_65">提现</string>
     <string name="my_tab_66">请选择充值方式</string>
     <string name="my_tab_67">提现到</string>
     <string name="my_tab_68">单日交易限额:</string>
     <string name="my_tab_69">转出额度</string>
-    <string name="my_tab_69_2">充币额度</string>
+    <string name="my_tab_69_2">充值额度</string>
     <string name="my_tab_70">提交</string>
     <string name="my_tab_71">地址：</string>
     <string name="my_tab_71_1">转出地址：</string>
@@ -143,8 +145,8 @@
     <string name="my_tab_110_1">请输入数量</string>
     <string name="my_tab_111">转换币比率:</string>
 
-    <string name="my_tab_112">提币金额不能为0!</string>
-    <string name="my_tab_112_1">充币金额不能为0!</string>
+    <string name="my_tab_112">提现金额不能为0!</string>
+    <string name="my_tab_112_1">充值金额不能为0!</string>
     <string name="my_tab_113">请输入密码</string>
     <string name="my_tab_114">确定</string>
     <string name="my_tab_115">取消</string>
@@ -191,7 +193,7 @@
     <string name="my_tab_149">请输入支付密码</string>
     <string name="my_tab_150">短信验证码：</string>
     <string name="my_tab_151">请输入验证码</string>
-    <string name="my_tab_152">USDT提币数量≥50个,LAMB提币数量≥50个</string>
+    <string name="my_tab_152">USDT提现数量≥50个,LAMB提现数量≥50个</string>
     <string name="my_tab_153">每日审核时间：08:00~24:00</string>
     <string name="my_tab_154">复制地址</string>
     <string name="my_tab_155">请输入地址</string>
@@ -204,5 +206,8 @@
     <string name="my_tab_161">备注：</string>
     <string name="my_tab_162">总购买T数： %0$s T</string>
     <string name="my_tab_163">购买时间</string>
+
+    <string name="my_tab_164">请先完成身份认证</string>
+    <string name="my_tab_165">请先设置支付密码</string>
 
 </resources>

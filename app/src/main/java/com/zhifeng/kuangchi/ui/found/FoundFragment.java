@@ -2,6 +2,7 @@ package com.zhifeng.kuangchi.ui.found;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.zhifeng.kuangchi.R;
 import com.zhifeng.kuangchi.actions.FoundAction;
 import com.zhifeng.kuangchi.adapter.KeyBoardAdapter;
+import com.zhifeng.kuangchi.module.HomeDataDto;
 import com.zhifeng.kuangchi.module.KLineDto;
 import com.zhifeng.kuangchi.ui.impl.FoundView;
 import com.zhifeng.kuangchi.ui.my.AgencyListActivity;
@@ -107,7 +109,7 @@ public class FoundFragment extends UserBaseFragment<FoundAction> implements Foun
     private int currentIndex = -1;    //用于记录当前输入密码格位置
 
 
-
+    MyCountDownTimer foundTimer;
 
     @Override
     protected FoundAction initAction() {
@@ -124,7 +126,7 @@ public class FoundFragment extends UserBaseFragment<FoundAction> implements Foun
 
     @Override
     protected void initialize() {
-
+        foundTimer = new MyCountDownTimer(3600000,1000);
         refreshLayout.setEnableLoadMore(false);
         gridView = virtualKeyboardView.getGridView();
         initPwdView();
@@ -157,6 +159,10 @@ public class FoundFragment extends UserBaseFragment<FoundAction> implements Foun
                 llFindPwd.setVisibility(View.VISIBLE);
             }
 
+        }else {
+            if (foundTimer != null) {
+                foundTimer.cancel();
+            }
         }
     }
 
@@ -198,6 +204,7 @@ public class FoundFragment extends UserBaseFragment<FoundAction> implements Foun
     public void getService() {
         if (CheckNetwork.checkNetwork2(mContext)) {
             baseAction.getService();
+            baseAction.getHomeData();
         }
     }
 
@@ -209,6 +216,11 @@ public class FoundFragment extends UserBaseFragment<FoundAction> implements Foun
      */
     @Override
     public void getServiceSuccess(KLineDto serviceDto) {
+        //todo 启动计时器
+        if (foundTimer != null) {
+            foundTimer.cancel();
+        }
+        foundTimer.start();
         refreshLayout.finishRefresh();
         DecimalFormat df = new DecimalFormat("#0.00000000");
         tvLamb.setText(ResUtil.getFormatString(R.string.found_tab_5, df.format(serviceDto.getData().getTick().getClose())));
@@ -232,7 +244,7 @@ public class FoundFragment extends UserBaseFragment<FoundAction> implements Foun
     @Override
     public void verifyPasswordSuccess() {
         loadDiss();
-        showToast(ResUtil.getString(R.string.found_tab_6));
+        showNormalToast(ResUtil.getString(R.string.found_tab_6));
         MySp.setFound(mContext,1);
         llFindPwd.setVisibility(View.GONE);
         getService();
@@ -250,9 +262,23 @@ public class FoundFragment extends UserBaseFragment<FoundAction> implements Foun
     @Override
     public void verifyPasswordError(String msg) {
         loadDiss();
-        showToast(msg);
+        showNormalToast(msg);
     }
 
+
+    /**
+     * 获取首页数据成功
+     *
+     * @param homeDataDto
+     */
+    @Override
+    public void getHomeDataSuccess(HomeDataDto homeDataDto) {
+        HomeDataDto.DataBean dataBean = homeDataDto.getData();
+        tvHomeBouns.setText(dataBean.getBouns()+"");
+        tvHomeBounsDay.setText(dataBean.getDay_bouns()+"");
+        tvHomeBounsDayF.setText("0");
+        tvHomeBounsF.setText("0");
+    }
 
     /**
      * 失败
@@ -270,11 +296,17 @@ public class FoundFragment extends UserBaseFragment<FoundAction> implements Foun
     public void onResume() {
         super.onResume();
         baseAction.toRegister();
+        if (MySp.getFound(mContext)==1){
+            getService();
+        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        if (foundTimer != null) {
+            foundTimer.cancel();
+        }
         baseAction.toUnregister();
     }
 
@@ -408,5 +440,25 @@ public class FoundFragment extends UserBaseFragment<FoundAction> implements Foun
                 }
             }
         });
+    }
+
+    class MyCountDownTimer extends CountDownTimer {
+        public MyCountDownTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+            // TODO Auto-generated constructor stub
+
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onFinish() {
+            // TODO Auto-generated method stub
+            getService();
+        }
     }
 }

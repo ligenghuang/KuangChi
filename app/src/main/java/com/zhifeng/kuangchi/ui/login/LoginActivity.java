@@ -28,6 +28,9 @@ import com.zhifeng.kuangchi.module.LoginDto;
 import com.zhifeng.kuangchi.module.UserDto;
 import com.zhifeng.kuangchi.ui.MainActivity;
 import com.zhifeng.kuangchi.ui.impl.LoginView;
+import com.zhifeng.kuangchi.ui.my.IdCardActivity;
+import com.zhifeng.kuangchi.ui.my.SecurityPwdActivity;
+import com.zhifeng.kuangchi.ui.my.SetPayPwdActivity;
 import com.zhifeng.kuangchi.util.base.UserBaseActivity;
 import com.zhifeng.kuangchi.util.data.MySp;
 
@@ -228,7 +231,8 @@ public class LoginActivity extends UserBaseActivity<LoginAction> implements Logi
      */
     @OnClick({R.id.btn_login, R.id.tv_login_get_code, R.id.f_right_tv,
             R.id.tv_login_consult, R.id.ll_login_consult,
-            R.id.iv_login_phone_close, R.id.iv_login_code_close,R.id.tv_login_pwd})
+            R.id.iv_login_phone_close, R.id.iv_login_code_close,
+            R.id.tv_login_pwd,R.id.iv_login_pwd_close,R.id.iv_login_again_pwd_close})
     void onClick(View view) {
         switch (view.getId()) {
             case R.id.f_right_tv:
@@ -403,11 +407,28 @@ public class LoginActivity extends UserBaseActivity<LoginAction> implements Logi
         //todo 保存登录或注册返回的数据
         L.e("lgh_user","token  = "+loginDto.getData().getToken());
         MySp.setAccessToken(mContext, loginDto.getData().getToken());
-        Intent intent = new Intent(mContext, MainActivity.class);
-        intent.putExtra("isLogin", true);
+        MySp.setUserPhone(mContext,loginDto.getData().getMobile());
+        MySp.setUserPayPwd(mContext,loginDto.getData().getPwd_exists());//判断是否设置支付密码
+        MySp.setUserNameapi(mContext,loginDto.getData().getIs_nameapi());//判断是否认证
+        //todo 判断是否认证和是否设置支付密码跳转不同页面
+        Class classA = null;
+        boolean isMain = false;
+        if (MySp.getUserNameapi(mContext) == 1 && MySp.getUserPayPwd(mContext) == 1){
+            classA = MainActivity.class;
+            isMain = true;
+        }else  if (MySp.getUserNameapi(mContext) == 0){
+            classA = IdCardActivity.class;
+        }else if (MySp.getUserPayPwd(mContext) == 0){
+            classA = SetPayPwdActivity.class;
+        }
+        Intent intent = new Intent(mContext, classA);
+        intent.putExtra("isLogin",true);
+        intent.putExtra("phone",MySp.getUserPhone(mContext));
         startActivity(intent);
-//        jumpActivity(mContext,MainActivity.class);
-        ActivityStack.getInstance().exitIsNotHaveMain(MainActivity.class);
+        finish();
+       if (isMain){
+           ActivityStack.getInstance().exitIsNotHaveMain(MainActivity.class);
+       }
     }
 
     /**

@@ -50,6 +50,24 @@ public class LoginDto {
         private String token;
         private String mobile;
         private String id;
+        private int is_nameapi;
+        private int pwd_exists;
+
+        public int getIs_nameapi() {
+            return is_nameapi;
+        }
+
+        public void setIs_nameapi(int is_nameapi) {
+            this.is_nameapi = is_nameapi;
+        }
+
+        public int getPwd_exists() {
+            return pwd_exists;
+        }
+
+        public void setPwd_exists(int pwd_exists) {
+            this.pwd_exists = pwd_exists;
+        }
 
         public String getToken() {
             return token;

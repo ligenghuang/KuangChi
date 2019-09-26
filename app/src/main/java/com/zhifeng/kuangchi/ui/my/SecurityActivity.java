@@ -66,7 +66,7 @@ public class SecurityActivity extends UserBaseActivity<SecurityAction> implement
 
     @Override
     protected SecurityAction initAction() {
-        return new SecurityAction(this,this);
+        return new SecurityAction(this, this);
     }
 
     /**
@@ -115,13 +115,14 @@ public class SecurityActivity extends UserBaseActivity<SecurityAction> implement
      */
     @Override
     public void getSecurityInfo() {
-        if (CheckNetwork.checkNetwork2(mContext)){
+        if (CheckNetwork.checkNetwork2(mContext)) {
             baseAction.getSecurityInfo();
         }
     }
 
     /**
      * 获取安全中心信息数据成功
+     *
      * @param securityInfoDto
      */
     @Override
@@ -132,12 +133,13 @@ public class SecurityActivity extends UserBaseActivity<SecurityAction> implement
         tvSecurityName.setText(dataBean.getRealname());
         isFirst = TextUtils.isEmpty(dataBean.getPwd());
         phone = dataBean.getPhone();
-        MySp.setUserNameapi(mContext,dataBean.getIs_nameapi());
-        MySp.setUserVip(mContext,dataBean.getIs_vip());
+        MySp.setUserNameapi(mContext, dataBean.getIs_nameapi());
+        MySp.setUserVip(mContext, dataBean.getIs_vip());
     }
 
     /**
      * 失败
+     *
      * @param message
      * @param code
      */
@@ -148,38 +150,42 @@ public class SecurityActivity extends UserBaseActivity<SecurityAction> implement
     }
 
 
-    @OnClick({R.id.tv_security_phone, R.id.tv_security_pwd, R.id.tv_security_user, R.id.tv_security_logout,R.id.tv_security_login_pwd})
+    @OnClick({R.id.tv_security_phone, R.id.tv_security_pwd, R.id.tv_security_user, R.id.tv_security_logout, R.id.tv_security_login_pwd})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_security_phone:
                 //todo  修改手机号
-                jumpActivityNotFinish(mContext,ModifyMobileActivity.class);
+                jumpActivityNotFinish(mContext, ModifyMobileActivity.class);
                 break;
             case R.id.tv_security_pwd:
                 //todo 支付密码
-                Intent intent = new Intent(mContext,SecurityPwdActivity.class);
-                intent.putExtra("first",isFirst);
-                intent.putExtra("phone",phone);
+                Intent intent;
+                if (MySp.getUserPayPwd(mContext) == 1) {
+                    intent = new Intent(mContext, SecurityPwdActivity.class);
+                } else {
+                    intent = new Intent(mContext, SetPayPwdActivity.class);
+                }
+                intent.putExtra("phone", phone);
                 startActivity(intent);
                 break;
             case R.id.tv_security_login_pwd:
                 //todo 登录密码
-                Intent intent2 = new Intent(mContext,MoblieLoginPwdActivity.class);
-                intent2.putExtra("phone",phone);
+                Intent intent2 = new Intent(mContext, MoblieLoginPwdActivity.class);
+                intent2.putExtra("phone", phone);
                 startActivity(intent2);
                 break;
             case R.id.tv_security_user:
                 //todo 切换账号
-                jumpActivityNotFinish(mContext,SecurityUserActivity.class);
+                jumpActivityNotFinish(mContext, SecurityUserActivity.class);
                 break;
             case R.id.tv_security_logout:
                 //todo 退出登录
                 MySp.clearAllSP(mContext);
-                Intent intent3 = new Intent(mContext,LoginActivity.class);
-                intent3.putExtra("type",1);
+                Intent intent3 = new Intent(mContext, LoginActivity.class);
+                intent3.putExtra("type", 1);
                 startActivity(intent3);
                 MainActivity.Position = 0;
-                ActivityStack.getInstance().exitIsNotHaveMain( LoginActivity.class, MainActivity.class);
+                ActivityStack.getInstance().exitIsNotHaveMain(LoginActivity.class, MainActivity.class);
                 break;
         }
     }

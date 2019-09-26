@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import com.lgh.huanglib.util.data.ResUtil;
 import com.zhifeng.kuangchi.R;
 import com.zhifeng.kuangchi.actions.BaseAction;
 import com.zhifeng.kuangchi.actions.IdCardAction;
+import com.zhifeng.kuangchi.ui.MainActivity;
 import com.zhifeng.kuangchi.ui.impl.IdCardView;
 import com.zhifeng.kuangchi.util.base.UserBaseActivity;
 import com.zhifeng.kuangchi.util.data.MySp;
@@ -46,6 +48,8 @@ public class IdCardActivity extends UserBaseActivity<IdCardAction> implements Id
     @BindView(R.id.et_id_card_num)
     EditText etIdCardNum;
 
+    boolean isLogin;
+
     @Override
     public int intiLayout() {
         return R.layout.activity_id_card;
@@ -60,7 +64,7 @@ public class IdCardActivity extends UserBaseActivity<IdCardAction> implements Id
 
     @Override
     protected IdCardAction initAction() {
-        return new IdCardAction(this,this);
+        return new IdCardAction(this, this);
     }
 
     /**
@@ -76,7 +80,16 @@ public class IdCardActivity extends UserBaseActivity<IdCardAction> implements Id
                 .addTag("IdCardActivity")  //给上面参数打标记，以后可以通过标记恢复
                 .navigationBarWithKitkatEnable(false)
                 .init();
-        toolbar.setNavigationOnClickListener(view -> finish());
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isLogin){
+                    showNormalToast(ResUtil.getString(R.string.my_tab_164));
+                }else {
+                    finish();
+                }
+            }
+        });
         fTitleTv.setText(ResUtil.getString(R.string.my_tab_8));
     }
 
@@ -85,6 +98,8 @@ public class IdCardActivity extends UserBaseActivity<IdCardAction> implements Id
         super.init();
         mActicity = this;
         mContext = this;
+
+        isLogin = getIntent().getBooleanExtra("isLogin", false);
     }
 
     /**
@@ -93,30 +108,31 @@ public class IdCardActivity extends UserBaseActivity<IdCardAction> implements Id
     @OnClick(R.id.tv_id_card_activation)
     public void onViewClicked() {
         //todo 判断真实姓名是否为空
-        if (TextUtils.isEmpty(etIdCardName.getText().toString())){
+        if (TextUtils.isEmpty(etIdCardName.getText().toString())) {
             showNormalToast(ResUtil.getString(R.string.my_tab_116));
             return;
         }
 
         //todo 判断证件号是否为空
-        if (TextUtils.isEmpty(etIdCardNum.getText().toString())){
+        if (TextUtils.isEmpty(etIdCardNum.getText().toString())) {
             showNormalToast(ResUtil.getString(R.string.my_tab_117));
             return;
         }
 
-        setIdCard(etIdCardName.getText().toString(),etIdCardNum.getText().toString());
+        setIdCard(etIdCardName.getText().toString(), etIdCardNum.getText().toString());
     }
 
     /**
      * 身份认证
+     *
      * @param name
      * @param idNum
      */
     @Override
-    public void setIdCard(String name ,String idNum) {
-        if (CheckNetwork.checkNetwork2(mContext)){
+    public void setIdCard(String name, String idNum) {
+        if (CheckNetwork.checkNetwork2(mContext)) {
             loadDialog();
-            baseAction.setIdCard(name,idNum);
+            baseAction.setIdCard(name, idNum);
         }
     }
 
@@ -127,17 +143,35 @@ public class IdCardActivity extends UserBaseActivity<IdCardAction> implements Id
     public void setIdCardSuccess() {
         loadDiss();
         showNormalToast(ResUtil.getString(R.string.my_tab_118));
-        MySp.setUserNameapi(mContext,1);
+        MySp.setUserNameapi(mContext, 1);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                finish();
+                if (isLogin) {
+                    if (MySp.getUserPayPwd(mContext) == 0) {
+                        //todo 为设置支付密码
+                        showNormalToast(ResUtil.getString(R.string.my_tab_165));
+                        Intent intent = new Intent(mContext, SetPayPwdActivity.class);
+                        intent.putExtra("isLogin",true);
+                        intent.putExtra("phone", MySp.getUserPhone(mContext));
+                        startActivity(intent);
+                        finish();
+                    }else {
+                        Intent intent2 = new Intent(mContext, MainActivity.class);
+                        intent2.putExtra("isLogin", true);
+                        startActivity(intent2);
+                        finish();
+                        ActivityStack.getInstance().exitIsNotHaveMain(MainActivity.class);
+                    }
+                }
+
             }
         }, 2000);
     }
 
     /**
      * 失败
+     *
      * @param message
      * @param code
      */
@@ -157,5 +191,24 @@ public class IdCardActivity extends UserBaseActivity<IdCardAction> implements Id
     protected void onResume() {
         super.onResume();
         baseAction.toRegister();
+    }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // TODO Auto-generated method stub
+
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+
+                if (isLogin){
+                    showNormalToast(ResUtil.getString(R.string.my_tab_164));
+                    return true;
+                }else {
+                    finish();
+                }
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

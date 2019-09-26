@@ -1,6 +1,7 @@
 package com.zhifeng.kuangchi.ui.my;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.TextView;
 
@@ -57,6 +58,8 @@ public class EntrustListActivity extends UserBaseActivity<EntrustListAction> imp
     @BindView(R.id.tv_nodata)
     TextView tvNodata;
 
+    MyCountDownTimer EntrustTimer;
+
     @Override
     public int intiLayout() {
         return R.layout.activity_entrust_list;
@@ -96,6 +99,8 @@ public class EntrustListActivity extends UserBaseActivity<EntrustListAction> imp
         super.init();
         mActicity = this;
         mContext = this;
+
+        EntrustTimer = new MyCountDownTimer(3600000,1000);
 
         //初始化适配器
         entrustListAdapter = new EntrustListAdapter();
@@ -163,6 +168,11 @@ public class EntrustListActivity extends UserBaseActivity<EntrustListAction> imp
     @Override
     public void getEntrustListSuccess(EntrustListDto entrustListDto) {
         loadDiss();
+        //todo 启动计时器
+        if (EntrustTimer != null) {
+            EntrustTimer.cancel();
+        }
+        EntrustTimer.start();
         refreshLayout.finishRefresh();//关闭刷新
         refreshLayout.finishLoadMore();//关闭加载更多
         EntrustListDto.DataBean dataBean = entrustListDto.getData();
@@ -211,6 +221,9 @@ public class EntrustListActivity extends UserBaseActivity<EntrustListAction> imp
     @Override
     protected void onPause() {
         super.onPause();
+        if (EntrustTimer != null) {
+            EntrustTimer.cancel();
+        }
         baseAction.toUnregister();
     }
 
@@ -228,5 +241,26 @@ public class EntrustListActivity extends UserBaseActivity<EntrustListAction> imp
             refreshLayout.setNoMoreData(false);
         }
 
+    }
+
+
+    class MyCountDownTimer extends CountDownTimer {
+        public MyCountDownTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+            // TODO Auto-generated constructor stub
+
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onFinish() {
+            // TODO Auto-generated method stub
+            refreshEntrustList();
+        }
     }
 }

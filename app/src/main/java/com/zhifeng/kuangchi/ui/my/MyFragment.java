@@ -3,6 +3,7 @@ package com.zhifeng.kuangchi.ui.my;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,6 +66,8 @@ public class MyFragment extends UserBaseFragment<MyAction> implements MyView {
     String name;
     String avatar;
 
+    MyCountDownTimer myTimer;
+
     @Override
     protected MyAction initAction() {
         return new MyAction((RxAppCompatActivity) getActivity(), this);
@@ -79,7 +82,7 @@ public class MyFragment extends UserBaseFragment<MyAction> implements MyView {
 
     @Override
     protected void initialize() {
-
+        myTimer = new MyCountDownTimer(3600000,1000);
     }
 
     @Override
@@ -101,6 +104,10 @@ public class MyFragment extends UserBaseFragment<MyAction> implements MyView {
 //                isFirst = false;
 //            }
             getMyInfo();
+        }else {
+            if (myTimer != null) {
+                myTimer.cancel();
+            }
         }
     }
 
@@ -120,6 +127,11 @@ public class MyFragment extends UserBaseFragment<MyAction> implements MyView {
     @Override
     public void getMyInfoSuccess(MyInfoDto infoDto) {
         loadDiss();
+        //todo 启动计时器
+        if (myTimer != null) {
+            myTimer.cancel();
+        }
+        myTimer.start();
         MyInfoDto.DataBean dataBean = infoDto.getData();
         L.d("lgh_Avatar",dataBean.getAvatar());
         GlideUtil.setImageCircle(mContext, dataBean.getAvatar(), ivAvatar, R.drawable.logo);//todo 头像
@@ -176,6 +188,7 @@ public class MyFragment extends UserBaseFragment<MyAction> implements MyView {
             MySp.setUserList(mContext,new Gson().toJson(list));
             MainActivity.isLogin = false;
         }
+
     }
 
     /**
@@ -183,7 +196,7 @@ public class MyFragment extends UserBaseFragment<MyAction> implements MyView {
      */
     @Override
     public void getMyInfoError() {
-        showToast(ResUtil.getString(R.string.my_tab_147));
+        showNormalToast(ResUtil.getString(R.string.my_tab_147));
         MySp.clearAllSP(mContext);
         MySp.setUserList(mContext,null);
         jumpActivityNotFinish(mContext,LoginActivity.class);
@@ -199,7 +212,7 @@ public class MyFragment extends UserBaseFragment<MyAction> implements MyView {
     @Override
     public void onError(String message, int code) {
         loadDiss();
-        showToast(message);
+        showNormalToast(message);
     }
 
 
@@ -208,7 +221,6 @@ public class MyFragment extends UserBaseFragment<MyAction> implements MyView {
         super.onResume();
         baseAction.toRegister();
         if (MySp.iSLoginLive(mContext)){
-
             getMyInfo();
         }
     }
@@ -216,6 +228,9 @@ public class MyFragment extends UserBaseFragment<MyAction> implements MyView {
     @Override
     public void onPause() {
         super.onPause();
+        if (myTimer != null) {
+            myTimer.cancel();
+        }
         baseAction.toUnregister();
     }
 
@@ -263,7 +278,7 @@ public class MyFragment extends UserBaseFragment<MyAction> implements MyView {
                 //todo 身份认证
                 if (MySp.getUserNameapi(mContext) == 1) {
                     //todo 已实名认证
-                    showToast(ResUtil.getString(R.string.my_tab_134));
+                    showNormalToast(ResUtil.getString(R.string.my_tab_134));
                     return;
                 }
                 jumpActivityNotFinish(mContext, IdCardActivity.class);
@@ -286,6 +301,27 @@ public class MyFragment extends UserBaseFragment<MyAction> implements MyView {
                 intent.putExtra("avatar",avatar);
                 startActivity(intent);
                 break;
+        }
+    }
+
+
+    class MyCountDownTimer extends CountDownTimer {
+        public MyCountDownTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+            // TODO Auto-generated constructor stub
+
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onFinish() {
+            // TODO Auto-generated method stub
+            getMyInfo();
         }
     }
 }

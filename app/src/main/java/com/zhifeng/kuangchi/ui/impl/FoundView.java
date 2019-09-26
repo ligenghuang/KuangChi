@@ -1,6 +1,7 @@
 package com.zhifeng.kuangchi.ui.impl;
 
 import com.lgh.huanglib.util.base.BaseView;
+import com.zhifeng.kuangchi.module.HomeDataDto;
 import com.zhifeng.kuangchi.module.KLineDto;
 import com.zhifeng.kuangchi.module.ServiceDto;
 
@@ -20,4 +21,5 @@ public interface FoundView extends BaseView {
     void verifyPasswordSuccess();
     void verifyPasswordError(String msg);
 
+    void getHomeDataSuccess(HomeDataDto homeDataDto);
 }

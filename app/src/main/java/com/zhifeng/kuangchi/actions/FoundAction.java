@@ -1,12 +1,14 @@
 package com.zhifeng.kuangchi.actions;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.lgh.huanglib.actions.Action;
 import com.lgh.huanglib.net.CollectionsUtils;
 import com.lgh.huanglib.util.L;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.zhifeng.kuangchi.module.GeneralDto;
+import com.zhifeng.kuangchi.module.HomeDataDto;
 import com.zhifeng.kuangchi.module.KLineDto;
 import com.zhifeng.kuangchi.module.ServiceDto;
 import com.zhifeng.kuangchi.net.WebUrlUtil;
@@ -34,6 +36,14 @@ public class FoundAction extends BaseAction<FoundView> {
     public void getService(){
         post(WebUrlUtil.POST_HISTORY_KLINE,false, service -> manager.runHttp(
                 service.GetKLine(WebUrlUtil.POST_HISTORY_KLINE,"lambusdt")));
+    }
+
+    /**
+     * 获取首页数据
+     */
+    public void getHomeData(){
+        post(WebUrlUtil.POST_GET_HOME_INDEX,false, service -> manager.runHttp(
+                service.GetData(WebUrlUtil.POST_GET_HOME_INDEX, MySp.getAccessToken(MyApp.getContext()))));
     }
 
     /***
@@ -99,6 +109,27 @@ public class FoundAction extends BaseAction<FoundView> {
                             }
                             view.verifyPasswordError(generalDto.getMsg());
                             return;
+                        }
+                        view.onError(msg,action.getErrorType());
+                        break;
+                    case WebUrlUtil.POST_GET_HOME_INDEX:
+                        //todo 获取首页数据
+                        if (aBoolean) {
+                            L.e("xx", "输出返回结果 " + action.getUserData().toString());
+                            try{
+                                HomeDataDto homeDataDto = new Gson().fromJson(action.getUserData().toString(), new TypeToken<HomeDataDto>() {
+                                }.getType());
+                                if (homeDataDto.getStatus() == 200){
+                                    //todo 获取首页数据成功
+                                    view.getHomeDataSuccess(homeDataDto);
+                                    return;
+                                }
+                                view.onError(homeDataDto.getMsg(),action.getErrorType());
+                                return;
+                            }catch (JsonSyntaxException e){
+                                view.onError(msg,action.getErrorType());
+                            }
+
                         }
                         view.onError(msg,action.getErrorType());
                         break;

@@ -7,8 +7,8 @@ android {
         applicationId "com.zhifeng.kuangchi"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 15
-        versionName "1.8.5"
+        versionCode 16
+        versionName "1.8.6"
         multiDexEnabled true
 
         android.applicationVariants.all { variant ->

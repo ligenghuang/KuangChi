@@ -1,6 +1,7 @@
 package com.zhifeng.kuangchi.ui.my;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.TextView;
 
@@ -61,6 +62,8 @@ public class TopUpDetailActivity extends UserBaseActivity<TopUpAction> implement
     @BindView(R.id.tv_nodata)
     TextView tvNodata;
 
+    MyCountDownTimer topUpTimer;
+
     @Override
     public int intiLayout() {
         return R.layout.activity_carry_2;
@@ -100,6 +103,8 @@ public class TopUpDetailActivity extends UserBaseActivity<TopUpAction> implement
         super.init();
         mActicity = this;
         mContext = this;
+
+        topUpTimer = new MyCountDownTimer(3600000,1000);
 
 //        //初始化适配器
         carryListAdapter = new PutListAdapter(mContext);
@@ -167,6 +172,10 @@ public class TopUpDetailActivity extends UserBaseActivity<TopUpAction> implement
     @Override
     public void getCarryListSuccess(TopUpListDto carryListDto) {
         loadDiss();
+        if (topUpTimer != null){
+            topUpTimer.cancel();
+        }
+        topUpTimer.start();
         refreshLayout.finishRefresh();//关闭刷新
         refreshLayout.finishLoadMore();//关闭加载更多
         TopUpListDto.DataBeanX dataBean = carryListDto.getData();
@@ -216,6 +225,9 @@ public class TopUpDetailActivity extends UserBaseActivity<TopUpAction> implement
     @Override
     protected void onPause() {
         super.onPause();
+        if (topUpTimer != null){
+            topUpTimer.cancel();
+        }
         baseAction.toUnregister();
     }
 
@@ -233,5 +245,25 @@ public class TopUpDetailActivity extends UserBaseActivity<TopUpAction> implement
             refreshLayout.setNoMoreData(false);
         }
 
+    }
+
+    class MyCountDownTimer extends CountDownTimer {
+        public MyCountDownTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+            // TODO Auto-generated constructor stub
+
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onFinish() {
+            // TODO Auto-generated method stub
+            refreshCarryList();
+        }
     }
 }

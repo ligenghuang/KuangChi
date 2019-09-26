@@ -2,6 +2,7 @@ package com.zhifeng.kuangchi.ui.my;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,8 @@ public class EarningsFragment extends UserBaseFragment<EarningsAction> implement
     //是否加载更多
     boolean isSlect = true;
 
+    MyCountDownTimer earningsTimer;
+
     @Override
     protected EarningsAction initAction() {
         return new EarningsAction((RxAppCompatActivity) getActivity(), this);
@@ -75,6 +78,8 @@ public class EarningsFragment extends UserBaseFragment<EarningsAction> implement
 
     @Override
     protected void initialize() {
+        earningsTimer = new MyCountDownTimer(3600000,1000);
+
         //初始化适配器
         earningsAdapter = new EarningsAdapter();
         recyclerview.setLayoutManager(new LinearLayoutManager(mContext));
@@ -95,6 +100,10 @@ public class EarningsFragment extends UserBaseFragment<EarningsAction> implement
         super.onFragmentVisibleChange(isVisible);
         if (isVisible) {
             getEarningsList();
+        }else {
+            if (earningsTimer != null) {
+                earningsTimer.cancel();
+            }
         }
     }
 
@@ -152,6 +161,12 @@ public class EarningsFragment extends UserBaseFragment<EarningsAction> implement
     @Override
     public void getEarningsListSuccess(EarningsListDto earningsListDto) {
         loadDiss();
+        if (ArningsActivity.Position == state){
+            if (earningsTimer != null) {
+                earningsTimer.cancel();
+            }
+            earningsTimer.start();
+        }
         refreshLayout.finishLoadMore();
         refreshLayout.finishRefresh();
         EarningsListDto.DataBeanX dataBean = earningsListDto.getData();
@@ -180,7 +195,7 @@ public class EarningsFragment extends UserBaseFragment<EarningsAction> implement
 
     @Override
     public void onError(String message, int code) {
-        showToast(message);
+        showNormalToast(message);
     }
 
     @Override
@@ -192,6 +207,9 @@ public class EarningsFragment extends UserBaseFragment<EarningsAction> implement
     @Override
     public void onPause() {
         super.onPause();
+        if (earningsTimer != null) {
+            earningsTimer.cancel();
+        }
         baseAction.toUnregister();
     }
 
@@ -208,6 +226,26 @@ public class EarningsFragment extends UserBaseFragment<EarningsAction> implement
             L.e("xx", "设置为可以加载更多....");
             refreshLayout.setNoMoreData(false);
         }
+    }
 
+
+    class MyCountDownTimer extends CountDownTimer {
+        public MyCountDownTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+            // TODO Auto-generated constructor stub
+
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onFinish() {
+            // TODO Auto-generated method stub
+            getEarningsList();
+        }
     }
 }

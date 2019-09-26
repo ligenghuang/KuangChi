@@ -12,9 +12,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_LOGS" />
-
-    <!-- Optional. Required for location feature -->
+    <uses-permission android:name="android.permission.READ_LOGS" /> <!-- Optional. Required for location feature -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -35,9 +33,10 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/activity_theme">
-        <activity android:name=".ui.my.TopUpDetailActivity"></activity>
-        <activity android:name=".ui.login.FindLoginPwdActivity"></activity>
-        <activity android:name=".ui.my.MoblieLoginPwdActivity"></activity>
+        <activity android:name=".ui.my.SetPayPwdActivity"></activity>
+        <activity android:name=".ui.my.TopUpDetailActivity" />
+        <activity android:name=".ui.login.FindLoginPwdActivity" />
+        <activity android:name=".ui.my.MoblieLoginPwdActivity" />
         <activity android:name=".ui.home.PayActivity" />
         <activity android:name=".ui.home.BannerActivity" />
         <activity android:name=".ui.my.ModifyUserInfoActivity" />

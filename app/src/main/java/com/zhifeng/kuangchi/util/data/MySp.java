@@ -27,6 +27,7 @@ public class MySp extends MySharedPreferencesUtil {
         setUserImg(context,null);
         setUserVip(context,0);
         setUserNameapi(context,0);
+        setUserPayPwd(context,0);
         setBouns(context,"0");
         setBounsDay(context,"0");
         setFound(context,0);
@@ -227,6 +228,28 @@ public class MySp extends MySharedPreferencesUtil {
         SharedPreferences sp = getProjectSP(context);
         SharedPreferences.Editor editor = sp.edit();
         return editor.putInt("UserIs_nameapi", is_nameapi).commit();
+    }
+
+    /**
+     * 获取用户是否设置支付密码
+     * @param context
+     * @return
+     */
+    public static int getUserPayPwd(Context context){
+        SharedPreferences sp = getProjectSP(context);
+        return sp.getInt("UserIs_paypwd", 0);
+    }
+
+    /**
+     * 设置 用户是否设置支付密码
+     *
+     * @param context
+     * @param is_paypwd
+     */
+    public static boolean setUserPayPwd(Context context, int is_paypwd) {
+        SharedPreferences sp = getProjectSP(context);
+        SharedPreferences.Editor editor = sp.edit();
+        return editor.putInt("UserIs_paypwd", is_paypwd).commit();
     }
 
 

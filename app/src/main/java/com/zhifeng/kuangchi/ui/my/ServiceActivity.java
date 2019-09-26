@@ -3,6 +3,7 @@ package com.zhifeng.kuangchi.ui.my;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.TextView;
 
@@ -86,6 +87,8 @@ public class ServiceActivity extends UserBaseActivity<ServiceAction> implements 
 
     ServiceAdapter serviceAdapter;
 
+    MyCountDownTimer serviceTimer;
+
     @Override
     public int intiLayout() {
         return R.layout.activity_service;
@@ -125,6 +128,7 @@ public class ServiceActivity extends UserBaseActivity<ServiceAction> implements 
         super.init();
         mActicity = this;
         mContext = this;
+        serviceTimer = new MyCountDownTimer(3600000,1000);
 
         serviceAdapter = new ServiceAdapter();
         recyclerview.setLayoutManager(new LinearLayoutManager(mContext));
@@ -154,6 +158,11 @@ public class ServiceActivity extends UserBaseActivity<ServiceAction> implements 
     @Override
     public void getServiceSuccess(ServiceDto serviceDto, Map<String,String> mMap ) {
         loadDiss();
+        if (serviceTimer != null){
+            serviceTimer.cancel();
+        }
+        serviceTimer.start();
+
         ServiceDto.DataBean dataBean = serviceDto.getData();
         serviceAdapter.refresh(dataBean.getMiner_info());
 
@@ -300,12 +309,36 @@ public class ServiceActivity extends UserBaseActivity<ServiceAction> implements 
     @Override
     protected void onPause() {
         super.onPause();
+        if (serviceTimer != null){
+            serviceTimer.cancel();
+        }
         baseAction.toUnregister();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
         baseAction.toRegister();
+    }
+
+    class MyCountDownTimer extends CountDownTimer {
+        public MyCountDownTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+            // TODO Auto-generated constructor stub
+
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onFinish() {
+            // TODO Auto-generated method stub
+            getService();
+        }
     }
 }

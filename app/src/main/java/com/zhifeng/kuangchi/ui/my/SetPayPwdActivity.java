@@ -1,15 +1,18 @@
 package com.zhifeng.kuangchi.ui.my;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Process;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import androidx.appcompat.widget.Toolbar;
 
 import com.lgh.huanglib.util.CheckNetwork;
 import com.lgh.huanglib.util.base.ActivityStack;
@@ -29,14 +32,15 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * @ClassName: 支付密码
- * @Description:
- * @Author: lgh
- * @CreateDate: 2019/8/31 20:21
- * @Version: 1.0
+  *
+  * @ClassName:     设置密码
+  * @Description:
+  * @Author:         lgh
+  * @CreateDate:     2019/9/26 14:26
+  * @Version:        1.0
  */
 
-public class SecurityPwdActivity extends UserBaseActivity<SecurityPwdAction> implements SecurityPwdView {
+public class SetPayPwdActivity extends UserBaseActivity<SecurityPwdAction> implements SecurityPwdView {
 
     @BindView(R.id.top_view)
     View topView;
@@ -44,18 +48,6 @@ public class SecurityPwdActivity extends UserBaseActivity<SecurityPwdAction> imp
     TextView fTitleTv;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-
-    @BindView(R.id.tv_tab_1)
-    TextView tvTab1;
-    @BindView(R.id.tv_tab_2)
-    TextView tvTab2;
-
-    @BindView(R.id.et_old_pwd)
-    EditText etOldPwd;
-    @BindView(R.id.et_new_pwd)
-    EditText etNewPwd;
-    @BindView(R.id.ll_tab_1)
-    LinearLayout llTab1;
 
     @BindView(R.id.ll_tab_2)
     LinearLayout llTab2;
@@ -81,7 +73,7 @@ public class SecurityPwdActivity extends UserBaseActivity<SecurityPwdAction> imp
 
     @Override
     public int intiLayout() {
-        return R.layout.activity_security_pwd;
+        return R.layout.activity_set_pay_pwd;
     }
 
     @Override
@@ -90,6 +82,7 @@ public class SecurityPwdActivity extends UserBaseActivity<SecurityPwdAction> imp
         ActivityStack.getInstance().addActivity(new WeakReference<>(this));
         binding();
     }
+
 
     /**
      * 初始化标题栏
@@ -101,18 +94,21 @@ public class SecurityPwdActivity extends UserBaseActivity<SecurityPwdAction> imp
                 .statusBarView(R.id.top_view)
                 .keyboardEnable(true)
                 .statusBarDarkFont(true)
-                .addTag("SecurityPwdActivity")  //给上面参数打标记，以后可以通过标记恢复
+                .addTag("SetPayPwdActivity")  //给上面参数打标记，以后可以通过标记恢复
                 .navigationBarWithKitkatEnable(false)
                 .init();
-        toolbar.setNavigationOnClickListener(v -> finish());
-        fTitleTv.setText(ResUtil.getString(R.string.my_tab_22));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isLogin){
+                    showNormalToast(ResUtil.getString(R.string.my_tab_165));
+                }else {
+                    finish();
+                }
+            }
+        });
+        fTitleTv.setText(ResUtil.getString(R.string.my_tab_95_1));
     }
-
-    @Override
-    protected SecurityPwdAction initAction() {
-        return new SecurityPwdAction(this, this);
-    }
-
 
     @Override
     protected void init() {
@@ -122,23 +118,11 @@ public class SecurityPwdActivity extends UserBaseActivity<SecurityPwdAction> imp
 
         isLogin = getIntent().getBooleanExtra("isLogin",false);
         phone = getIntent().getStringExtra("phone");
-        type = 0;
-        setType();
+
 
         timer = new MyCountDownTimer(60000, 1000);
         tvPwdMobile.setText(ResUtil.getFormatString(R.string.my_tab_133,phone));
-        tvTab2.setText(ResUtil.getString(R.string.my_tab_95));
-    }
 
-    /**
-     * 设置布局
-     */
-    private void setType() {
-        llTab1.setVisibility(type == 0?View.VISIBLE :View.GONE);
-        llTab2.setVisibility(type == 1?View.VISIBLE :View.GONE);
-        tvTab1.setSelected(type == 0);
-        tvTab2.setSelected(type == 1);
-        tvPwdSubmit.setText(ResUtil.getString(type == 0?R.string.my_tab_101:R.string.my_tab_102));
     }
 
     /**
@@ -187,56 +171,37 @@ public class SecurityPwdActivity extends UserBaseActivity<SecurityPwdAction> imp
     public void setPayPwdSuccess(String generalDto) {
         loadDiss();
         showNormalToast(generalDto);
-       if (isLogin){
-           Intent intent2 = new Intent(mContext, MainActivity.class);
-           intent2.putExtra("isLogin", true);
-           startActivity(intent2);
-       }
-        finish();
+        MySp.setUserPayPwd(mContext, 1);
+        if (isLogin){
+            Intent intent2 = new Intent(mContext, MainActivity.class);
+            intent2.putExtra("isLogin", true);
+            startActivity(intent2);
+            finish();
+            ActivityStack.getInstance().exitIsNotHaveMain(MainActivity.class);
+        }else {
+            finish();
+        }
+
     }
 
-    /**
-     * 重置支付密码
-     */
     @Override
     public void forgetPayPwd(SetPayPwdPost setPayPwdPost) {
-        if (CheckNetwork.checkNetwork2(mContext)){
-            loadDialog();
-            baseAction.forgetPayPwd(setPayPwdPost);
-        }
+
     }
 
-    /**
-     * 重置支付密码成功
-     * @param generalDto
-     */
     @Override
     public void forgetPayPwdSuccess(String generalDto) {
-        loadDiss();
-        showNormalToast(generalDto);
-        finish();
+
     }
 
-    /**
-     * 修改支付密码
-     */
     @Override
-    public void editPayPwd(String oldPwd,String newPwd) {
-        if (CheckNetwork.checkNetwork2(mContext)){
-            loadDialog();
-            baseAction.editPayPwd(oldPwd,newPwd);
-        }
+    public void editPayPwd(String oldPwd, String newPwd) {
+
     }
 
-    /**
-     * 修改支付密码
-     * @param generalDto
-     */
     @Override
     public void editPayPwdSuccess(String generalDto) {
-        loadDiss();
-        showNormalToast(generalDto);
-        finish();
+
     }
 
     /**
@@ -266,68 +231,24 @@ public class SecurityPwdActivity extends UserBaseActivity<SecurityPwdAction> imp
         baseAction.toUnregister();
     }
 
-    @OnClick({R.id.tv_tab_1, R.id.tv_tab_2, R.id.tv_login_get_code,R.id.tv_pwd_submit})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.tv_tab_1:
-                //todo 修改支付密码
-               if (type == 1){
-                   type = 0;
-                   setType();
-               }
-                break;
-            case R.id.tv_tab_2:
-                //todo 忘记支付密码
-                if (type != 1){
-                    type = 1;
-                    setType();
-                }
+    @OnClick({R.id.tv_pwd_submit,R.id.tv_login_get_code})
+    void OnClick(View v){
+        switch (v.getId()){
+            case R.id.tv_pwd_submit:
+                //todo 设置支付密码
+                setFirstPayPwd();
                 break;
             case R.id.tv_login_get_code:
                 //todo 获取验证码
                 getAuthCode();
                 break;
-            case R.id.tv_pwd_submit:
-
-                    switch (type){
-                        case 0:
-                            //todo 修改支付密码
-                            EditPayPwd();
-                            break;
-                        case 1:
-                            //todo 重置支付密码
-                            setFirstPayPwd(1);
-                            break;
-                    }
-
-                break;
         }
     }
 
     /**
-     * 修改支付密码校验
+     * 设置支付密码校验 并请求接口
      */
-    private void EditPayPwd() {
-        //todo 判断是否输入原密码
-        if (TextUtils.isEmpty(etOldPwd.getText().toString())){
-            showNormalToast(ResUtil.getString(R.string.my_tab_108));
-            return;
-        }
-
-        //todo 判断是否输入新密码
-        if (TextUtils.isEmpty(etNewPwd.getText().toString())){
-            showNormalToast(ResUtil.getString(R.string.my_tab_109));
-            return;
-        }
-
-        editPayPwd(etOldPwd.getText().toString(),etNewPwd.getText().toString());
-
-    }
-
-    /**
-     * 设置支付密码与重置支付密码校验 并请求接口
-     */
-    private void setFirstPayPwd(int i) {
+    private void setFirstPayPwd() {
         SetPayPwdPost payPwdPost = new SetPayPwdPost();
         payPwdPost.setPhone(MySp.getUserPhone(mContext));
         //todo 判断是否输入验证码
@@ -363,14 +284,14 @@ public class SecurityPwdActivity extends UserBaseActivity<SecurityPwdAction> imp
         }
         payPwdPost.setPassword(etPwd.getText().toString());
 
-        if (i == 0){
-            //todo 设置支付密码
-            setPayPwd(payPwdPost);
-        }else {
-            //todo 重置支付密码
-            forgetPayPwd(payPwdPost);
-        }
+        //todo 设置支付密码
+        setPayPwd(payPwdPost);
 
+    }
+
+    @Override
+    protected SecurityPwdAction initAction() {
+        return new SecurityPwdAction(this,this);
     }
 
     /**************************************计时器 start*******************************************/
@@ -398,4 +319,23 @@ public class SecurityPwdActivity extends UserBaseActivity<SecurityPwdAction> imp
         }
     }
 /*****************************************计时器 end**************************************************/
+
+@Override
+public boolean onKeyDown(int keyCode, KeyEvent event) {
+    // TODO Auto-generated method stub
+
+    switch (keyCode) {
+        case KeyEvent.KEYCODE_BACK:
+
+            if (isLogin){
+                showNormalToast(ResUtil.getString(R.string.my_tab_165));
+                return true;
+            }else {
+                finish();
+            }
+            break;
+    }
+    return super.onKeyDown(keyCode, event);
+}
+
 }

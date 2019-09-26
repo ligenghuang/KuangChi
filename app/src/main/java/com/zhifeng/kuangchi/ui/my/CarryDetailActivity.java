@@ -40,10 +40,14 @@ public class CarryDetailActivity extends UserBaseActivity<CarryDetailAction> imp
     Toolbar toolbar;
     @BindView(R.id.tv_carry_detail_time)
     TextView tvCarryDetailTime;
+    @BindView(R.id.tv_carry_detail_time_name)
+    TextView tvCarryDetailTimeName;
     @BindView(R.id.tv_carry_detail_money)
     TextView tvCarryDetailMoney;
     @BindView(R.id.tv_carry_detail_type)
     TextView tvCarryDetailType;
+    @BindView(R.id.tv_carry_detail_type_name)
+    TextView tvCarryDetailTypeName;
     @BindView(R.id.tv_carry_detail_address)
     TextView tvCarryDetailAddress;
     @BindView(R.id.tv_carry_detail_status)
@@ -104,9 +108,13 @@ public class CarryDetailActivity extends UserBaseActivity<CarryDetailAction> imp
         if (type == 0) {
             getCarryDetail();
             fTitleTv.setText(ResUtil.getString(R.string.my_tab_59));
+            tvCarryDetailTypeName.setText(ResUtil.getString(R.string.my_tab_62));
+            tvCarryDetailTimeName.setText(ResUtil.getString(R.string.my_tab_61));
         } else {
             getPutDetail();
             fTitleTv.setText(ResUtil.getString(R.string.my_tab_59_1));
+            tvCarryDetailTypeName.setText(ResUtil.getString(R.string.my_tab_62_2));
+            tvCarryDetailTimeName.setText(ResUtil.getString(R.string.my_tab_61_2));
         }
     }
 

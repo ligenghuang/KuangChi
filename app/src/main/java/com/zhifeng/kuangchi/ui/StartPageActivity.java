@@ -10,10 +10,14 @@ import android.os.Handler;
 import com.gyf.barlibrary.ImmersionBar;
 import com.lgh.huanglib.util.base.ActivityStack;
 import com.lgh.huanglib.util.base.BaseActivity;
+import com.lgh.huanglib.util.data.ResUtil;
 import com.zhifeng.kuangchi.R;
 import com.zhifeng.kuangchi.actions.BaseAction;
 import com.zhifeng.kuangchi.ui.login.LoginActivity;
 import com.zhifeng.kuangchi.ui.login.LoginOrRegisteredActivity;
+import com.zhifeng.kuangchi.ui.my.IdCardActivity;
+import com.zhifeng.kuangchi.ui.my.SecurityPwdActivity;
+import com.zhifeng.kuangchi.ui.my.SetPayPwdActivity;
 import com.zhifeng.kuangchi.util.base.UserBaseActivity;
 import com.zhifeng.kuangchi.util.data.MySp;
 
@@ -74,8 +78,24 @@ public class StartPageActivity extends BaseActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    //todo 判断是否登录跳转不同页面
-                    Intent intent = new Intent(mContext, MySp.iSLoginLive(mContext)?MainActivity.class: LoginOrRegisteredActivity.class);
+                    //todo 判断是否登录和是否认证跳转不同页面
+                    Class classA = null;
+                    if (!MySp.iSLoginLive(mContext)){
+                        classA = LoginOrRegisteredActivity.class;
+                    }else {
+                        if (MySp.getUserNameapi(mContext) == 1 && MySp.getUserPayPwd(mContext) == 1){
+                            classA = MainActivity.class;
+                        }else  if (MySp.getUserNameapi(mContext) == 0){
+                            classA = IdCardActivity.class;
+                            showNormalToast(ResUtil.getString(R.string.my_tab_164));
+                        }else if (MySp.getUserPayPwd(mContext) == 0){
+                            classA = SetPayPwdActivity.class;
+                            showNormalToast(ResUtil.getString(R.string.my_tab_165));
+                        }
+                    }
+                    Intent intent = new Intent(mContext, classA);
+                    intent.putExtra("isLogin",true);
+                    intent.putExtra("phone",MySp.getUserPhone(mContext));
                     startActivity(intent);
                     isNeedAnim = false;
                     finish();

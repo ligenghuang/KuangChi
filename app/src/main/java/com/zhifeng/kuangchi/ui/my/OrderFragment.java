@@ -210,7 +210,7 @@ public class OrderFragment extends UserBaseFragment<OrderAction> implements Orde
         loadDiss();
         refreshLayout.finishRefresh();
         refreshLayout.finishLoadMore();
-        showToast(message);
+        showNormalToast(message);
     }
 
     @Override
