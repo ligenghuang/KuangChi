@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
 
 import com.lgh.huanglib.util.CheckNetwork;
+import com.lgh.huanglib.util.L;
 import com.lgh.huanglib.util.base.ActivityStack;
 import com.lgh.huanglib.util.config.GlideUtil;
 import com.lgh.huanglib.util.data.ResUtil;
@@ -127,8 +128,9 @@ public class InvitationActivity extends UserBaseActivity<InvitationAction> imple
         GlideUtil.setImage(mContext,dataBean.getUrl(),ivInvitationQrcode);//二维码
         url = dataBean.getReg_url();
         tvInvitationAddress.setText(dataBean.getReg_url());//邀请链接
-        code = dataBean.getId();
-        tvInvitationCode.setText(ResUtil.getFormatString(R.string.my_tab_16,dataBean.getId()));//邀请码
+        code = dataBean.getId()+"";
+        L.e("lgh_id","id  = "+dataBean.getId());
+        tvInvitationCode.setText(ResUtil.getFormatString(R.string.my_tab_16,dataBean.getId()+""));//邀请码
     }
 
     /**

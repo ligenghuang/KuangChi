@@ -57,7 +57,7 @@ public class InvitationInfoDto {
         private String url;
         private String avatar;
         private String realname;
-        private String id;
+        private int id;
         private String address;
         private String reg_url;
 
@@ -93,11 +93,11 @@ public class InvitationInfoDto {
             this.realname = realname;
         }
 
-        public String getId() {
+        public int getId() {
             return id;
         }
 
-        public void setId(String id) {
+        public void setId(int id) {
             this.id = id;
         }
 
