@@ -173,7 +173,7 @@ public class EarningsFragment extends UserBaseFragment<EarningsAction> implement
         if (earningsListDto.getData().getData().size() != 0) {
             recyclerview.setVisibility(View.VISIBLE);
             tvNodata.setVisibility(View.GONE);
-            isSlect = page < dataBean.getCurrent_page();
+            isSlect = page < dataBean.getLast_page();
             loadSwapTab();
             if (isRefresh) {
                 //刷新数据成功

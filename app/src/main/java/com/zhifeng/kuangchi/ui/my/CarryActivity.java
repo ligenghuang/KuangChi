@@ -178,7 +178,7 @@ public class CarryActivity extends UserBaseActivity<CarryAction> implements Carr
         if (dataBean.getData().size() != 0) {
             recyclerview.setVisibility(View.VISIBLE);
             tvNodata.setVisibility(View.GONE);
-            isSlect = page < dataBean.getCurrent_page();
+            isSlect = page < dataBean.getLast_page();
             loadSwapTab();
             if (isRefresh) {
                 //刷新数据成功
@@ -233,6 +233,7 @@ public class CarryActivity extends UserBaseActivity<CarryAction> implements Carr
     public void loadSwapTab() {
 
         if (!isSlect) {
+            refreshLayout.finishLoadMore();
             L.e("xx", "设置为没有加载更多....");
             refreshLayout.finishLoadMoreWithNoMoreData();
             refreshLayout.setNoMoreData(true);

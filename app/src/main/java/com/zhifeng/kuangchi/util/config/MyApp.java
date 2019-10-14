@@ -15,8 +15,8 @@ import com.scwang.smartrefresh.layout.api.RefreshFooter;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
-import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import com.zhifeng.kuangchi.util.view.ClassicsFooter;
 
 
 /**
@@ -55,7 +55,7 @@ public class MyApp extends MyApplication {
             @NonNull
             @Override
             public RefreshFooter createRefreshFooter(@NonNull Context context, @NonNull RefreshLayout layout) {
-                layout.setEnableLoadMoreWhenContentNotFull(true);//内容不满一页时候启用加载更多
+//                layout.setEnableLoadMoreWhenContentNotFull(true);//内容不满一页时候启用加载更多
                 ClassicsFooter footer = new ClassicsFooter(context);
                 footer.setBackgroundResource(android.R.color.white);
                 footer.setTextSizeTitle(15);

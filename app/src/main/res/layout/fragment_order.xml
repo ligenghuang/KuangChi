@@ -13,11 +13,6 @@
         android:layout_height="match_parent"
         >
 
-        <com.scwang.smartrefresh.layout.header.ClassicsHeader
-            android:id="@+id/classicsheader"
-            android:layout_width="match_parent"
-            app:srlTextSizeTitle="13dp"
-            android:layout_height="wrap_content"/>
 
        <androidx.core.widget.NestedScrollView
            android:layout_width="match_parent"
@@ -58,11 +53,7 @@
            </LinearLayout>
 
        </androidx.core.widget.NestedScrollView>
-        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
-            android:id="@+id/classicsfooter"
-            android:layout_width="match_parent"
-            app:srlTextSizeTitle="13dp"
-            android:layout_height="wrap_content"/>
+
 
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>

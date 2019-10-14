@@ -179,7 +179,7 @@ public class EntrustListActivity extends UserBaseActivity<EntrustListAction> imp
         if (dataBean.getEntrust_list().size() != 0) {
             recyclerview.setVisibility(View.VISIBLE);
             tvNodata.setVisibility(View.GONE);
-            isSlect = page < dataBean.getCurrent_page();
+            isSlect = page < dataBean.getLast_page();
             loadSwapTab();
             if (isRefresh) {
                 //刷新数据成功

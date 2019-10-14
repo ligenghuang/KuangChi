@@ -75,11 +75,7 @@
 
         >
 
-        <com.scwang.smartrefresh.layout.header.ClassicsHeader
-            android:id="@+id/classicsheader"
-            android:layout_width="match_parent"
-            app:srlTextSizeTitle="13dp"
-            android:layout_height="wrap_content"/>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -105,11 +101,7 @@
                 android:visibility="gone"/>
         </LinearLayout>
 
-        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
-            android:id="@+id/classicsfooter"
-            android:layout_width="match_parent"
-            app:srlTextSizeTitle="13dp"
-            android:layout_height="wrap_content"/>
+
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
